@@ -1,0 +1,101 @@
+@model ShareCar.Models.CarShareModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết xe</title>
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        .star {
+            cursor: pointer; /* Đổi con trỏ khi di chuột qua ngôi sao */
+            font-size: 1.5rem; /* Tăng kích thước sao */
+            color: white; /* Màu trắng cho sao */
+            text-shadow: 0 0 5px black; /* Tăng độ đậm của bóng đổ */
+            margin-right: 2px; /* Khoảng cách giữa các ngôi sao */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Ảnh của xe -->
+                <img src="@Model.Image" alt="@Model.Model" class="img-fluid rounded" style="width: 100%; height: auto;">
+            </div>
+            
+            <div class="col-md-6">
+                <!-- Thông tin chi tiết -->
+                <h2 class="mb-3">@Model.Model</h2>
+                <p><strong>Hãng Xe:</strong> @Model.Brand</p>
+                <p><strong>Biển số:</strong> @Model.LicensePlate</p>
+                <p><strong>Màu sắc:</strong> @Model.Color</p>
+                <p><strong>Tình trạng:</strong> <span class="badge @(Model.Status == "Đã cho thuê" ? "bg-danger text-light" : "bg-info text-dark")">@Model.Status</span></p>
+                <p><strong>Người đăng:</strong> @Model.Poster</p>
+                <p><strong>Ngày đăng:</strong> @Model.Day.ToString("dd/MM/yyyy")</p>
+                <p><strong>Địa chỉ:</strong> @Model.Address</p>
+                <p><strong>Liên hệ:</strong> @Model.SDT</p>
+                <p><strong>Mô tả:</strong> @Model.Description</p>
+                <p><strong>Giá thuê:</strong> <span class="text-success">@String.Format("{0:0,0}", Model.RentalPrice) VNĐ /ngày</span></p>
+                
+                <div class="d-flex align-items-center mb-4">
+                    <strong>Đánh giá:</strong>
+                    <span class="text-warning ms-2">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            var averageRating = Model.AverageRating ?? 0; // Gán giá trị cho averageRating
+                            
+                            if (i <= (int)Math.Floor(averageRating))
+                            {
+                                <i class="fas fa-star star" style="color: gold;"></i> <!-- Ngôi sao vàng -->
+                            }
+                            else if (i == (int)Math.Ceiling(averageRating))
+                            {
+                                <i class="fas fa-star-half-alt star" style="color: gold;"></i> <!-- Ngôi sao vàng nhạt cho phần thập phân -->
+                            }
+                            else
+                            {
+                                <i class="fas fa-star star"></i> <!-- Ngôi sao trắng -->
+                            }
+                        }
+                    </span>
+                    
+                </div>
+
+
+                <!-- Nút quay lại và đặt xe -->
+                @if(@Context.Session.GetString("UserName") != null){
+                    <a href="@Url.Action("Index", "Car")" class="btn btn-secondary me-2">Quay lại</a>
+                     <a href="@Url.Action("NewCar", "Car", new { id = Model.CarID })" class="btn btn-success">Đặt Xe</a>
+                }else{
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-secondary me-2">Quay lại</a>
+                    <a href="@Url.Action("Login", "User", new { id = Model.CarID })" class="btn btn-success">Đặt Xe</a>
+                }
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function rateCar(stars) {
+            // Lấy giá trị hiện tại của AverageRating từ Model
+            var currentRating = @Model.AverageRating;
+
+            // Tính trung bình mới
+            var newRating = (currentRating + stars) / 2;
+
+            // Cập nhật giao diện hoặc thực hiện một yêu cầu AJAX để lưu rating
+            console.log("New Average Rating: " + newRating);
+
+            // Có thể thêm logic để lưu rating vào cơ sở dữ liệu ở đây.
+            // Bạn có thể sử dụng AJAX để gửi giá trị newRating về server.
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+﻿@{
+    Layout = null; // Đặt thành null nếu bạn muốn sử dụng layout này làm trang độc lập
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"> <!-- Đường dẫn đến Bootstrap -->
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css"> <!-- Đường dẫn đến Font Awesome nếu cần -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+
+    <title>@ViewData["Title"] - ShareCar</title>
+    
+    <style>
+        /* Các kiểu tùy chỉnh của bạn */
+    
+        .input-container {
+            position: relative;
+            flex: 1;
+        }
+        .input-container i {
+            position: absolute;
+            left: 12px; /* Khoảng cách từ bên trái */
+            top: 50%; /* Giữa theo chiều dọc */
+            transform: translateY(-50%); /* Giữa theo chiều dọc */
+            color: #6c757d; /* Màu icon */
+        }
+        .form-search {
+            border: none; /* Không có viền cho ô input */
+            border-radius: 30px; /* Bo tròn ô input */
+            padding: 8px 12px 8px 40px; /* Padding cho ô input */
+            font-size: 16px; /* Kích thước font chữ */
+            width: 100%; /* Chiều rộng 100% */
+            box-shadow: none; /* Không có bóng đổ */
+            background-color: transparent; /* Để nền trong suốt */
+        }
+        .form-control:focus {
+            outline: none; /* Không hiện viền khi focus */
+        }
+        .list-group-item a {
+            color: #000; /* Màu mặc định */
+            transition: color 0.3s, background-color 0.3s; /* Hiệu ứng chuyển màu */
+        }
+        
+        .list-group-item:hover a {
+            color: #007bff; /* Màu khi hover */
+            background-color: #f8f9fa; /* Đổi màu nền khi hover */
+        }
+    </style>
+</head>
+<body>
+     <!-- Offcanvas Sidebar -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidebarLabel">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="/" class="text-decoration-none" >
+                        <i class="bi bi-house-door me-2"></i>Trang Chủ
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#" class="text-decoration-none" >
+                        <i class="bi bi-check-square me-2"></i>Bài Duyệt
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a asp-controller ="Car" asp-action="CarManager" class="text-decoration-none" >
+                        <i class="bi bi-car-front me-2"></i>Quản lý Phương tiện
+                    </a>
+                </li>
+                 <li class="list-group-item">
+                    <a asp-controller ="User" asp-action="UserManager" class="text-decoration-none">
+                        <i class="bi bi-person me-2"></i>Quản lý Người dùng
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+       
+        <div class="container">
+             @if (Context.Session.GetString("UserName") == "admin"){
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+            }
+            @if (Context.Session.GetString("UserName") != null)
+            {
+                <a class="navbar-brand fw-bold" asp-controller="Car" asp-action="Index" style="font-size: Bold;">
+                    <i class="bi bi-car-front me-1" style="font-size: 1.5rem;"></i>ShareCar
+                </a>
+            }
+            else
+            {
+                <a class="navbar-brand fw-bold" href="/" style="font-size: Bold;">
+                    <i class="bi bi-car-front me-1" style="font-size: 1.5rem;"></i>ShareCar
+                </a>
+            }
+
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Danh mục
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Xe Máy</a></li>
+                            <li><a class="dropdown-item" href="#">Ô Tô</a></li>
+                            <li><a class="dropdown-item" href="#">Xe Đạp</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        @if(Context.Session.GetString("UserName") != null){
+                            <a class ="nav-link" asp-controller="Car" asp-action="NewCar">Bài Đăng Mới</a>
+                        }
+                        else{
+                            <a class ="nav-link" asp-controller="User" asp-action="Login">Bài Đăng Mới</a>
+                        }
+                        
+                    </li>
+                </ul>
+                <form class="search-form" method="get" asp-controller="Car" asp-action="CarSearch" role="search">
+                    <div class="input-container">
+                        <i class="fas fa-search"></i>
+                        <input class="form-search" name="query" type="search" placeholder="Tìm kiếm..." aria-label="Tìm kiếm">
+                    </div>
+                </form>
+                <ul class="navbar-nav">
+                    @if (Context.Session.GetString("UserName") != null) // Kiểm tra nếu người dùng đã đăng nhập
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="User" asp-action="Profile">Xin chào, @Context.Session.GetString("UserName")</a> <!-- Hiển thị tên người dùng -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="User" asp-action="Logout">Đăng xuất</a> <!-- Nút đăng xuất -->
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center" asp-controller="User" asp-action="Login">
+                                <i class="fas fa-sign-in-alt text-success me-1"></i> Đăng nhập
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center" asp-controller="User" asp-action="Register">
+                                <i class="fas fa-user-plus text-success me-1"></i> Đăng ký
+                            </a>
+                        </li>
+
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Nội dung trang -->
+    <div class="container mt-5">
+        @RenderBody()
+    </div>
+    <footer class="bg-light text-dark pt-5 pb-4">
+    <div class="container text-md-left">
+        <div class="row">
+            <!-- Thông tin về ShareCar -->
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h5 class="text-uppercase mb-4 font-weight-bold">ShareCar</h5>
+                <p>ShareCar là nền tảng chia sẻ phương tiện giao thông tiện lợi và an toàn</p>
+            </div>
+
+            <!-- Thông tin liên hệ -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h5 class="text-uppercase mb-4 font-weight-bold">Thông tin liên hệ</h5>
+                <p><i class="bi bi-geo-alt-fill me-2"></i>Địa chỉ: Số 96 Định Công, Hà Nội</p>
+                <p><i class="bi bi-envelope-fill me-2"></i>Email contact: nvmanhfc03@gmail.com</p>
+                <p><i class="bi bi-phone-fill me-2"></i>Liên hệ: +84 332 536 581</p>
+            </div>
+
+            <!-- Chính sách -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h5 class="text-uppercase mb-4 font-weight-bold">Chính sách</h5>
+                <p><a href="#" class="text-dark text-decoration-none">Chính sách bảo mật</a></p>
+                <p><a href="#" class="text-dark text-decoration-none">Điều khoản sử dụng</a></p>
+                <p><a href="#" class="text-dark text-decoration-none">Chính sách hoàn trả</a></p>
+            </div>
+
+            <!-- Mạng xã hội -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h5 class="text-uppercase mb-4 font-weight-bold">Theo dõi chúng tôi</h5>
+                <a href="#" class="text-dark me-4"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-dark me-4"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-dark me-4"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </div>
+
+        <!-- Dòng copyright -->
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <p class="text-muted">© 2024 ShareCar. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script> <!-- Đường dẫn đến jQuery -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> <!-- Đường dẫn đến Bootstrap JS -->
+</body>
+</html>

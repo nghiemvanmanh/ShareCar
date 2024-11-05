@@ -1,0 +1,55 @@
+@model ShareCar.Models.Customer.UserModel.LoginModel;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Nhập</title>
+
+    <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"> <!-- Đường dẫn đến Bootstrap -->
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center my-4">Đăng Nhập</h2>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success text-center">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form asp-action="Login" method="post" class="border p-4 shadow rounded bg-light">
+                    <div class="mb-3">
+                        <label asp-for="UserName" class="form-label">Tên người dùng</label>
+                        <input asp-for="UserName" class="form-control" required />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="PassWord" class="form-label">Mật khẩu</label>
+                        <input type="password" asp-for="PassWord" class="form-control" id="passwordField" required />
+                        <span asp-validation-for="PassWord" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Đăng Nhập</button>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="@Url.Action("Register", "User")">Chưa có tài khoản? Đăng ký</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-CiKYZyz2C2g1qcN0bmfQ3v52Uta/cfZW+kLtbsEv56TVWb6hFHF6Q7iKd17h8/aJ" crossorigin="anonymous"></script>
+
+    <script>
+        // Toggle password visibility
+        document.getElementById("showPassword").addEventListener("change", function () {
+            const passwordField = document.getElementById("passwordField");
+            passwordField.setAttribute("type", this.checked ? "text" : "password");
+        });
+    </script>
+</body>
+</html>

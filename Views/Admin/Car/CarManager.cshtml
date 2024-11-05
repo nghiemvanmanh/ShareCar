@@ -1,0 +1,114 @@
+@model IEnumerable<ShareCar.Models.CarShareModel>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Phương Tiện</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+    <h2 class="text-center my-4">Quản Lý Phương Tiện</h2>
+
+    <form method="get" class="mb-3">
+       <div class="input-group">
+            <input type="text" name="searchString" class="form-control" placeholder="Tìm kiếm theo ID hoặc Model" />
+            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+            
+        </div>
+        <div class="row-g3">
+            <div class="col">
+                <label for ="status" class="form-label">Trạng thái</label>
+                <select name ="status" class="form-control">
+                    <option value="Chưa cho thuê">Chưa cho thuê</option>
+                    <option value="Đã cho thuê">Đã cho thuê</option>
+                </select> 
+            </div>
+            <div class="col">
+                <label for="days" class="form-label">Days:</label>
+                <select name="days" class="form-control">
+                    <option value="Tất cả thời gian">Tất cả thời gian</option>
+                    <option value="Hôm nay"> Hôm nay </option>
+                    <option value="1 ngày trước"> 1 ngày trước</option>
+                    <option value="3 ngày trước">3 ngày trước</option>
+                    <option value="7 ngày trước">7 ngày trước</option>
+                    <option value="1 tháng trước">1 tháng trước</option>
+                    <option value="1 năm trước">1 năm trước</option>
+                </select>
+            </div>
+        </div>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+            <a asp-action="CarManager" class="btn btn-secondary">Tất cả</a>
+        </div>
+    </form>
+
+    <div class="mb-3">
+        <a asp-action="NewCar" class="btn btn-primary">Thêm Phương Tiện</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Car ID</th>
+                <th>Biển Số</th>
+                <th>Hãng</th>
+                <th>Model</th>
+                <th>Màu Sắc</th>
+                <th>Trạng Thái</th>
+                <th>Người Đăng</th>
+                <th>Ngày Đăng</th>
+                <th>Liên hệ</th>
+                <th>Địa chỉ</th>
+                <th>Mô Tả</th>
+                <th>Giá Thuê</th>
+                <th>Hình Ảnh</th>
+                <th>Đánh Giá Trung Bình</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var car in Model) {
+                <tr>
+                    <td>@car.CarID</td>
+                    <td>@car.LicensePlate</td>
+                    <td>@car.Brand</td>
+                    <td>@car.Model</td>
+                    <td>@car.Color</td>
+                    <td>@car.Status</td>
+                    <td>@car.Poster</td>
+                    <td>@car.Day.ToString("dd/MM/yyyy")</td>
+                    <td>@car.SDT</td>
+                    <td>@car.Address</td>
+                    <td>@car.Description</td>
+                    <td>
+                        @String.Format("{0:0,0}", car.RentalPrice) VNĐ/ngày
+                    </td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(car.Image)) {
+                            <img src="@Url.Content(car.Image)" alt="Hình Ảnh" style="width: 100px; height: auto;" />
+                        } else {
+                            <span>Không có hình</span>
+                        }
+                    </td>
+                    <td><i class="fas fa-star"></i> @car.AverageRating</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@car.CarID" class="btn btn-primary btn-sm me-2">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@car.CarID" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa không?');">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

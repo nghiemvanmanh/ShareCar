@@ -1,0 +1,59 @@
+@model ShareCar.Models.Customer.UserModel.AccountModel;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sửa Thông Tin Cá Nhân</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center my-4">Sửa Thông Tin Cá Nhân</h2>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!-- Chỉnh sửa action ở đây -->
+                <form asp-action="EditManager" method="post" class="border p-4 shadow rounded bg-light">
+                    <input type="hidden" asp-for="Id" /> <!-- Nếu có thuộc tính Id trong model -->
+                    <div class="mb-3">
+                        <label asp-for="UserName" class="form-label">Tên người dùng</label>
+                        <input asp-for="UserName" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="PassWord" class="form-label">Mật khẩu</label>
+                        <input type="text" asp-for="PassWord" class="form-control" required/>
+                        <span asp-validation-for="PassWord" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label">Họ và tên</label>
+                        <input asp-for="FullName" class="form-control" required />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" required />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="SDT" class="form-label">Số điện thoại</label>
+                        <input asp-for="SDT" class="form-control" required />
+                        <span asp-validation-for="SDT" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Address" class="form-label">Địa chỉ</label>
+                        <input asp-for="Address" class="form-control" required />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                        <a asp-action="UserList" class="btn btn-secondary">Hủy bỏ</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

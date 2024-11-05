@@ -1,0 +1,75 @@
+@model IEnumerable<ShareCar.Models.Customer.UserModel.AccountModel>
+
+<h3>Danh Sách Người Dùng</h3>
+@if (TempData["SuccessUpdate"] != null)
+        {
+            <div class="alert alert-success text-center">
+                @TempData["SuccessUpdate"]
+            </div>
+        }
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên người dùng</th>
+            <th>Email</th>
+            <th>SĐT</th>
+            <th>Họ tên</th>
+            <th>Địa chỉ</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr id="user-row-@user.Id">
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.SDT</td>
+                <td>@user.FullName</td>
+                <td>@user.Address</td>
+                <td>
+                    <a href="@Url.Action("Edit", "User", new { id = user.Id })" class="btn btn-primary btn-sm me-2">Sửa</a>
+                    <button class="btn btn-danger btn-sm" onclick="Delete('@user.Id')">Xóa</button>
+                </td>
+                
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<script>
+    function Delete(id) {
+        if (confirm("Bạn có chắc chắn muốn xóa người dùng này không?")) {
+            fetch(`/User/Delete/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    document.getElementById(`user-row-${id}`).remove()
+                    alert("Xóa người dùng thành công!");
+                    location.reload();
+                } else {
+                    alert("Xóa người dùng thất bại!");
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi:", error);
+                alert("Đã xảy ra lỗi khi xóa người dùng!");
+            });
+        }
+    }
+</script>

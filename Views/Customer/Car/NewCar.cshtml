@@ -1,0 +1,96 @@
+@model ShareCar.Models.CarShareModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thêm mới xe</title>
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Thêm mới xe</h2>
+        <form asp-action="NewCar" method="post" enctype="multipart/form-data">
+            
+            <div class="mb-3" hidden = "true">
+                <label asp-for="Poster" class="form-label">Người đăng:</label>
+                <input asp-for="Poster" class="form-control" value="@Context.Session.GetString("FullName")" />
+                <span asp-validation-for="Poster" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3" hidden = "true">
+                <label asp-for="SDT" class="form-label">Liên hệ: </label>
+                <input asp-for="SDT" class="form-control" value="@Context.Session.GetString("SDT")" />
+                <span asp-validation-for="SDT" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="LicensePlate" class="form-label">Biển số</label>
+                <input asp-for="LicensePlate" class="form-control" />
+                <span asp-validation-for="LicensePlate" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Brand" class="form-label">Hãng xe</label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Model" class="form-label">Mẫu xe</label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Color" class="form-label">Màu sắc</label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3" hidden = "true">
+                <label asp-for="Status" class="form-label">Tình trạng</label>
+                <select asp-for="Status" class="form-select">
+                    <option value="Chưa cho thuê">Chưa cho thuê</option>
+                    <option value="Đã cho thuê">Đã cho thuê</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Mô tả</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Address" class="form-label">Địa chỉ cho thuê</label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="RentalPrice" class="form-label">Giá thuê</label>
+                <input asp-for="RentalPrice" class="form-control" />
+                <span asp-validation-for="RentalPrice" class="text-danger"></span>
+            </div>
+
+             <div class="mb-3">
+                <label class="form-label">Chọn ảnh:</label>
+                <input name="imageFile" class="form-control" type="file" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="AverageRating" class="form-label" hidden="true">Đánh giá trung bình</label>
+                <input asp-for="AverageRating" class="form-control" value="0" hidden="true" readonly />
+                <span asp-validation-for="AverageRating" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Thêm xe</button>
+            <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div>
+
+
+</body>
+</html>
