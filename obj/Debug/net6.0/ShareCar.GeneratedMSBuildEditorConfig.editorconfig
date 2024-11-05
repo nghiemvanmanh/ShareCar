@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar
 build_property._RazorSourceGeneratorDebug = 
 
+[d:/Ki I nam 4/LT Web Nâng Cao/BTL/ShareCar/ShareCar/Views/Admin/Car/CarEditManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2FyXENhckVkaXRNYW5hZ2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [d:/Ki I nam 4/LT Web Nâng Cao/BTL/ShareCar/ShareCar/Views/Admin/Car/CarManager.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2FyXENhck1hbmFnZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

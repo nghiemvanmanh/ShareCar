@@ -42,7 +42,7 @@ namespace ShareCar.Controllers.Admin
         // Cập nhật thông tin sửa
         [HttpPost("User/EditManager")]
         public async Task<IActionResult> Edit(AccountModel model) {
-             var existingUserByEmail = await _user.tblUser
+            var existingUserByEmail = await _user.tblUser
             .FirstOrDefaultAsync(u => u.Email == model.Email && u.UserName != model.UserName);
 
             if (existingUserByEmail != null) {
