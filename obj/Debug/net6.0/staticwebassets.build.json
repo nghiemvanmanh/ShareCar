@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "or+Rlb3WwVBnHZccK9TWL962XsSXwCbeYTgJbzMC364=",
+  "Hash": "wXT+PuFf7xNsgmr6q/iu1Rca6RZtyyfI/pXAK2g2XzY=",
   "Source": "ShareCar",
   "BasePath": "_content/ShareCar",
   "Mode": "Default",
@@ -85,12 +85,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\2a599c17-3975-4724-9218-65fd874a1236_dream.jpg",
+      "Identity": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\339071e7-6f05-488b-ad10-de28d8500612_dream.jpg",
       "SourceId": "ShareCar",
       "SourceType": "Discovered",
       "ContentRoot": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\",
       "BasePath": "_content/ShareCar",
-      "RelativePath": "images/2a599c17-3975-4724-9218-65fd874a1236_dream.jpg",
+      "RelativePath": "images/339071e7-6f05-488b-ad10-de28d8500612_dream.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -99,15 +99,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\2a599c17-3975-4724-9218-65fd874a1236_dream.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\339071e7-6f05-488b-ad10-de28d8500612_dream.jpg"
     },
     {
-      "Identity": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\388b1299-2c3d-498f-a2f6-0156da5f8410_dream.jpg",
+      "Identity": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\60d55990-27f7-4730-9128-073643ebab75_dream.jpg",
       "SourceId": "ShareCar",
       "SourceType": "Discovered",
       "ContentRoot": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\",
       "BasePath": "_content/ShareCar",
-      "RelativePath": "images/388b1299-2c3d-498f-a2f6-0156da5f8410_dream.jpg",
+      "RelativePath": "images/60d55990-27f7-4730-9128-073643ebab75_dream.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -116,24 +116,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\388b1299-2c3d-498f-a2f6-0156da5f8410_dream.jpg"
-    },
-    {
-      "Identity": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\80e5cd5c-88e3-447d-a62a-d5502ad660bb_dream.jpg",
-      "SourceId": "ShareCar",
-      "SourceType": "Discovered",
-      "ContentRoot": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\",
-      "BasePath": "_content/ShareCar",
-      "RelativePath": "images/80e5cd5c-88e3-447d-a62a-d5502ad660bb_dream.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\80e5cd5c-88e3-447d-a62a-d5502ad660bb_dream.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\60d55990-27f7-4730-9128-073643ebab75_dream.jpg"
     },
     {
       "Identity": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\js\\site.js",

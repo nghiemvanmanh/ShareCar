@@ -14,7 +14,13 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
 
-                    <form asp-action="CarEditManager" method="post" class="border p-4 shadow rounded bg-light">
+                    <form asp-action="CarEdit" method="post" class="border p-4 shadow rounded bg-light">
+                         <input type="hidden" asp-for="CarID" /> <!-- Nếu có thuộc tính Id trong model -->
+                        <div class="mb-3" hidden ="true" >
+                            <label asp-for="Poster" class="form-label">Người Đăng</label>
+                            <input asp-for="Poster" class="form-control" />
+                            <span asp-validation-for="Poster" class="text-danger"></span>
+                        </div>
                         <div class="mb-3">
                             <label asp-for="LicensePlate" class="form-label">Biển số</label>
                             <input asp-for="LicensePlate" class="form-control" />
@@ -38,10 +44,12 @@
                             <input asp-for="Color" class="form-control" />
                             <span asp-validation-for="Color" class="text-danger"></span>
                         </div>
-
                         <div class="mb-3">
                             <label asp-for="Status" class="form-label">Tình trạng</label>
-                            <input asp-for="Status" class="form-control" />
+                            <select asp-for="Status" class="form-select">
+                                <option value="Chưa cho thuê">Chưa cho thuê</option>
+                                <option value="Đã cho thuê">Đã cho thuê</option>
+                            </select>
                             <span asp-validation-for="Status" class="text-danger"></span>
                         </div>
 
@@ -73,6 +81,10 @@
                             <label asp-for="RentalPrice" class="form-label">Giá thuê</label>
                             <input asp-for="RentalPrice" class="form-control" type="number" step="0.01" />
                             <span asp-validation-for="RentalPrice" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3" hidden="true">
+                            <label asp-for="Image" class="form-label">Ảnh</label>
+                            <input asp-for="Image" class="form-control" type="text" />
                         </div>
                         <div class="mb-3">
                             <label asp-for="AverageRating" class="form-label">Đánh giá trung bình</label>

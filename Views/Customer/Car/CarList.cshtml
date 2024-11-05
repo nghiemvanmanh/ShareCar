@@ -12,10 +12,10 @@
 <body>
     <div class="container mt-5">
     <h2 class="text-center my-4">Quản Lý Phương Tiện</h2>
-    @if (TempData["SuccessCarManager"] != null)
+    @if (TempData["SuccessCarUser"] != null)
         {
             <div class="alert alert-success text-center">
-                @TempData["SuccessCarManager"]
+                @TempData["SuccessCarUser"]
             </div>
         }
     <form method="get" class="mb-3">
@@ -24,31 +24,8 @@
             <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
             
         </div>
-        <div class="row-g3">
-            <div class="col">
-                <label for ="status" class="form-label">Trạng thái</label>
-                <select name ="status" class="form-select">
-                    <option value="Tất cả trạng thái">Tất cả trạng thái</option>
-                    <option value="Chưa cho thuê">Chưa cho thuê</option>
-                    <option value="Đã cho thuê">Đã cho thuê</option>
-                </select> 
-            </div>
-            <div class="col">
-                <label for="days" class="form-label">Ngày Đăng Tải</label>
-                <select name="days" class="form-select">
-                    <option value="Tất cả thời gian">Tất cả thời gian</option>
-                    <option value="Hôm nay"> Hôm nay </option>
-                    <option value="1 ngày trước"> 1 ngày trước</option>
-                    <option value="3 ngày trước">3 ngày trước</option>
-                    <option value="7 ngày trước">7 ngày trước</option>
-                    <option value="1 tháng trước">1 tháng trước</option>
-                    <option value="1 năm trước">1 năm trước</option>
-                </select>
-            </div>
-        </div>
         <div class="mt-3">
             <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
-            <a asp-action="CarManager" class="btn btn-secondary">Tất cả</a>
         </div>
     </form>
 

@@ -82,6 +82,15 @@
             font-weight: bold;
         }
 
+        .offcanvas {
+            position: fixed; /* Đảm bảo sidebar cố định */
+            top: 0; /* Gắn nó ở góc trên cùng */
+            left: 0; /* Gắn nó ở bên trái */
+            height: 100%; /* Đảm bảo chiều cao đầy đủ */
+        }
+        .btn {
+            margin-right: 10px; /* Tạo khoảng cách giữa nút mở sidebar và các nút khác */
+        }
 
 
     </style>
@@ -105,16 +114,36 @@
                         <i class="bi bi-check-square me-2"></i>Bài Duyệt
                     </a>
                 </li>
+                @if (Context.Session.GetString("UserName") == "admin"){
                 <li class="list-group-item">
                     <a asp-controller ="Car" asp-action="CarManager" class="text-decoration-none">
                         <i class="bi bi-car-front me-2"></i>Quản lý Phương tiện
                     </a>
                 </li>
+                }else{
+                     @if (Context.Session.GetString("UserName") != null){
+                        <li class="list-group-item">
+                        <a asp-controller ="Car" asp-action="CarList" class="text-decoration-none">
+                            <i class="bi bi-car-front me-2"></i>Quản lý Phương tiện
+                        </a>
+                        </li>
+                     }else{
+                        <li class="list-group-item">
+                        <a asp-controller ="User" asp-action="Login" class="text-decoration-none">
+                            <i class="bi bi-car-front me-2"></i>Quản lý Phương tiện
+                        </a>
+                        </li>
+                     }
+                    
+                
+                }
+                @if (Context.Session.GetString("UserName") == "admin"){
                 <li class="list-group-item">
                     <a asp-controller ="User" asp-action="UserManager" class="text-decoration-none">
                         <i class="bi bi-person me-2"></i>Quản lý Người dùng
                     </a>
                 </li>
+                }
             </ul>
         </div>
     </div>
@@ -122,11 +151,9 @@
    <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container">
-        @if (Context.Session.GetString("UserName") == "admin"){
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
-            <i class="bi bi-list"></i>
-        </button>
-        }
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+                <i class="bi bi-list"></i>
+            </button>
         @if (Context.Session.GetString("UserName") == null){
             <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
                 <i class="bi bi-car-front me-1" style="font-size: 1.5rem;"></i>ShareCar
@@ -158,30 +185,34 @@
                     </a>
                 </li>
             </ul>
-            <form class="d-flex me-3" method="get" asp-controller="Car" asp-action="CarSearch" role="search">
-                <input class="form-control me-2" name="query" type="search" placeholder="Tìm kiếm..." aria-label="Tìm kiếm">
-                <button class="btn btn-outline-primary me-2" type="button" id="filterToggle">
-                    <i class="fas fa-filter"></i> <!-- Biểu tượng bộ lọc -->
-                </button>
-                <div id="filterOptions" style="display: none; margin-left: 10px;">
-                    <select name="Status" class="form-select form-select-sm me-2" style="width: auto;">
-                        <option value="Tất cả trạng thái">Tất cả trạng thái</option>
-                        <option value="Chưa cho thuê">Chưa cho thuê</option>
-                        <option value="Đã cho thuê">Đã cho thuê</option>
-                    </select>
-                    <select name="Days" class="form-select form-select-sm me-2" style="width: auto;">
-                        <option value="Tất cả thời gian">Tất cả thời gian</option>
-                        <option value="Hôm nay">Hôm nay</option>
-                        <option value="1 ngày trước">1 ngày trước</option>
-                        <option value="3 ngày trước">3 ngày trước</option>
-                        <option value="7 ngày trước">7 ngày trước</option>
-                        <option value="1 tháng trước">1 tháng trước</option>
-                        <option value="1 năm trước">1 năm trước</option>
-                    </select>
-                </div>
-                <button class="btn btn-outline-success" type="submit">Tìm</button>
-            </form>
+            <!-- Ô tìm kiếm và bộ lọc -->
+            
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+                <div class="d-flex align-items-center me-3">
+                <form class="d-flex" method="get" asp-controller="Car" asp-action="CarSearch" role="search">
+                    <input class="form-control me-2" name="query" type="search" placeholder="Tìm kiếm..." aria-label="Tìm kiếm">
+                    <button class="btn btn-outline-primary me-2" type="button" id="filterToggle">
+                        <i class="fas fa-filter"></i> <!-- Biểu tượng bộ lọc -->
+                    </button>
+                    <div id="filterOptions" style="display: none; flex-direction: row; align-items: center; margin-left: 10px;">
+                        <select name="Status" class="form-select form-select-sm me-2" style="width: auto;">
+                            <option value="Tất cả trạng thái">Tất cả trạng thái</option>
+                            <option value="Chưa cho thuê">Chưa cho thuê</option>
+                            <option value="Đã cho thuê">Đã cho thuê</option>
+                        </select>
+                        <select name="Days" class="form-select form-select-sm me-2" style="width: auto;">
+                            <option value="Tất cả thời gian">Tất cả thời gian</option>
+                            <option value="Hôm nay">Hôm nay</option>
+                            <option value="1 ngày trước">1 ngày trước</option>
+                            <option value="3 ngày trước">3 ngày trước</option>
+                            <option value="7 ngày trước">7 ngày trước</option>
+                            <option value="1 tháng trước">1 tháng trước</option>
+                            <option value="1 năm trước">1 năm trước</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-outline-success" type="submit">Tìm</button>
+                </form>
+            </div>
                 @if (Context.Session.GetString("UserName") != null) // Kiểm tra nếu người dùng đã đăng nhập
                 {
                     <li class="nav-item">
@@ -210,7 +241,7 @@
                 }
             </ul>
         </div>
-    </div>
+    </u>
 </nav>
 
     <div class="container mt-4">

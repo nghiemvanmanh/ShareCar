@@ -17,6 +17,7 @@ namespace ShareCar.Controllers.Customer
         string newcar =  "~/Views/Customer/Car/NewCar.cshtml";
         string detailcar =  "~/Views/Customer/Car/CarDetail.cshtml";
         string index =  "~/Views/Customer/Car/Index.cshtml";
+        string listcar=  "~/Views/Customer/Car/CarList.cshtml";
        private readonly ShareCarDBContext _car;
 
         private readonly IWebHostEnvironment _hostingEnvironment;
@@ -113,22 +114,20 @@ namespace ShareCar.Controllers.Customer
                 // Tìm kiếm theo ID hoặc Brand
                 if (!string.IsNullOrEmpty(query))
                 {   
-                    Console.WriteLine("Status = " + Status);
-                    car = car.Where(c => c.Model.Contains(query) || c.Brand.Contains(query)).ToList();
+                 
+                    car = car.Where(c => c.Model.ToLower().Contains(query.ToLower()) || c.Brand.ToLower().Contains(query.ToLower())|| c.CarID.ToString().ToLower().Contains(query.ToLower())).ToList();
                 }
                 // Lọc theo trạng thái
                 if (!string.IsNullOrEmpty(Status) && Status != "Tất cả trạng thái")
                 {   
-                    Console.WriteLine("Status = " + Status);
+            
                     car = car.Where(c => c.Status == Status).ToList();
                 }
 
                 // Lọc theo số ngày chênh lệch (Days)
                 if (!string.IsNullOrEmpty(Days) && Days != "Tất cả thời gian")
                 {
-                    if (!string.IsNullOrEmpty(Days) && Days != "Tất cả thời gian")
-                    {
-                        // Ngày hiện tại
+                    // Ngày hiện tại
                         DateTime now = DateTime.Now;
                         
                         switch (Days)
@@ -152,10 +151,31 @@ namespace ShareCar.Controllers.Customer
                             case "1 năm trước":
                                 car = car.Where(c => (now - c.Day).TotalDays <= 365).ToList();
                                 break;
-                        }
+            
                     }
                 }
             return View(searchcar, car); 
+        }
+
+        [HttpGet("Car/CarList")]
+        public async Task<IActionResult> CarList()
+        {
+            var fullname = HttpContext.Session.GetString("FullName");
+            
+            if (string.IsNullOrEmpty(fullname))
+            {
+                return NotFound("User không có trong session.");
+            }
+
+            // Lấy danh sách xe của người dùng
+            var cars = await _car.tbl_Cars.Where(u => u.Poster == fullname).ToListAsync();
+
+            if (cars == null || !cars.Any())
+            {
+                return NotFound("Không tìm thấy xe của người dùng.");
+            }
+
+            return View(listcar, cars);
         }
 
     }

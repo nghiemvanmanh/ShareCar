@@ -31,11 +31,11 @@ namespace ShareCar.Controllers.Admin
             // Tìm kiếm theo ID hoặc Brand
             if (!string.IsNullOrEmpty(searchString))
             {   
-                cars = cars.Where(c => c.CarID.ToString().Contains(searchString) || c.Brand.Contains(searchString)).ToList();
+                cars = cars.Where(c => c.CarID.ToString().ToLower().Contains(searchString.ToLower()) || c.Brand.ToLower().Contains(searchString.ToLower()) || c.Model.ToLower().Contains(searchString.ToLower())).ToList();
             }
 
             // Lọc theo trạng thái
-            if (!string.IsNullOrEmpty(status) && status != "Tất cả")
+            if (!string.IsNullOrEmpty(status) && status != "Tất cả trạng thái")
             {
                 cars = cars.Where(c => c.Status == status).ToList();
             }
@@ -87,7 +87,7 @@ namespace ShareCar.Controllers.Admin
 
         // Action để xử lý cập nhật
         [HttpPost("Car/CarEditManager")]
-        public async Task<IActionResult> CarEditManager(CarShareModel models)
+        public async Task<IActionResult> CarEdit(CarShareModel models)
         {
             if (!ModelState.IsValid) {
                 // Ghi log lỗi hoặc kiểm tra thông báo lỗi
@@ -95,12 +95,14 @@ namespace ShareCar.Controllers.Admin
                 foreach (var error in errors) {
                     Console.WriteLine(error.ErrorMessage);
                 }
-}
+            }
             if (ModelState.IsValid) {
+                Console.WriteLine($"Car ID: {models.CarID}");
+                // Kiểm tra nếu tồn tại sản phẩm trong cơ sở dữ liệu
                 _car.Update(models);
                 await _car.SaveChangesAsync();
                 TempData["SuccessCarManager"] = "Cập nhật thành công!";
-                return RedirectToAction("UserManager","User");
+                return RedirectToAction("CarManager","Car");
             }
             
             return View(caredit,models); // Nếu không hợp lệ, quay lại view với dữ liệu đã nhập

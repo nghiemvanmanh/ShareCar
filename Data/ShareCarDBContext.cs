@@ -16,8 +16,12 @@ namespace ShareCar.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             modelBuilder.Entity<AccountModel>()
             .HasKey(p => p.Id);
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<CarShareModel>()
             .HasKey(p => p.CarID);
+            base.OnModelCreating(modelBuilder);
+
         }
 
         public DbSet<AccountModel> tblUser { get; set; }
