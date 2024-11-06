@@ -189,17 +189,43 @@
             
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
                 <div class="d-flex align-items-center me-3">
-                <form class="d-flex" method="get" asp-controller="Car" asp-action="CarSearch" role="search">
+                <form class="d-flex" method="get" asp-controller="Home" asp-action="CarSearch" role="search">
                     <input class="form-control me-2" name="query" type="search" placeholder="Tìm kiếm..." aria-label="Tìm kiếm">
+                    
                     <button class="btn btn-outline-primary me-2" type="button" id="filterToggle">
                         <i class="fas fa-filter"></i> <!-- Biểu tượng bộ lọc -->
                     </button>
-                    <div id="filterOptions" style="display: none; flex-direction: row; align-items: center; margin-left: 10px;">
+
+                    <!-- Dropdown chọn Thuê Xe/Mua Xe -->
+                    <div id="optionSelectContainer" style="display: none;">
+                        <select name="Option" id="optionSelect" class="form-select form-select-sm me-2" style="width: auto;">
+                            <option value="default">Chọn loại</option>
+                            <option value="Tất cả">Tất cả</option>
+                            <option value="Thuê xe">Thuê Xe</option>
+                            <option value="Mua xe">Mua Xe</option>
+                        </select>
+                    </div>
+
+                    <!-- Bộ lọc Thuê Xe -->
+                    <div id="rentOptions" style="display: none; flex-direction: row; align-items: center; margin-left: 10px;">
                         <select name="Status" class="form-select form-select-sm me-2" style="width: auto;">
                             <option value="Tất cả trạng thái">Tất cả trạng thái</option>
                             <option value="Chưa cho thuê">Chưa cho thuê</option>
                             <option value="Đã cho thuê">Đã cho thuê</option>
                         </select>
+                    </div>
+                    
+                    <!-- Bộ lọc Mua Xe -->
+                    <div id="sellOptions" style="display: none; flex-direction: row; align-items: center; margin-left: 10px;">
+                        <select name="VehicleRegistration" class="form-select form-select-sm me-2" style="width: auto;">
+                            <option value="Tất cả">Giấy tờ</option>
+                            <option value="Đã đăng ký">Đã đăng ký</option>
+                            <option value="Chưa đăng ký">Chưa đăng ký</option>
+                        </select>
+                    </div>
+
+                    <!-- Bộ lọc thời gian (hiển thị cho cả Thuê Xe và Mua Xe) -->
+                    <div id="daysFilter" style="display: none; flex-direction: row; align-items: center; margin-left: 10px;">
                         <select name="Days" class="form-select form-select-sm me-2" style="width: auto;">
                             <option value="Tất cả thời gian">Tất cả thời gian</option>
                             <option value="Hôm nay">Hôm nay</option>
@@ -210,6 +236,7 @@
                             <option value="1 năm trước">1 năm trước</option>
                         </select>
                     </div>
+
                     <button class="btn btn-outline-success" type="submit">Tìm</button>
                 </form>
             </div>
@@ -295,10 +322,39 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-    // Tạo chức năng cho nút bộ lọc
-        document.getElementById('filterToggle').addEventListener('click', function () {
-            var filterOptions = document.getElementById('filterOptions');
-            filterOptions.style.display = (filterOptions.style.display === 'none' || filterOptions.style.display === '') ? 'flex' : 'none';
+        document.getElementById("filterToggle").addEventListener("click", function() {
+            const optionSelectContainer = document.getElementById("optionSelectContainer");
+            optionSelectContainer.style.display = optionSelectContainer.style.display === "none" ? "flex" : "none";
+        });
+
+        document.getElementById("optionSelect").addEventListener("change", function() {
+            const option = this.value;
+            const rentOptions = document.getElementById("rentOptions");
+            const sellOptions = document.getElementById("sellOptions");
+            const daysFilter = document.getElementById("daysFilter");
+            const optionSelectContainer = document.getElementById("optionSelectContainer");
+
+            // Ẩn các bộ lọc khi chọn "default"
+            rentOptions.style.display = "none";
+            sellOptions.style.display = "none";
+            daysFilter.style.display = "none";
+
+            // Ẩn select Thuê Xe/Mua Xe sau khi chọn một tùy chọn
+            if (option !== "default") {
+                optionSelectContainer.style.display = "none";
+            }
+
+            // Hiển thị bộ lọc dựa trên lựa chọn
+            if(option === "Tất cả"){
+                daysFilter.style.display = "flex";
+            }
+            if (option === "Thuê xe") {
+                rentOptions.style.display = "flex";
+                daysFilter.style.display = "flex";
+            } else if (option === "Mua xe") {
+                sellOptions.style.display = "flex";
+                daysFilter.style.display = "flex";
+            }
         });
     </script>
 </body>

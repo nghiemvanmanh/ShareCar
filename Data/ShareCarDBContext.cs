@@ -26,5 +26,6 @@ namespace ShareCar.Data
 
         public DbSet<AccountModel> tblUser { get; set; }
         public DbSet<CarShareModel> tbl_Cars { get; set; }
+        public DbSet<CarSellModel> tbl_CarSell {get;set;}
     }
 }

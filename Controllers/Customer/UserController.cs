@@ -100,7 +100,7 @@ namespace ShareCar.Controllers.Customer
                     HttpContext.Session.SetString("FullName", _user.FullName);
                     HttpContext.Session.SetString("SDT", _user.SDT);
                      HttpContext.Session.SetInt32("UserID", _user.Id);
-                    return RedirectToAction("Index", "Car");
+                    return RedirectToAction("Index", "Home");
                 }
             }
             return View(log, login);

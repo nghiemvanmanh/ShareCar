@@ -1,0 +1,207 @@
+@model IEnumerable<ShareCar.Models.CarShareModel>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xe dành cho bạn</title>
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <style>
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        .swiper-wrapper {
+            display: flex;
+            padding: 0;
+            margin: 0;
+
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            width: calc(25% - 15px); /* Chỉnh lại để có 4 phần tử trên mỗi hàng */
+            box-sizing: border-box;
+
+        }
+
+        /* Nút mũi tên */
+        .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;  /* Điều chỉnh kích thước mũi tên */
+            color: #007bff;
+            background-color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-arrow.left {
+            left: -20px;
+        }
+        .scroll-arrow.right {
+            right: -20px;
+        }
+
+        .card {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05); /* Hiệu ứng hover */
+        }
+
+        .card-img-top {
+            object-fit: cover;
+            height: 200px; /* Giảm kích thước ảnh */
+        }
+
+        .scroll-content {
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h3 class="mt-5">Xe thuê dành cho bạn</h3>
+
+    <div class="container mt-5">
+        <!-- Swiper Container -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @foreach (var car in Model)
+                {
+                    <div class="swiper-slide">
+                        <div class="card shadow-sm">
+                            <img src="@car.Image" class="card-img-top" alt="@car.Model">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <h5 class="card-title mb-1">@car.Model</h5>
+                                    <span class="text-warning">
+                                        <i class="fas fa-star"></i> @car.AverageRating
+                                    </span>
+                                </div>
+                                <p class="card-text text-muted">Biển số: @car.LicensePlate</p>
+
+                                <div class="d-flex justify-content-between mb-2">
+                                    <p class="card-text text-muted">
+                                        <i class="fas fa-clock"></i>
+                                        @{
+                                            var timeDifference = DateTime.Now - car.Day;
+                                            var timeText = "";
+
+                                            if (timeDifference.TotalSeconds < 60)
+                                            {
+                                                timeText = $"{(int)timeDifference.TotalSeconds} giây trước";
+                                            }
+                                            else if (timeDifference.TotalMinutes < 60)
+                                            {
+                                                timeText = $"{(int)timeDifference.TotalMinutes} phút trước";
+                                            }
+                                            else if (timeDifference.TotalHours < 24)
+                                            {
+                                                timeText = $"{(int)timeDifference.TotalHours} giờ trước";
+                                            }
+                                            else
+                                            {
+                                                timeText = $"{(int)timeDifference.TotalDays} ngày trước";
+                                            }
+                                        }
+                                        @timeText
+                                    </p>
+                                    <p class="card-text text-muted mb-0">
+                                        <i class="fas fa-user"></i> @car.Poster
+                                    </p>
+                                </div>
+
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="badge @(car.Status == "Đã cho thuê" ? "bg-danger text-light" : "bg-info text-dark")">
+                                       @car.Status
+                                    </span>
+                                    <p class="card-text text-muted"> 
+                                        <i class="fas fa-money-bill-wave"></i> @String.Format("{0:0,0}", car.RentalPrice) VNĐ
+                                    </p>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-lg-start">
+                                    <a href="@Url.Action("CarDetail", "Car", new { id = car.CarID })" class="btn btn-primary btn-sm me-2"> 
+                                        Xem Chi Tiết
+                                    </a>
+                                    <a href="@Url.Action("Book", "Cars", new { id = car.CarID })" class="btn btn-success btn-sm">
+                                        Đặt Xe
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Nút mũi tên -->
+             <div class="scroll-arrow left">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="scroll-arrow right">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thêm Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 4,  // Hiển thị 4 items cùng lúc
+            spaceBetween: 15,   // Khoảng cách giữa các slide
+            loop: true,         // Kích hoạt chế độ lặp vô tận
+            navigation: {
+                nextEl: '.scroll-arrow.right',  // Liên kết nút Next
+                prevEl: '.scroll-arrow.left',  // Liên kết nút Prev
+            },
+            breakpoints: {
+                1024: {
+                    slidesPerView: 4,  // Khi màn hình lớn, hiển thị 4 items
+                    spaceBetween: 15,
+                },
+                768: {
+                    slidesPerView: 2,  // Khi màn hình nhỏ, hiển thị 2 items
+                    spaceBetween: 10,
+                },
+                480: {
+                    slidesPerView: 1,  // Khi màn hình rất nhỏ, hiển thị 1 item
+                    spaceBetween: 5,
+                }
+            }
+        });
+    </script>
+</body>
+</html>

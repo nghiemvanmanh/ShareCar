@@ -39,14 +39,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ2FyXENhckxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/Ki I nam 4/LT Web Nâng Cao/BTL/ShareCar/ShareCar/Views/Customer/Car/CarSearch.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ2FyXENhclNlYXJjaC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[d:/Ki I nam 4/LT Web Nâng Cao/BTL/ShareCar/ShareCar/Views/Customer/Car/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ2FyXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [d:/Ki I nam 4/LT Web Nâng Cao/BTL/ShareCar/ShareCar/Views/Customer/Car/NewCar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ2FyXE5ld0Nhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -65,6 +57,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [d:/Ki I nam 4/LT Web Nâng Cao/BTL/ShareCar/ShareCar/Views/Customer/User/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcVXNlclxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Ki I nam 4/LT Web Nâng Cao/BTL/ShareCar/ShareCar/Views/Home/CarSearch.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYXJTZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Ki I nam 4/LT Web Nâng Cao/BTL/ShareCar/ShareCar/Views/Home/CarSell.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYXJTZWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Ki I nam 4/LT Web Nâng Cao/BTL/ShareCar/ShareCar/Views/Home/CarShare.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYXJTaGFyZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [d:/Ki I nam 4/LT Web Nâng Cao/BTL/ShareCar/ShareCar/Views/Home/Index.cshtml]
