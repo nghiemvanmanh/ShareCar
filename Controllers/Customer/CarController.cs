@@ -160,22 +160,29 @@ namespace ShareCar.Controllers.Customer
         [HttpGet("Car/CarList")]
         public async Task<IActionResult> CarList()
         {
-            var fullname = HttpContext.Session.GetString("FullName");
-            
-            if (string.IsNullOrEmpty(fullname))
-            {
-                return NotFound("User không có trong session.");
-            }
+            var userid = HttpContext.Session.GetInt32("UserID");
+        
 
             // Lấy danh sách xe của người dùng
-            var cars = await _car.tbl_Cars.Where(u => u.Poster == fullname).ToListAsync();
+            var cars = await _car.tbl_Cars.Where(u => u.UserID == userid).ToListAsync();
 
             if (cars == null || !cars.Any())
             {
-                return NotFound("Không tìm thấy xe của người dùng.");
+                return View(listcar, cars);
             }
 
             return View(listcar, cars);
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id) {
+            var car = _car.tbl_Cars.Find(id);
+            if (car != null) {
+                _car.tbl_Cars.Remove(car);
+                _car.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
         }
 
     }

@@ -10,6 +10,7 @@ namespace ShareCar.Models
     {
         [Key]
         public int CarID {get; set; } 
+		public int UserID {get; set; }
 		public string Poster {get; set; }
 	    public string LicensePlate {get; set; }
      	public string Brand {get;set;}

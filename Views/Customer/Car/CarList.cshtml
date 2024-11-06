@@ -24,14 +24,13 @@
             <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
             
         </div>
-        <div class="mt-3">
-            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
-        </div>
     </form>
-
-    <div class="mb-3">
-        <a asp-action="NewCar" class="btn btn-primary">Thêm Phương Tiện</a>
-    </div>
+    @if (Model != null && Model.Any()){
+        <div class="mb-3">
+            <a asp-action="NewCar" class="btn btn-primary">Thêm Phương Tiện</a>
+        </div>
+    }
+    
 
     <table class="table table-bordered">
         <thead class="table-light">
@@ -54,38 +53,54 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var car in Model) {
-                <tr id="car-row-@car.CarID">
-                    <td>@car.CarID</td>
-                    <td>@car.LicensePlate</td>
-                    <td>@car.Brand</td>
-                    <td>@car.Model</td>
-                    <td>@car.Color</td>
-                    <td>@car.Status</td>
-                    <td>@car.Poster</td>
-                    <td>@car.Day.ToString("dd/MM/yyyy")</td>
-                    <td>@car.SDT</td>
-                    <td>@car.Address</td>
-                    <td>@car.Description</td>
-                    <td>
-                        @String.Format("{0:0,0}", car.RentalPrice) VNĐ/ngày
-                    </td>
-                    <td>
-                        @if (!string.IsNullOrEmpty(car.Image)) {
-                            <img src="@Url.Content(car.Image)" alt="Hình Ảnh" style="width: 100px; height: auto;" />
-                        } else {
-                            <span>Không có hình</span>
-                        }
-                    </td>
-                    <td><i class="fas fa-star"></i> @car.AverageRating</td>
-                    <td>
-                        <a href="@Url.Action("CarEditManager", "Car", new { id = car.CarID })" class="btn btn-primary btn-sm me-2">Sửa</a>
-                        <button class="btn btn-danger btn-sm" onclick="Delete('@car.CarID')">Xóa</button>
+            <!-- Kiểm tra nếu không có phương tiện -->
+            @if (Model == null || !Model.Any())
+            {
+                <tr>
+                    <td colspan="15" class="text-center alert alert-info">
+                        <div class="alert alert-info text-center">
+                            Không có phương tiện nào được đăng. <a asp-action="NewCar">Thêm phương tiện mới ngay</a>
+                        </div>
                     </td>
                 </tr>
             }
+            else
+            {
+                <!-- Hiển thị các phương tiện nếu có -->
+                @foreach (var car in Model) {
+                    if (car != null) {
+                        <tr id="car-row-@car.CarID">
+                            <td>@car.CarID</td>
+                            <td>@car.LicensePlate</td>
+                            <td>@car.Brand</td>
+                            <td>@car.Model</td>
+                            <td>@car.Color</td>
+                            <td>@car.Status</td>
+                            <td>@car.Poster</td>
+                            <td>@car.Day.ToString("dd/MM/yyyy")</td>
+                            <td>@car.SDT</td>
+                            <td>@car.Address</td>
+                            <td>@car.Description</td>
+                            <td>@String.Format("{0:0,0}", car.RentalPrice) VNĐ/ngày</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(car.Image)) {
+                                    <img src="@Url.Content(car.Image)" alt="Hình Ảnh" style="width: 100px; height: auto;" />
+                                } else {
+                                    <span>Không có hình</span>
+                                }
+                            </td>
+                            <td><i class="fas fa-star"></i> @car.AverageRating</td>
+                            <td>
+                                <a href="@Url.Action("CarEditManager", "Car", new { id = car.CarID })" class="btn btn-primary btn-sm me-2">Sửa</a>
+                                <button class="btn btn-danger btn-sm" onclick="Delete('@car.CarID')">Xóa</button>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
         </tbody>
     </table>
+
 </div>
 
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

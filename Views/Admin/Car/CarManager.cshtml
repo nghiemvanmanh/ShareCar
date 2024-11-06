@@ -60,6 +60,7 @@
         <thead class="table-light">
             <tr>
                 <th>Car ID</th>
+                <th>User ID</th>
                 <th>Biển Số</th>
                 <th>Hãng</th>
                 <th>Model</th>
@@ -80,6 +81,7 @@
             @foreach (var car in Model) {
                 <tr id="car-row-@car.CarID">
                     <td>@car.CarID</td>
+                    <td>@car.UserID</td>
                     <td>@car.LicensePlate</td>
                     <td>@car.Brand</td>
                     <td>@car.Model</td>
