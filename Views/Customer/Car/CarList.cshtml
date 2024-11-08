@@ -81,7 +81,7 @@
                             <td>@car.SDT</td>
                             <td>@car.Address</td>
                             <td>@car.Description</td>
-                            <td>@String.Format("{0:0,0}", car.RentalPrice) VNĐ/ngày</td>
+                            <td>@String.Format("{0:0,0}", car.RentalPrice) đ/ngày</td>
                             <td>
                                 @if (!string.IsNullOrEmpty(car.Image)) {
                                     <img src="@Url.Content(car.Image)" alt="Hình Ảnh" style="width: 100px; height: auto;" />
