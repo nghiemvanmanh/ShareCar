@@ -19,13 +19,14 @@
             
             width: 100%;
            position: relative;
-            overflow: hidden;
+           overflow : hidden;
         }
 
         .swiper-wrapper {
             display: flex;
             padding: 0;
             margin: 0;
+            
         }
 
         .swiper-slide {
@@ -58,10 +59,10 @@
         }
 
         .scroll-arrow.left {
-            left: 0px;
+            left: -20px;
         }
         .scroll-arrow.right {
-            right: 0px;
+            right: -20px;
         }
 
         .card {
@@ -104,7 +105,7 @@
          @if(Model != null && Model.Any()){
         <div class="text-end">
         @if(ViewBag.check != true){
-            <h6><a class="list-all" href="@Url.Action("CarSellAll","Home")">Hiển thị tất cả <i class="fas fa-arrow-right"></i></a></h6>
+            <h6><a class="list-all" href="@Url.Action("CarSellAll","Car")">Hiển thị tất cả <i class="fas fa-arrow-right"></i></a></h6>
         }
         </div>
         <!-- Swiper Container -->

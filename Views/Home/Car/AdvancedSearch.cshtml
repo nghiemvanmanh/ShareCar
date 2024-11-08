@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .form-container {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-select{
+            width: 100%;
+        }
+        
+        .form-label{
+            margin-top:10px;
+        }
+        .btn{
+            margin-top: 20px;
+            }
+        .btn-tatca {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-timkiem {
+            background-color: #007bff;
+            color: white;
+        }
+        .form-control{
+            border-radius: .25rem !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Tìm kiếm nâng cao</h2>
+        
+        <form class="form-container grid-container" method="get" asp-controller="Car" asp-action="AdvancedSearch" role="search">
+            <div class="form-group">
+            <!-- Ô tìm kiếm chính -->
+            <div>
+                <label for="Search" class="form-label">Từ khóa:</label>
+                <input class="form-control" name="query" type="search" placeholder="Tìm kiếm..." aria-label="Tìm kiếm">
+            </div>
+
+            <!-- Dropdown chọn Thuê Xe/Mua Xe -->
+            <div>
+                <label for="OptionSelect" class="form-label">Loại bài viết:</label>
+                <select name="Option" id="OptionSelect" class="form-select" >
+                    <option value="default">Tất cả</option>
+                    <option value="Thuê xe">Thuê xe</option>
+                    <option value="Mua xe">Mua xe</option>
+                </select>
+            </div>
+
+            <!-- Hàng chứa bộ lọc Thuê Xe -->
+            <div id="rentOption" class="row mb-3" style="display: none; grid-template-columns: repeat(3,1fr);">
+                <div>
+                    <label for="statusSelect" class="form-label">Trạng thái thuê:</label>
+                    <select name="Status" id="statusSelect" class="form-select">
+                        <option value="Tất cả trạng thái">Tất cả trạng thái</option>
+                        <option value="Chưa cho thuê">Chưa cho thuê</option>
+                        <option value="Đã cho thuê">Đã cho thuê</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="rentPriceSelect" class="form-label">Giá thuê:</label>
+                    <select name="RentPrice" id="rentPriceSelect" class="form-select">
+                        <option value="Tất cả">Tất cả</option>
+                        <option value="Dưới 500.000">Dưới 500.000</option>
+                        <option value="500.000 - 1.000.000">500.000 - 1.000.000</option>
+                        <option value="1.000.000 - 2.000.000">1.000.000 - 2.000.000</option>
+                        <option value="Trên 2.000.000">Trên 2.000.000</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="daysSelect" class="form-label">Khoảng thời gian:</label>
+                    <select name="Days" id="daysSelect" class="form-select">
+                        <option value="Tất cả thời gian">Tất cả thời gian</option>
+                        <option value="Hôm nay">Hôm nay</option>
+                        <option value="1 ngày trước">1 ngày trước</option>
+                        <option value="3 ngày trước">3 ngày trước</option>
+                        <option value="7 ngày trước">7 ngày trước</option>
+                        <option value="1 tháng trước">1 tháng trước</option>
+                        <option value="1 năm trước">1 năm trước</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Hàng chứa bộ lọc Mua Xe -->
+            <div id="sellOption" class="row mb-3" style="display: none; grid-template-columns: repeat(3,1fr);">
+                <div>
+                    <label for="registrationSelect" class="form-label">Tình trạng giấy tờ:</label>
+                    <select name="VehicleRegistration" id="registrationSelect" class="form-select">
+                        <option value="Tất cả">Giấy tờ</option>
+                        <option value="Đã đăng ký">Đã đăng ký</option>
+                        <option value="Chưa đăng ký">Chưa đăng ký</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="sellPriceSelect" class="form-label">Giá bán:</label>
+                    <select name="SellPrice" id="sellPriceSelect" class="form-select">
+                        <option value="Tất cả">Tất cả</option>
+                        <option value="Dưới 200 triệu">Dưới 200 triệu</option>
+                        <option value="200 - 500 triệu">200 - 500 triệu</option>
+                        <option value="500 triệu - 1 tỷ">500 triệu - 1 tỷ</option>
+                        <option value="Trên 1 tỷ">Trên 1 tỷ</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="daysSelect" class="form-label">Khoảng thời gian:</label>
+                    <select name="Days" id="daysSelect" class="form-select">
+                        <option value="Tất cả thời gian">Tất cả thời gian</option>
+                        <option value="Hôm nay">Hôm nay</option>
+                        <option value="1 ngày trước">1 ngày trước</option>
+                        <option value="3 ngày trước">3 ngày trước</option>
+                        <option value="7 ngày trước">7 ngày trước</option>
+                        <option value="1 tháng trước">1 tháng trước</option>
+                        <option value="1 năm trước">1 năm trước</option>
+                    </select>
+                </div>
+            </div>
+
+        <div>
+
+            <!-- Nút Tìm kiếm và Tất cả -->
+            <div>
+                <button type="submit" class="btn btn-timkiem btn-custom">Tìm kiếm</button>
+                <button type="button" class="btn btn-tatca btn-custom" onclick="resetFilters()">Tất cả</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <script>
+        document.getElementById("OptionSelect").addEventListener("change", function() {
+            const option = this.value;
+            const rentOptions = document.getElementById("rentOption");
+            const sellOptions = document.getElementById("sellOption");
+
+            // Ẩn các bộ lọc khi chọn "default"
+            rentOptions.style.display = "none";
+            sellOptions.style.display = "none";
+
+            // Hiển thị bộ lọc dựa trên lựa chọn
+            if (option === "Thuê xe") {
+                rentOptions.style.display = "grid";
+            } else if (option === "Mua xe") {
+                sellOptions.style.display = "grid";
+            }
+        });
+
+        // Hàm reset các bộ lọc
+        function resetFilters() {
+            document.getElementById("statusSelect").value = "Tất cả trạng thái";
+            document.getElementById("rentPriceSelect").value = "Tất cả";
+            document.getElementById("daysSelect").value = "Tất cả thời gian";
+            document.getElementById("registrationSelect").value = "Tất cả";
+            document.getElementById("sellPriceSelect").value = "Tất cả";
+        }
+    </script>
+</body>
+</html>
