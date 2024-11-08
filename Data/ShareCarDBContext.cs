@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ShareCar.Models;
 using ShareCar.Models.Customer.UserModel;
+using ShareCar.Models.Home.HomeModel;
 
 
 namespace ShareCar.Data
@@ -25,7 +26,7 @@ namespace ShareCar.Data
         }
 
         public DbSet<AccountModel> tblUser { get; set; }
-        public DbSet<CarShareModel> tbl_Cars { get; set; }
+        public DbSet<CarShareModel> tbl_CarShare { get; set; }
         public DbSet<CarSellModel> tbl_CarSell {get;set;}
     }
 }

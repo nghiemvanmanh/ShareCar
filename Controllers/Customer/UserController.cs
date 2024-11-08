@@ -93,7 +93,6 @@ namespace ShareCar.Controllers.Customer
                     ModelState.AddModelError("PassWord", "Mật khẩu không đúng.");
                     return View(log, login);
                 }
-
                 if (_user != null)
                 {
                     HttpContext.Session.SetString("UserName", _user.UserName);

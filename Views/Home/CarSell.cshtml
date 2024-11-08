@@ -1,4 +1,4 @@
-@model IEnumerable<ShareCar.Models.CarSellModel>
+@model IEnumerable<ShareCar.Models.Home.HomeModel.CarSellModel>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,18 +16,16 @@
 
     <style>
         .swiper-container {
+            
             width: 100%;
-            height: 100%;
-            position: relative;
+           position: relative;
             overflow: hidden;
-
         }
 
         .swiper-wrapper {
             display: flex;
             padding: 0;
             margin: 0;
-
         }
 
         .swiper-slide {
@@ -37,7 +35,6 @@
             margin-right: 15px;
             width: calc(25% - 15px); /* Chỉnh lại để có 4 phần tử trên mỗi hàng */
             box-sizing: border-box;
-
         }
 
         /* Nút mũi tên */
@@ -57,19 +54,19 @@
             cursor: pointer;
             z-index: 10;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            opacity: 0.7;
         }
 
         .scroll-arrow.left {
-            left: -20px;
+            left: 0px;
         }
         .scroll-arrow.right {
-            right: -20px;
+            right: 0px;
         }
 
         .card {
             width: 100%;
             border-radius: 8px;
-            overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
         }
@@ -86,15 +83,33 @@
         .scroll-content {
             padding: 20px 0;
         }
+        .list-all {
+            color: #378eeb; /* Màu mặc định */
+            text-decoration: none; /* Loại bỏ gạch dưới */
+            transition: color 0.3s ease, transform 0.3s ease; /* Thêm hiệu ứng cho màu sắc và chuyển động */
+        }
+
+        .list-all:hover {
+            color: #001eff; /* Màu khi hover */
+            transform: scale(1.1); /* Thêm hiệu ứng phóng to nhẹ khi hover */
+        }
     </style>
 </head>
 <body>
 
-    <h3 class="container mt-5">Xe đăng bán</h3>
-
+    
     <div class="container mt-5">
+        <h3 class="container mt-5">Xe đăng bán</h3>
+         <hr class="my-3" style="color:dodgerblue;">
+         @if(Model != null && Model.Any()){
+        <div class="text-end">
+        @if(ViewBag.check != true){
+            <h6><a class="list-all" href="@Url.Action("CarSellAll","Home")">Hiển thị tất cả <i class="fas fa-arrow-right"></i></a></h6>
+        }
+        </div>
         <!-- Swiper Container -->
         <div class="swiper-container">
+            
             <div class="swiper-wrapper">
                 @foreach (var car in Model)
                 {
@@ -148,7 +163,7 @@
                                 </div>
 
                                 <div class="d-flex align-items-center justify-content-lg-start">
-                                    <a href="@Url.Action("CarDetail", "Car", new { id = car.CarID })" class="btn btn-primary btn-sm me-2"> 
+                                    <a href="@Url.Action("CarSellDetail", "Car", new { id = car.CarID })" class="btn btn-primary btn-sm me-2"> 
                                         Xem Chi Tiết
                                     </a>
                                     <a href="@Url.Action("Book", "Cars", new { id = car.CarID })" class="btn btn-success btn-sm">
@@ -160,7 +175,6 @@
                     </div>
                 }
             </div>
-
             <!-- Nút mũi tên -->
              <div class="scroll-arrow left">
                 <i class="fas fa-chevron-left"></i>
@@ -169,7 +183,14 @@
                 <i class="fas fa-chevron-right"></i>
             </div>
         </div>
-    </div>
+  
+
+         }else{
+            <h5><p class="text-center">Không tìm thấy phương tiện nào...</p></h5>
+         }
+        
+  </div>
+            
 
     <!-- Thêm Font Awesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
@@ -178,28 +199,42 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 4,  // Hiển thị 4 items cùng lúc
-            spaceBetween: 15,   // Khoảng cách giữa các slide
-            loop: true,         // Kích hoạt chế độ lặp vô tận
-            navigation: {
-                nextEl: '.scroll-arrow.right',  // Liên kết nút Next
-                prevEl: '.scroll-arrow.left',  // Liên kết nút Prev
+        slidesPerView: 4, // Hiển thị 4 items cùng lúc
+        spaceBetween: 15, // Khoảng cách giữa các slide
+        loop: true, // Kích hoạt chế độ lặp vô tận
+        navigation: {
+            nextEl: '.scroll-arrow.right', // Liên kết nút Next
+            prevEl: '.scroll-arrow.left', // Liên kết nút Prev
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4, // Khi màn hình lớn, hiển thị 4 items
+                spaceBetween: 15,
             },
-            breakpoints: {
-                1024: {
-                    slidesPerView: 4,  // Khi màn hình lớn, hiển thị 4 items
-                    spaceBetween: 15,
-                },
-                768: {
-                    slidesPerView: 2,  // Khi màn hình nhỏ, hiển thị 2 items
-                    spaceBetween: 10,
-                },
-                480: {
-                    slidesPerView: 1,  // Khi màn hình rất nhỏ, hiển thị 1 item
-                    spaceBetween: 5,
-                }
+            768: {
+                slidesPerView: 2, // Khi màn hình nhỏ, hiển thị 2 items
+                spaceBetween: 10,
+            },
+            480: {
+                slidesPerView: 1, // Khi màn hình rất nhỏ, hiển thị 1 item
+                spaceBetween: 5,
             }
-        });
+        }
+    });
+    // Kiểm tra số lượng slide và ẩn/hiện nút mũi tên
+    document.addEventListener('DOMContentLoaded', function() {
+        var swiperWrapper = document.querySelector('.swiper-wrapper');
+        var scrollArrows = document.querySelectorAll('.scroll-arrow');
+        if (swiperWrapper.children.length < 5) {
+            scrollArrows.forEach(function(arrow) {
+                arrow.style.display = 'none'; // Ẩn nút mũi tên
+            });
+        } else {
+            scrollArrows.forEach(function(arrow) {
+                arrow.style.display = 'flex'; // Hiển thị lại nút mũi tên nếu đủ slide
+            });
+        }
+    });
     </script>
 </body>
 </html>

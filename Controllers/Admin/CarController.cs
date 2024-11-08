@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ShareCar.Data;
 using ShareCar.Models;
+using ShareCar.Models.Home.HomeModel;
 
 namespace ShareCar.Controllers.Admin
 {
@@ -26,7 +27,7 @@ namespace ShareCar.Controllers.Admin
 
         [HttpGet("Car/CarManager")]
         public async Task<IActionResult> CarManager(string searchString, string status, string days) {
-            var cars = await _car.tbl_Cars.ToListAsync(); // Lấy danh sách tất cả xe
+            var cars = await _car.tbl_CarShare.ToListAsync(); // Lấy danh sách tất cả xe
 
             // Tìm kiếm theo ID hoặc Brand
             if (!string.IsNullOrEmpty(searchString))
@@ -76,7 +77,7 @@ namespace ShareCar.Controllers.Admin
         [HttpGet("Car/CarEditManager/{id}")]
         public IActionResult CarEditManager(int id)
         {
-            var car = _car.tbl_Cars.Find(id);
+            var car = _car.tbl_CarShare.Find(id);
             if (car == null)
             {
                 return NotFound();
@@ -110,9 +111,9 @@ namespace ShareCar.Controllers.Admin
 
         [HttpDelete]
         public IActionResult Delete(int id) {
-            var car = _car.tbl_Cars.Find(id);
+            var car = _car.tbl_CarShare.Find(id);
             if (car != null) {
-                _car.tbl_Cars.Remove(car);
+                _car.tbl_CarShare.Remove(car);
                 _car.SaveChanges();
                 return Json(new { success = true });
             }

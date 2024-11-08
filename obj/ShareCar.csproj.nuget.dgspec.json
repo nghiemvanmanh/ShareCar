@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\ShareCar.csproj": {}
+    "D:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\ShareCar.csproj": {}
   },
   "projects": {
-    "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\ShareCar.csproj": {
+    "D:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\ShareCar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\ShareCar.csproj",
+        "projectUniqueName": "D:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\ShareCar.csproj",
         "projectName": "ShareCar",
-        "projectPath": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\ShareCar.csproj",
+        "projectPath": "D:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\ShareCar.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\obj\\",
+        "outputPath": "D:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShareCar.Data;
 using ShareCar.Models;
+using ShareCar.Models.Home.HomeModel;
 
-namespace ShareCar.Controllers;
+namespace ShareCar.Controllers.Home;
 
 public class HomeController : Controller
 {
@@ -14,21 +15,40 @@ public class HomeController : Controller
             _car = car;
         }
 
+        string carsell = "~/Views/Home/Car/CarSellAll.cshtml";
+        string carshare = "~/Views/Home/Car/CarShareAll.cshtml";
+        string carsearch = "~/Views/Home/Car/CarSearch.cshtml";
+        string carsharedetail = "~/Views/Home/Car/CarShareDetail.cshtml";
+        string carselldetail = "~/Views/Home/Car/CarSellDetail.cshtml";
         public IActionResult Index(){
             
             var model = new CarHomeModel
             {
-                CarShare = _car.tbl_Cars.ToList(),       // Danh sách xe cho thuê
+                CarShare = _car.tbl_CarShare.ToList(),       // Danh sách xe cho thuê
                 CarSell = _car.tbl_CarSell.ToList()      // Danh sách xe bán
             };
             return View(model);
         }
 
+        [HttpGet("Car/CarShareAll")]
+        public IActionResult CarShareAll()
+        {
+            var carShare = _car.tbl_CarShare.ToList(); // Lấy danh sách xe cho thuê
+            return View(carshare, carShare);  
+        }
+
+        [HttpGet("Car/CarSellAll")]
+        public IActionResult CarSellAll()
+        {
+            var carShare = _car.tbl_CarSell.ToList(); // Lấy danh sách xe cho thuê
+            return View(carsell, carShare);  
+        }
+
         [HttpGet("CarShare")]
         public IActionResult CarShare()
         {
-            var carShare = _car.tbl_Cars.ToList(); // Lấy danh sách xe cho thuê
-            return PartialView("CarShare", carShare);  // Trả về PartialView "_CarRental" với dữ liệu
+            var carShare = _car.tbl_CarShare.ToList(); // Lấy danh sách xe cho thuê
+            return PartialView("CarShare", carShare);  
         }
 
         [HttpGet("CarSell")]
@@ -40,16 +60,17 @@ public class HomeController : Controller
 
         [HttpGet("Home/CarSearch")]
         public async Task<IActionResult> CarSearch(string query, string Status, string VehicleRegistration,string Days, string Option) {
-            var shareCar = await _car.tbl_Cars.ToListAsync();
+            var shareCar = await _car.tbl_CarShare.ToListAsync();
             var sellCar = await _car.tbl_CarSell.ToListAsync();
 
             // Kiểm tra tùy chọn "Thuê Xe/Mua Xe"
-            if (Option == "Thuê Xe" || Option == "Tất cả") {
+            if (Option == "Thuê xe") {
                 if (!string.IsNullOrEmpty(query))
                 {
                     shareCar = shareCar
                         .Where(c => c.Model.ToLower().Contains(query.ToLower()) || c.Brand.ToLower().Contains(query.ToLower()) || c.CarID.ToString().ToLower().Contains(query.ToLower()))
                         .ToList();
+                    
                 }
 
                 if (!string.IsNullOrEmpty(Status) && Status != "Tất cả trạng thái") {
@@ -78,11 +99,12 @@ public class HomeController : Controller
                             case "1 năm trước":
                                 shareCar = shareCar.Where(c => (now - c.Day).TotalDays <= 365).ToList();
                                 break;
-                    }
+                        }
                 }
+                return View(carshare,shareCar);
             }
 
-            if (Option == "Mua Xe" || Option == "Tất cả") {
+            if (Option == "Mua xe") {
                 if (!string.IsNullOrEmpty(query))
                 {
                     sellCar = sellCar
@@ -118,15 +140,50 @@ public class HomeController : Controller
                                 break;
                     }
                 }
+                
+                return View(carsell,sellCar);
             }
-            HttpContext.Session.SetString("Option",Option);
+
+            if(Option == "default"){
+                if (!string.IsNullOrEmpty(query))
+                {
+                    sellCar = sellCar
+                        .Where(c => c.Model.ToLower().Contains(query.ToLower()) || c.Brand.ToLower().Contains(query.ToLower()))
+                        .ToList();
+                    shareCar = shareCar
+                        .Where(c => c.Model.ToLower().Contains(query.ToLower()) || c.Brand.ToLower().Contains(query.ToLower()))
+                        .ToList();
+                }
+            }
             var model = new CarHomeModel
             {
-                CarShare = shareCar,
-                CarSell = sellCar
+                CarShare = shareCar,       // Danh sách xe cho thuê
+                CarSell = sellCar     // Danh sách xe bán
             };
+            ViewBag.check = true;
+            return View(carsearch,model);
+        }
 
-            return View("CarSearch", model);
+        [HttpGet("Car/CarShareDetail/{id}")]
+        public IActionResult CarShareDetail(int id)
+        {
+            var cars = _car.tbl_CarShare.FirstOrDefault(c => c.CarID == id);
+            if (cars == null)
+            {
+                return NotFound();
+            }
+            return View(carsharedetail,cars);
+        }
+
+        [HttpGet("Car/CarSellDetail/{id}")]
+        public IActionResult CarSellDetail(int id)
+        {
+            var cars = _car.tbl_CarSell.FirstOrDefault(c => c.CarID == id);
+            if (cars == null)
+            {
+                return NotFound();
+            }
+            return View(carselldetail,cars);
         }
 
 
