@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wgj1Bejg1kxB/5AfgWhl9XmhseGEJJecGddDsQaLUd0=",
+  "Hash": "+ASnFFfkAZHIs2tGWBBASIdPUjUCOHCFk8DDqEp3QRI=",
   "Source": "ShareCar",
   "BasePath": "_content/ShareCar",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\9399a28e-0d18-4ac8-b687-997831002e90_dream.jpg",
+      "SourceId": "ShareCar",
+      "SourceType": "Discovered",
+      "ContentRoot": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\",
+      "BasePath": "_content/ShareCar",
+      "RelativePath": "images/9399a28e-0d18-4ac8-b687-997831002e90_dream.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\9399a28e-0d18-4ac8-b687-997831002e90_dream.jpg"
     },
     {
       "Identity": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\banner1.jpg",

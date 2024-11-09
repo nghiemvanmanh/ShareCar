@@ -13,7 +13,7 @@
 <body>
     <div class="container mt-5">
         <h2>Thêm mới xe</h2>
-        <form asp-action="NewCar" method="post" enctype="multipart/form-data">
+        <form asp-action="CarShareNew" method="post" enctype="multipart/form-data">
             <input asp-for="UserID" class="form-control" value="@Context.Session.GetInt32("UserID")" hidden="true" />
             <div class="mb-3" hidden = "true">
                 <label asp-for="Poster" class="form-label">Người đăng:</label>

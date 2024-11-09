@@ -173,10 +173,10 @@
                                     </div>
 
                                     <div class="d-flex justify-content-between mb-2">
-                                        <span
+                                        <p class="card-text text-muted mb-0"><strong><i class="fas fa-cogs"></i></strong> <span
                                             class="badge @(car.Status == "Đã cho thuê" ? "bg-danger text-light" : "bg-info text-dark")"
                                             style=" font-weight:normal;">
-                                            @car.Status
+                                             @car.Status
                                         </span>
                                         <p class="card-text text-muted">
                                             <i class="fas fa-money-bill-wave"></i> @String.Format("{0:0,0}", car.RentalPrice) đ
