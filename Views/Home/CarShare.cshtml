@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
     <style>
-        .swiper-container {
+        #CarShare .swiper-container {
             width: 100%;
             height: 100%;
-            position: relative;
+            position: revert;
             overflow: hidden;
 
         }
@@ -44,12 +44,11 @@
 
         }
 
-
         .card {
             width: 100%;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .card:hover {
@@ -61,6 +60,51 @@
             object-fit: cover;
             height: 200px;
             /* Giảm kích thước ảnh */
+        }
+
+        /* Đặt kích thước và vị trí các nút next, prev */
+        .swiper-button-next,
+        .swiper-button-prev {
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Màu nền của các nút */
+            border-radius: 50%;
+            padding: 10px;
+            width: 30px;
+            height: 30px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            /* Màu của mũi tên */
+        }
+
+        .swiper-button-next:after,
+        .swiper-rtl .swiper-button-prev:after {
+            content: 'next';
+            font-size: 12px;
+        }
+
+        .swiper-button-prev:after,
+        .swiper-rtl .swiper-button-next:after {
+            content: 'prev';
+            font-size: 12px;
+        }
+
+
+        /* Để chúng ở vị trí giữa trên màn hình */
+        #CarShare .swiper-button-next {
+            right: 60px;
+            top: 54.94%;
+            transform: translateY(-50%);
+            background: #e0dede;
+            color: black;
+            padding: 16px;
+        }
+
+        #CarShare .swiper-button-prev {
+            left: 60px;
+            top: 54.94%;
+            transform: translateY(-50%);
+            background: #e0dede;
+            color: black;
+            padding: 16px;
         }
     </style>
 </head>
@@ -156,6 +200,9 @@
 
 
                 </div>
+                <!-- Nút mũi tên -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         }
         else
@@ -174,42 +221,47 @@
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 3, // Hiển thị 4 items cùng lúc
-            spaceBetween: 15, // Khoảng cách giữa các slide
-            loop: true, // Kích hoạt chế độ lặp vô tận
-            autoplay: {
-                delay: 3000, // Tự động nhảy slide sau 5 giây
-                disableOnInteraction: false // Tiếp tục autoplay ngay cả khi có tương tác
-
-            },
-            navigation: {
-                nextEl: '.scroll-arrow.right', // Liên kết nút Next
-                prevEl: '.scroll-arrow.left', // Liên kết nút Prev
-            },
-            breakpoints: {
-                1024: {
-                    slidesPerView: 3, // Khi màn hình lớn, hiển thị 4 items
-                    spaceBetween: 15,
+        document.addEventListener('DOMContentLoaded', function () {
+            var swiper = new Swiper('#CarShare .swiper-container', {
+                slidesPerView: 3, // Hiển thị 4 items cùng lúc
+                spaceBetween: 15, // Khoảng cách giữa các slide
+                loop: true, // Kích hoạt chế độ lặp vô tận
+                autoplay: {
+                    delay: 3000, // Tự động nhảy slide sau 3 giây
+                    disableOnInteraction: false // Tiếp tục autoplay ngay cả khi có tương tác
                 },
-                768: {
-                    slidesPerView: 2, // Khi màn hình nhỏ, hiển thị 2 items
-                    spaceBetween: 10,
+                navigation: {
+                    nextEl: '#CarShare .swiper-button-next',
+                    prevEl: '#CarShare .swiper-button-prev',
                 },
-                480: {
-                    slidesPerView: 1, // Khi màn hình rất nhỏ, hiển thị 1 item
-                    spaceBetween: 5,
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 3, // Khi màn hình lớn, hiển thị 4 items
+                        spaceBetween: 15,
+                    },
+                    768: {
+                        slidesPerView: 2, // Khi màn hình nhỏ, hiển thị 2 items
+                        spaceBetween: 10,
+                    },
+                    480: {
+                        slidesPerView: 1, // Khi màn hình rất nhỏ, hiển thị 1 item
+                        spaceBetween: 5,
+                    }
                 }
-            }
-        });
-        var swiperContainer = document.querySelector('.swiper-container');
+            });
 
-        swiperContainer.addEventListener('mouseenter', function () {
-            swiper.autoplay.stop();
-        });
+            // Lắng nghe sự kiện hover cho các slide của Swiper
+            var swiperSlides = document.querySelectorAll('#CarShare .swiper-slide');
 
-        swiperContainer.addEventListener('mouseleave', function () {
-            swiper.autoplay.start();
+            swiperSlides.forEach(function (slide) {
+                slide.addEventListener('mouseenter', function () {
+                    swiper.autoplay.stop(); // Dừng autoplay khi hover vào slide
+                });
+
+                slide.addEventListener('mouseleave', function () {
+                    swiper.autoplay.start(); // Tiếp tục autoplay khi rời khỏi slide
+                });
+            });
         });
 
     </script>

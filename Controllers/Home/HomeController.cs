@@ -42,6 +42,10 @@ public class HomeController : Controller
             return PartialView(carsell, carSell);  // Trả về PartialView "_CarRental" với dữ liệu
         }
 
+        [HttpGet("Home/CarBanner")]
+        public IActionResult CarBanner(){
+            return View("~/Views/Home/CarBanner.cshtml");
+        }
         
 
 

@@ -34,6 +34,7 @@
             position: fixed;
             width: 100%;
             z-index: 999;
+            height : 10%;
         }
 
         .nav-link {
@@ -74,18 +75,25 @@
 
         .navbar-nav {
             gap: 15px;
+            
             /* Thêm khoảng cách giữa các nút */
         }
 
         .nav-link {
             padding: 8px 12px;
+           
             /* Padding cho các nút */
         }
 
+        a.nav-link {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
         .nav-link:hover {
             background-color: rgba(0, 123, 255, 0.1);
             /* Màu nền khi hover */
-            border-radius: 5px;
+             border-radius: 5px;
+            /* Bo góc khi hover */
+            transform: scale(1.1);
             /* Bo tròn các góc của nút khi hover */
         }
 
@@ -161,7 +169,7 @@
             text-align: center;
             font-size: 0.9rem;
             color: #888;
-
+            
         }
 
         .btn {
@@ -207,6 +215,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+             transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .btn-search i {
@@ -216,7 +225,8 @@
 
         /* Thêm hiệu ứng hover cho button */
         .btn-search:hover {
-            background-color: #0056b3;
+            background-color: #e5e7eb;
+            transform: scale(1.1);
         }
         .container.text-md-left {
             background-color: #f3f3f3;
@@ -383,7 +393,7 @@
                     <div class="sidebar-footer">
                         <p>&copy; 2024 ShareCar</p>
                     </div>
-
+                    
 
                 </div>
             </div>

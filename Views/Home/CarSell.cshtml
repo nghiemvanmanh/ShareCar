@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
     <style>
-        .swiper-container {
+        #CarSell .swiper-container {
             
             width: 100%;
-           position: relative;
+           position: revert;
            overflow : hidden;
         }
         .swiper-container.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
@@ -40,8 +40,8 @@
             margin-right: 15px;
             width: calc((100%/3) - 15px); /* Chỉnh lại để có 4 phần tử trên mỗi hàng */
             box-sizing: border-box;
+            
         }
-
         .card {
             width: 100%;
             border-radius: 8px;
@@ -85,6 +85,46 @@
         a.btn.btn-primary.btn-sm.me-2:hover {
             transform: scale(1.1); 
         }
+
+        .swiper-button-next, .swiper-button-prev {
+            background-color: rgba(0, 0, 0, 0.5); /* Màu nền của các nút */
+            border-radius: 50%;
+            padding: 10px;
+            width: 30px;
+            height: 30px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .swiper-button-next:after,
+            .swiper-rtl .swiper-button-prev:after {
+                content: 'next';
+                font-size: 12px;
+            }
+
+        .swiper-button-prev:after,
+        .swiper-rtl .swiper-button-next:after {
+            content: 'prev';
+            font-size: 12px;
+        }
+        /* Để chúng ở vị trí giữa trên màn hình */
+        #CarSell .swiper-button-next {
+            right: 60px;
+            top: 88.3%;
+            transform: translateY(-50%);
+            background: #e0dede;
+            color: black;
+            padding: 16px;
+        }
+
+        #CarSell .swiper-button-prev {
+            left: 60px;
+            top: 88.3%;
+            transform: translateY(-50%);
+            background: #e0dede;
+            color: black;
+            padding: 16px;
+        }
+
+       
     </style>
 </head>
 <body>
@@ -146,7 +186,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between mb-2">
-                                    <span class="badge @(car.VehicleRegistration == "Không đầy đủ" ? "bg-danger text-light" : "bg-info text-dark")">
+                                    <span class="badge @(car.VehicleRegistration == "Không đầy đủ" ? "bg-danger text-light" : "bg-info text-dark")" style="font-weight: normal;">
                                        @car.VehicleRegistration
                                     </span>
                                     <p class="card-text text-muted"> 
@@ -168,6 +208,8 @@
                 }
             </div>
             <!-- Nút mũi tên -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
   
 
@@ -184,14 +226,18 @@
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-        var swiper = new Swiper('.swiper-container', {
+        document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('#CarSell .swiper-container', {
         slidesPerView: 3, // Hiển thị 4 items cùng lúc
         spaceBetween: 15, // Khoảng cách giữa các slide
         loop: true, // Kích hoạt chế độ lặp vô tận
         autoplay: {
-            delay: 3000, // Tự động nhảy slide sau 5 giây
+            delay: 3000, // Tự động nhảy slide sau 3 giây
             disableOnInteraction: false // Tiếp tục autoplay ngay cả khi có tương tác
-            
+        },
+            navigation: {
+            nextEl: '#CarSell .swiper-button-next',
+            prevEl: '#CarSell .swiper-button-prev',
         },
         breakpoints: {
             1024: {
@@ -208,15 +254,20 @@
             }
         }
     });
-    var swiperContainer = document.querySelector('.swiper-container');
 
-        swiperContainer.addEventListener('mouseenter', function () {
-            swiper.autoplay.stop();
+    // Lắng nghe sự kiện hover cho các slide của Swiper
+    var swiperSlides = document.querySelectorAll('#CarSell .swiper-slide');
+
+    swiperSlides.forEach(function(slide) {
+        slide.addEventListener('mouseenter', function () {
+            swiper.autoplay.stop(); // Dừng autoplay khi hover vào slide
         });
 
-        swiperContainer.addEventListener('mouseleave', function () {
-            swiper.autoplay.start();
+        slide.addEventListener('mouseleave', function () {
+            swiper.autoplay.start(); // Tiếp tục autoplay khi rời khỏi slide
         });
+    });
+});
     </script>
 </body>
 </html>
