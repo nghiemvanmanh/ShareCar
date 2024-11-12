@@ -1,4 +1,4 @@
-@model ShareCar.Models.Home.HomeModel.CarShareModel
+@model ShareCar.Models.Home.CarModel.CarShareModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,7 +87,7 @@
 
                 <!-- Nút quay lại và đặt xe -->
 
-                <a href="@Url.Action("Index", "Home")" class="btn btn-secondary me-2">Quay lại</a>
+                <a href="javascript:history.back()" class="btn btn-secondary me-2">Quay lại</a>
                 <a href="@Url.Action("NewCar", "Car", new { id = Model.CarID })" class="btn btn-success">Đặt Xe</a>
 
 

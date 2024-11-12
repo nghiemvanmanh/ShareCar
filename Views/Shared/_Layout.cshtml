@@ -34,7 +34,7 @@
             position: fixed;
             width: 100%;
             z-index: 999;
-            height : 10%;
+            height: 10%;
         }
 
         .nav-link {
@@ -75,23 +75,24 @@
 
         .navbar-nav {
             gap: 15px;
-            
+
             /* Thêm khoảng cách giữa các nút */
         }
 
         .nav-link {
             padding: 8px 12px;
-           
+
             /* Padding cho các nút */
         }
 
         a.nav-link {
             transition: color 0.3s ease, transform 0.3s ease;
         }
+
         .nav-link:hover {
-            background-color: rgba(0, 123, 255, 0.1);
+            background-color: #e5e7eb;
             /* Màu nền khi hover */
-             border-radius: 5px;
+            border-radius: 5px;
             /* Bo góc khi hover */
             transform: scale(1.1);
             /* Bo tròn các góc của nút khi hover */
@@ -169,7 +170,7 @@
             text-align: center;
             font-size: 0.9rem;
             color: #888;
-            
+
         }
 
         .btn {
@@ -215,7 +216,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-             transition: color 0.3s ease, transform 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .btn-search i {
@@ -228,6 +229,7 @@
             background-color: #e5e7eb;
             transform: scale(1.1);
         }
+
         .container.text-md-left {
             background-color: #f3f3f3;
             border-radius: 15px;
@@ -238,18 +240,9 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm ">
         <div class="container">
-            @if (Context.Session.GetString("UserName") == null)
-            {
-                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
-                    ShareCar
-                </a>
-            }
-            else
-            {
-                <a class="navbar-brand fw-bold" asp-controller="Car" asp-action="Index">
-                    ShareCar
-                </a>
-            }
+            <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
+                ShareCar
+            </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -268,10 +261,42 @@
                             <li><a class="dropdown-item" href="#">Xe Đạp</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Car" asp-action="CarShareNew">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="carShareDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-plus-circle me-1"></i>Bài Đăng Mới
                         </a>
+                        <ul class="dropdown-menu" aria-labelledby="carShareDropdown">
+                            <li>
+                                @if (Context.Session.GetString("UserName") != null) // Kiểm tra nếu người dùng đã đăng
+                                {
+                                    <a class="dropdown-item" asp-controller="Car" asp-action="CarSellNew">
+                                        Đăng bài bán xe
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item" asp-controller="User" asp-action="Login">
+                                        Đăng bài bán xe
+                                    </a>
+                                }
+
+                            </li>
+                            <li>
+                                @if (Context.Session.GetString("UserName") != null) // Kiểm tra nếu người dùng đã đăng
+                                {
+                                    <a class="dropdown-item" asp-controller="Car" asp-action="CarShareNew">
+                                        Đăng bài cho thuê xe
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item" asp-controller="User" asp-action="Login">
+                                        Đăng bài cho thuê xe
+                                    </a>
+                                }
+                            </li>
+                        </ul>
                     </li>
                 </ul>
                 <!-- Ô tìm kiếm và bộ lọc -->
@@ -361,7 +386,7 @@
                             @if (Context.Session.GetString("UserName") != null)
                             {
                                 <li class="list-group-item">
-                                    <a asp-controller="Car" asp-action="CarList" class="text-decoration-none">
+                                    <a asp-controller="Car" asp-action="CarUser" class="text-decoration-none">
                                         <i class="fas fa-car"></i>
                                         Quản lý Phương tiện
                                     </a>
@@ -393,7 +418,7 @@
                     <div class="sidebar-footer">
                         <p>&copy; 2024 ShareCar</p>
                     </div>
-                    
+
 
                 </div>
             </div>

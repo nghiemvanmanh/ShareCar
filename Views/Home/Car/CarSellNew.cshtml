@@ -1,4 +1,4 @@
-@model ShareCar.Models.Home.CarModel.CarShareModel;
+@model ShareCar.Models.Home.CarModel.CarSellModel;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,8 +12,8 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2>Thêm xe cho thuê mới </h2>
-        <form asp-action="CarShareNew" method="post" enctype="multipart/form-data">
+        <h2>Thêm xe bán mới</h2>
+        <form asp-action="CarSellNew" method="post" enctype="multipart/form-data">
             <input asp-for="UserID" class="form-control" value="@Context.Session.GetInt32("UserID")" hidden="true" />
             <div class="mb-3" hidden = "true">
                 <label asp-for="Poster" class="form-label">Người đăng:</label>
@@ -50,13 +50,13 @@
                 <span asp-validation-for="Color" class="text-danger"></span>
             </div>
 
-            <div class="mb-3" hidden = "true">
-                <label asp-for="Status" class="form-label">Tình trạng</label>
-                <select asp-for="Status" class="form-select">
-                    <option value="Chưa cho thuê">Chưa cho thuê</option>
-                    <option value="Đã cho thuê">Đã cho thuê</option>
+            <div class="mb-3" >
+                <label asp-for="VehicleRegistration" class="form-label">Giấy tờ</label>
+                <select asp-for="VehicleRegistration" class="form-select">
+                    <option value="Đầy đủ">Đầy đủ</option>
+                    <option value="Không đầy đủ">Không đầy đủ</option>
                 </select>
-                <span asp-validation-for="Status" class="text-danger"></span>
+                <span asp-validation-for="VehicleRegistration" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
@@ -70,20 +70,14 @@
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="RentalPrice" class="form-label">Giá thuê</label>
-                <input asp-for="RentalPrice" class="form-control" />
-                <span asp-validation-for="RentalPrice" class="text-danger"></span>
+                <label asp-for="SellPrice" class="form-label">Giá bán</label>
+                <input asp-for="SellPrice" class="form-control" />
+                <span asp-validation-for="SellPrice" class="text-danger"></span>
             </div>
 
              <div class="mb-3">
                 <label class="form-label">Chọn ảnh:</label>
                 <input name="imageFile" class="form-control" type="file" multiple />
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="AverageRating" class="form-label" hidden="true">Đánh giá trung bình</label>
-                <input asp-for="AverageRating" class="form-control" value="0" hidden="true" readonly />
-                <span asp-validation-for="AverageRating" class="text-danger"></span>
             </div>
 
             <button type="submit" class="btn btn-primary">Thêm xe</button>

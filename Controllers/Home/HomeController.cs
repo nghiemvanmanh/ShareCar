@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShareCar.Data;
 using ShareCar.Models;
-using ShareCar.Models.Home.HomeModel;
+using ShareCar.Models.Home.CarModel;
 
 namespace ShareCar.Controllers.Home;
 

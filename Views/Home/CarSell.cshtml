@@ -1,4 +1,4 @@
-@model IEnumerable<ShareCar.Models.Home.HomeModel.CarSellModel>
+@model IEnumerable<ShareCar.Models.Home.CarModel.CarSellModel>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -156,30 +156,30 @@
 
                                 <div class="d-flex justify-content-between mb-2">
                                     <p class="card-text text-muted">
-                                        <i class="fas fa-clock"></i>
-                                        @{
-                                            var timeDifference = DateTime.Now - car.Day;
-                                            var timeText = "";
+                                            <i class="fas fa-clock"></i>
+                                            @{
+                                                var timeDifference = DateTime.Now - car.Day;
+                                                var timeText = "";
 
-                                            if (timeDifference.TotalSeconds < 60)
-                                            {
-                                                timeText = $"{(int)timeDifference.TotalSeconds} giây trước";
+                                                if (timeDifference.TotalSeconds < 60)
+                                                {
+                                                    timeText = $"{(int)timeDifference.TotalSeconds} giây trước";
+                                                }
+                                                else if (timeDifference.TotalMinutes < 60)
+                                                {
+                                                    timeText = $"{(int)timeDifference.TotalMinutes} phút trước";
+                                                }
+                                                else if (timeDifference.TotalHours < 24)
+                                                {
+                                                    timeText = $"{(int)timeDifference.TotalHours} giờ trước";
+                                                }
+                                                else
+                                                {
+                                                    timeText = $"{(int)timeDifference.TotalDays} ngày trước";
+                                                }
                                             }
-                                            else if (timeDifference.TotalMinutes < 60)
-                                            {
-                                                timeText = $"{(int)timeDifference.TotalMinutes} phút trước";
-                                            }
-                                            else if (timeDifference.TotalHours < 24)
-                                            {
-                                                timeText = $"{(int)timeDifference.TotalHours} giờ trước";
-                                            }
-                                            else
-                                            {
-                                                timeText = $"{(int)timeDifference.TotalDays} ngày trước";
-                                            }
-                                        }
-                                        @timeText
-                                    </p>
+                                            @timeText
+                                        </p>
                                     <p class="card-text text-muted mb-0">
                                         <i class="fas fa-user"></i> @car.Poster
                                     </p>

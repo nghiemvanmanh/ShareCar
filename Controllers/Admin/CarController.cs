@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ShareCar.Data;
 using ShareCar.Models;
-using ShareCar.Models.Home.HomeModel;
+using ShareCar.Models.Home.CarModel;
 
 namespace ShareCar.Controllers.Admin
 {
@@ -16,7 +16,8 @@ namespace ShareCar.Controllers.Admin
     public class CarController : Controller
     {
         string carmanager = "~/Views/Admin/Car/CarManager.cshtml";
-        string caredit = "~/Views/Admin/Car/CarEditManager.cshtml";
+        string caresharedit = "~/Views/Admin/Car/CarShareEdit.cshtml";
+        string careselldit = "~/Views/Admin/Car/CarSellEdit.cshtml";
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly ShareCarDBContext _car;
         public CarController(IWebHostEnvironment hostingEnvironment, ShareCarDBContext car)
@@ -25,57 +26,40 @@ namespace ShareCar.Controllers.Admin
             _car = car;
         }
 
+        string carshare = "~/Views/Admin/Car/CarShareManager.cshtml";
+        string carsell = "~/Views/Admin/Car/CarSellManager.cshtml";
+
+        [HttpGet("Car/CarShareManager")]
+        public IActionResult CarShareManager()
+        {
+            var carShare = _car.tbl_CarShare.ToList(); // Lấy danh sách xe cho thuê
+            return PartialView(carshare, carShare);
+        }
+
+        [HttpGet("Car/CarSellManager")]
+        public IActionResult CarSellManager()
+        {
+            var carSell = _car.tbl_CarSell.ToList(); // Lấy danh sách xe cho thuê
+            return PartialView(carsell, carSell);  // Trả về PartialView "_CarRental" với dữ liệu
+        }
+
         [HttpGet("Car/CarManager")]
-        public async Task<IActionResult> CarManager(string searchString, string status, string days) {
-            var cars = await _car.tbl_CarShare.ToListAsync(); // Lấy danh sách tất cả xe
+        public async Task<IActionResult> CarManager(string Option, string searchString, string days)
+        {
+            var carShare = await _car.tbl_CarShare.ToListAsync(); // Lấy danh sách tất cả xe
+            var carSell = await _car.tbl_CarSell.ToListAsync();
 
-            // Tìm kiếm theo ID hoặc Brand
-            if (!string.IsNullOrEmpty(searchString))
-            {   
-                cars = cars.Where(c => c.CarID.ToString().ToLower().Contains(searchString.ToLower()) || c.Brand.ToLower().Contains(searchString.ToLower()) || c.Model.ToLower().Contains(searchString.ToLower())).ToList();
-            }
-
-            // Lọc theo trạng thái
-            if (!string.IsNullOrEmpty(status) && status != "Tất cả trạng thái")
+            var model = new CarHomeModel
             {
-                cars = cars.Where(c => c.Status == status).ToList();
-            }
-
-            // Lọc theo số ngày chênh lệch (Days)
-            if (!string.IsNullOrEmpty(days) && days != "Tất cả thời gian")
-            {
-                int dayDifference = 0;
-                switch (days)
-                {
-                    case "Hôm nay":
-                        dayDifference = 0;
-                        break;
-                    case "1 ngày trước":
-                        dayDifference = 1;
-                        break;
-                    case "3 ngày trước":
-                        dayDifference = 3;
-                        break;
-                    case "7 ngày trước":
-                        dayDifference = 7;
-                        break;
-                    case "1 tháng trước":
-                        dayDifference = 30;
-                        break;
-                    case "1 năm trước":
-                        dayDifference = 365;
-                        break;
-                }
-                
-                // Lọc xe dựa trên số ngày chênh lệch
-                cars = cars.Where(c => (DateTime.Now - c.Day).TotalDays <= dayDifference).ToList();
-            }
-            return View(carmanager, cars); 
+                CarShareManager = carShare,
+                CarSellManager = carSell
+            };
+            return View(carmanager, model);
         }
 
         // Action để hiển thị form chỉnh sửa
-        [HttpGet("Car/CarEditManager/{id}")]
-        public IActionResult CarEditManager(int id)
+        [HttpGet("Car/CarShareEdit/{id}")]
+        public IActionResult CarShareEdit(int id)
         {
             var car = _car.tbl_CarShare.Find(id);
             if (car == null)
@@ -83,36 +67,94 @@ namespace ShareCar.Controllers.Admin
                 return NotFound();
             }
 
-            return View(caredit,car); // Truyền model vào view
+            return View(caresharedit, car); // Truyền model vào view
         }
 
         // Action để xử lý cập nhật
-        [HttpPost("Car/CarEditManager")]
-        public async Task<IActionResult> CarEdit(CarShareModel models)
+        [HttpPost]
+        public async Task<IActionResult> CarShareEdit(CarShareModel models)
         {
-            if (!ModelState.IsValid) {
+             Console.WriteLine($"CarID: {models.CarID}");  // Kiểm tra giá trị của CarID
+            if (!ModelState.IsValid)
+            {
                 // Ghi log lỗi hoặc kiểm tra thông báo lỗi
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
-                foreach (var error in errors) {
-                    Console.WriteLine(error.ErrorMessage);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine("Error :" +error.ErrorMessage);
                 }
             }
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 Console.WriteLine($"Car ID: {models.CarID}");
                 // Kiểm tra nếu tồn tại sản phẩm trong cơ sở dữ liệu
                 _car.Update(models);
                 await _car.SaveChangesAsync();
                 TempData["SuccessCarManager"] = "Cập nhật thành công!";
-                return RedirectToAction("CarManager","Car");
+                return RedirectToAction("CarManager", "Car");
             }
-            
-            return View(caredit,models); // Nếu không hợp lệ, quay lại view với dữ liệu đã nhập
+            return View(caresharedit, models); // Nếu không hợp lệ, quay lại view với dữ liệu đã nhập
         }
 
+        // Action để hiển thị form chỉnh sửa carSell
+        [HttpGet("Car/CarSellEdit/{id}")]
+        public IActionResult CarSellEdit(int id)
+        {
+            var car = _car.tbl_CarSell.Find(id);
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            return View(careselldit, car); // Truyền model vào view
+        }
+
+        // Action để xử lý cập nhật
+        [HttpPost]
+        public async Task<IActionResult> CarSellEdit(CarSellModel models)
+        {
+            if (!ModelState.IsValid)
+            {
+                // Ghi log lỗi hoặc kiểm tra thông báo lỗi
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+            }
+            if (ModelState.IsValid)
+            {
+                Console.WriteLine($"Car ID: {models.CarID}");
+                // Kiểm tra nếu tồn tại sản phẩm trong cơ sở dữ liệu
+                _car.Update(models);
+                await _car.SaveChangesAsync();
+                TempData["SuccessCarManager"] = "Cập nhật thành công!";
+                return RedirectToAction("CarManager", "Car");
+            }
+
+            return View(careselldit, models); // Nếu không hợp lệ, quay lại view với dữ liệu đã nhập
+        }
+
+        //Xóa xe bán
         [HttpDelete]
-        public IActionResult Delete(int id) {
+        public IActionResult DeleteCarSell(int id)
+        {
+            var car = _car.tbl_CarSell.Find(id);
+            if (car != null)
+            {
+                _car.tbl_CarSell.Remove(car);
+                _car.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+
+        //Xóa xe cho thuê
+        public IActionResult DeleteCarShare(int id)
+        {
             var car = _car.tbl_CarShare.Find(id);
-            if (car != null) {
+            if (car != null)
+            {
                 _car.tbl_CarShare.Remove(car);
                 _car.SaveChanges();
                 return Json(new { success = true });

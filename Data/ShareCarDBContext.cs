@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ShareCar.Models;
 using ShareCar.Models.Customer.UserModel;
-using ShareCar.Models.Home.HomeModel;
+using ShareCar.Models.Home.CarModel;
 
 
 namespace ShareCar.Data

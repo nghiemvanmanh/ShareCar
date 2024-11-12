@@ -98,7 +98,7 @@ namespace ShareCar.Controllers.Customer
                     HttpContext.Session.SetString("UserName", _user.UserName);
                     HttpContext.Session.SetString("FullName", _user.FullName);
                     HttpContext.Session.SetString("SDT", _user.SDT);
-                     HttpContext.Session.SetInt32("UserID", _user.Id);
+                    HttpContext.Session.SetInt32("UserID", _user.Id);
                     return RedirectToAction("Index", "Home");
                 }
             }

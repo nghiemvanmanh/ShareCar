@@ -1,0 +1,101 @@
+@model IEnumerable<ShareCar.Models.Home.CarModel.CarSellModel>
+
+    <h4>Danh sách xe đăng bán</h4>
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Car ID</th>
+                <th>Biển Số</th>
+                <th>Hãng</th>
+                <th>Model</th>
+                <th>Màu Sắc</th>
+                <th>Trạng Thái</th>
+                <th>Người Đăng</th>
+                <th>Ngày Đăng</th>
+                <th>Liên hệ</th>
+                <th>Địa chỉ</th>
+                <th>Giá Thuê</th>
+                <th>Hình Ảnh</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Kiểm tra nếu không có phương tiện -->
+            @if (Model == null || !Model.Any())
+            {
+                <tr>
+                    <td colspan="15" class="text-center alert alert-info">
+                        <div class="alert alert-info text-center">
+                            Không có phương tiện nào được đăng. <a asp-action="NewCar">Thêm phương tiện mới ngay</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <!-- Hiển thị các phương tiện nếu có -->
+                @foreach (var car in Model) {
+                    if (car != null) {
+                        <tr id="car-row-@car.CarID">
+                            <td>@car.CarID</td>
+                            <td>@car.LicensePlate</td>
+                            <td>@car.Brand</td>
+                            <td>@car.Model</td>
+                            <td>@car.Color</td>
+                            <td>@car.VehicleRegistration</td>
+                            <td>@car.Poster</td>
+                            <td>@car.Day.ToString("dd/MM/yyyy")</td>
+                            <td>@car.SDT</td>
+                            <td>@car.Address</td>
+                            <td>@String.Format("{0:0,0}", car.SellPrice) đ/ngày</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(car.Image)) {
+                                    <img src="@Url.Content(car.Image)" alt="Hình Ảnh" style="width: 100px; height: auto;" />
+                                } else {
+                                    <span>Không có hình</span>
+                                }
+                            </td>
+                            <td>
+                                <a href="@Url.Action("CarUserSellEdit", "Car", new { id = car.CarID })" class="btn btn-primary btn-sm me-2">Sửa</a>
+                                <button class="btn btn-danger btn-sm" onclick="Delete('@car.CarID')">Xóa</button>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function Delete(id) {
+            if (confirm("Bạn có chắc chắn muốn xóa người dùng này không?")) {
+                fetch(`/Car/DeleteU/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById(`car-row-${id}`).remove()
+                        alert("Xóa phương tiện thành công!");
+                        location.reload();
+                    } else {
+                        alert("Xóa phương tiện thất bại!");
+                    }
+                })
+                .catch(error => {
+                    console.error("Lỗi:", error);
+                    alert("Đã xảy ra lỗi khi xóa phương tiện!");
+                });
+            }
+        }
+    </script>

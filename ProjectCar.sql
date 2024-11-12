@@ -35,6 +35,8 @@ insert into tbl_CarShare(UserID,Poster,LicensePlate,Brand,Model,Color,Status,Des
 insert into tbl_CarShare(UserID,Poster,LicensePlate,Brand,Model,Color,Status,Description,Day,RentalPrice,Address,SDT,Image,AverageRating) values (1,N'Quản trị viên','30E-12345','Honda',N'CR-V 2.0L e:HEV RS','White',N'Chưa cho thuê',N'Cảm tác từ sự mạnh mẽ của chiếc xe SUV đô thị đẳng cấp, Honda CR-V 2024 sở hữu kiểu dáng thể thao cao cấp và tinh tế hoàn toàn mới, khơi dậy khí chất uy phong của chủ nhân và mang đến cảm giác mãn nhãn đầy cuốn hút.','2024-09-15',1000000,N'Cầu Giấy, Hà Nội','0999999999','https://drive.gianhangvn.com/image/99lbvbw-2524733j32511.jpg','5')
 insert into tbl_CarShare(UserID,Poster,LicensePlate,Brand,Model,Color,Status,Description,Day,RentalPrice,Address,SDT,Image,AverageRating) values (1,N'Quản trị viên','33R5-7774','Honda',N' Wave Alpha','Black',N'Đã cho thuê',N'Xe mình mua từ năm 2023, hoạt động êm ru. Do nhu cầu sử dụng ít nên mình cho thuê lại.','2024-11-04',150000,N'Quận 2, TP HCM','0999999999','https://files01.danhgiaxe.com/2Pvn-ctu4_52I0jFqqqJoYqOi-k=/fit-in/1280x0/20230107/honda-wave-alpha-110-3-201701.jpg','5')
 
+use ProjectCar
+Drop table tbl_CarShare
 
 Create table tbl_CarSell(
 	CarID Int primary key identity(1,1),

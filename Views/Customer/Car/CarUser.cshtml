@@ -1,0 +1,42 @@
+@model ShareCar.Models.CarHomeModel;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Phương Tiện</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+    <h2 class="text-center my-4">Quản Lý Phương Tiện</h2>
+    @if (TempData["SuccessCarUser"] != null)
+        {
+            <div class="alert alert-success text-center">
+                @TempData["SuccessCarUser"]
+            </div>
+        }
+    <form method="get" class="mb-3">
+       <div class="input-group">
+            <input type="text" name="searchString" class="form-control" placeholder="Tìm kiếm theo Brand hoặc Model" />
+            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+            
+        </div>
+    </form>
+        <div class="mb-3">
+            <a asp-action="NewCar" class="btn btn-primary">Thêm Phương Tiện</a>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @Html.Partial("/Views/Customer/Car/CarShareUser.cshtml", Model.CarShareUser);
+        </div>
+        <div>
+            @Html.Partial("/Views/Customer/Car/CarSellUser.cshtml", Model.CarSellUser);
+        </div>
+    </div>
+</body>
+</html>
+    

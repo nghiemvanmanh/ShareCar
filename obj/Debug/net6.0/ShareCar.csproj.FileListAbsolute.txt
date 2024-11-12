@@ -70,9 +70,15 @@ d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\staticweba
 d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\scopedcss\bundle\ShareCar.styles.css
 d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\scopedcss\projectbundle\ShareCar.bundle.scp.css
-d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\ShareCar.csproj.CopyComplete
 d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\ShareCar.dll
 d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\refint\ShareCar.dll
 d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\ShareCar.pdb
 d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\ShareCar.genruntimeconfig.cache
 d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\ref\ShareCar.dll
+d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\ShareCar.sourcelink.json
+d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\staticwebassets\msbuild.ShareCar.Microsoft.AspNetCore.StaticWebAssets.props
+d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\staticwebassets\msbuild.build.ShareCar.props
+d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.ShareCar.props
+d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.ShareCar.props
+d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\staticwebassets.pack.json
+d:\Ki I nam 4\LT Web Nâng Cao\BTL\ShareCar\ShareCar\obj\Debug\net6.0\ShareCar.csproj.Up2Date

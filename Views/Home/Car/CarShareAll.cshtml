@@ -1,4 +1,4 @@
-@model IEnumerable<ShareCar.Models.Home.HomeModel.CarShareModel>
+@model IEnumerable<ShareCar.Models.Home.CarModel.CarShareModel>
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -15,12 +15,28 @@
         object-fit: cover;
             height: 200px; /* Giảm kích thước ảnh */
     }
+    .col-md-3.mb-4 {
+        width: 32%;
+    }
+    a.btn.btn-primary.btn-sm.me-2 {
+        background: #00000061;
+        border: none;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+    a.btn.btn-success.btn-sm {
+        background: #000000;
+        border:none;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+    a.btn.btn-success.btn-sm:hover {
+        transform: scale(1.1); 
+    }
+    a.btn.btn-primary.btn-sm.me-2:hover {
+        transform: scale(1.1); 
+    }
     </style>
     <body>
-        <a href="@Url.Action("Index","Home")" style="text-decoration: none;">Trang chủ</a>
-        <a style="color: blue;"> -> </a>
-        <a href="@Url.Action("CarSellAll","Car")" style="text-decoration: none;"> Xe cho thuê</a>
-        <h3 class="container mt-5">Xe cho thuê hiện có</h3>
+        <h3 class="container mt-5">Xe cho thuê hiện có (@ViewBag.CountCarShare bài đăng)</h3>
         <div class="container mt-5">
         <div class="row">
             @if(Model!=null && Model.Any()){
@@ -70,7 +86,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between mb-2">
-                                    <span class="badge @(car.Status == "Đã cho thuê" ? "bg-danger text-light" : "bg-info text-dark")">
+                                    <p class="card-text text-muted mb-0"><strong><i class="fas fa-cogs"></i></strong> <span class="badge @(car.Status == "Đã cho thuê" ? "bg-danger text-light" : "bg-info text-dark")" style="font-weight: normal;">
                                     @car.Status
                                     </span>
                                     <p class="card-text text-muted"> 
