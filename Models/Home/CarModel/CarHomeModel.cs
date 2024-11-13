@@ -18,5 +18,8 @@ namespace ShareCar.Models
         public IEnumerable<CarSellModel> CarSellManager { get; set; }    // Danh sách xe bán
         public IEnumerable<CarShareModel> CarShareUser { get; set; }  // Danh sách xe cho thuê
         public IEnumerable<CarSellModel> CarSellUser { get; set; }    // Danh sách xe bán
+
+        public IEnumerable<CarShareQueue> carShareQueues { get; set; } // Danh sách xe cho thuê duyệt
+        public IEnumerable<CarSellQueue> carSellQueues { get; set; } // Danh sách xe đăng bán duyệt
     }
 }

@@ -106,6 +106,10 @@
             color: black;
             padding: 16px;
         }
+
+        .d-flex.align-items-center.justify-content-lg-start {
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -136,63 +140,67 @@
                                 <img src="@car.Image" class="card-img-top" alt="@car.Model">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between mb-2">
-                                        <h5 class="card-title mb-1">@car.Model</h5>
+                                        <h5 class="card-title mb-1">@car.Brand @car.Model</h5>
 
                                     </div>
                                     <p class="card-text text-muted">Biển số: @car.LicensePlate</p>
+                                    <div class ="card-iteam">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <p class="card-text text-muted">
+                                                <i class="fas fa-clock"></i>
+                                                @{
+                                                    var timeDifference = DateTime.Now - car.Day;
+                                                    var timeText = "";
 
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <p class="card-text text-muted">
-                                            <i class="fas fa-clock"></i>
-                                            @{
-                                                var timeDifference = DateTime.Now - car.Day;
-                                                var timeText = "";
+                                                    if (timeDifference.TotalSeconds < 60)
+                                                    {
+                                                        timeText = $"{(int)timeDifference.TotalSeconds} giây trước";
+                                                    }
+                                                    else if (timeDifference.TotalMinutes < 60)
+                                                    {
+                                                        timeText = $"{(int)timeDifference.TotalMinutes} phút trước";
+                                                    }
+                                                    else if (timeDifference.TotalHours < 24)
+                                                    {
+                                                        timeText = $"{(int)timeDifference.TotalHours} giờ trước";
+                                                    }
+                                                    else
+                                                    {
+                                                        timeText = $"{(int)timeDifference.TotalDays} ngày trước";
+                                                    }
+                                                }
+                                                @timeText
+                                            </p>
+                                            <p class="card-text text-muted mb-0">
+                                                <i class="fas fa-user"></i> @car.Poster
+                                            </p>
+                                        </div>
 
-                                                if (timeDifference.TotalSeconds < 60)
-                                                {
-                                                    timeText = $"{(int)timeDifference.TotalSeconds} giây trước";
-                                                }
-                                                else if (timeDifference.TotalMinutes < 60)
-                                                {
-                                                    timeText = $"{(int)timeDifference.TotalMinutes} phút trước";
-                                                }
-                                                else if (timeDifference.TotalHours < 24)
-                                                {
-                                                    timeText = $"{(int)timeDifference.TotalHours} giờ trước";
-                                                }
-                                                else
-                                                {
-                                                    timeText = $"{(int)timeDifference.TotalDays} ngày trước";
-                                                }
-                                            }
-                                            @timeText
-                                        </p>
-                                        <p class="card-text text-muted mb-0">
-                                            <i class="fas fa-user"></i> @car.Poster
-                                        </p>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <p class="card-text text-muted mb-0"><strong><i class="fas fa-cogs"></i></strong>
+                                                <span
+                                                    class="badge @(car.Status == "Đã cho thuê" ? "bg-danger text-light" : "bg-info text-dark")"
+                                                    style=" font-weight:normal;">
+                                                    @car.Status
+                                                </span>
+                                            <p class="card-text text-muted">
+                                                <i class="fas fa-money-bill-wave"></i> @String.Format("{0:0,0}",
+                                        car.RentalPrice) đ
+                                            </p>
+                                        </div>
+
+                                        <div class="d-flex align-items-center justify-content-lg-start">
+                                            <a href="@Url.Action("CarShareDetail", "Car", new { id = car.CarID })"
+                                                class="btn btn-primary btn-sm me-2">
+                                                Xem Chi Tiết
+                                            </a>
+                                            <a href="@Url.Action("Book", "Cars", new { id = car.CarID })"
+                                                class="btn btn-success btn-sm">
+                                                Đặt Xe
+                                            </a>
+                                        </div>
                                     </div>
 
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <p class="card-text text-muted mb-0"><strong><i class="fas fa-cogs"></i></strong> <span
-                                            class="badge @(car.Status == "Đã cho thuê" ? "bg-danger text-light" : "bg-info text-dark")"
-                                            style=" font-weight:normal;">
-                                             @car.Status
-                                        </span>
-                                        <p class="card-text text-muted">
-                                            <i class="fas fa-money-bill-wave"></i> @String.Format("{0:0,0}", car.RentalPrice) đ
-                                        </p>
-                                    </div>
-
-                                    <div class="d-flex align-items-center justify-content-lg-start">
-                                        <a href="@Url.Action("CarShareDetail", "Car", new { id = car.CarID })"
-                                            class="btn btn-primary btn-sm me-2">
-                                            Xem Chi Tiết
-                                        </a>
-                                        <a href="@Url.Action("Book", "Cars", new { id = car.CarID })"
-                                            class="btn btn-success btn-sm">
-                                            Đặt Xe
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +215,7 @@
         }
         else
         {
-            <h5>
+            <h5 >
                 <p class="text-center">Không tìm thấy phương tiện nào...</p>
             </h5>
         }

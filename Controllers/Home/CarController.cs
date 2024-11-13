@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ShareCar.Data;
@@ -27,24 +28,30 @@ namespace ShareCar.Controllers.Home
             _car = car;
         }
         string newcarshare = "~/Views/Home/Car/CarShareNew.cshtml";
-        string newcarsell= "~/Views/Home/Car/CarSellNew.cshtml";
+        string newcarsell = "~/Views/Home/Car/CarSellNew.cshtml";
         string carsharedetail = "~/Views/Home/Car/CarShareDetail.cshtml";
         string carselldetail = "~/Views/Home/Car/CarSellDetail.cshtml";
         string carsearch = "~/Views/Home/Car/CarSearch.cshtml";
         string addvancedsearch = "~/Views/Home/Car/AdvancedSearch.cshtml";
         string carsell = "~/Views/Home/Car/CarSellAll.cshtml";
         string carshare = "~/Views/Home/Car/CarShareAll.cshtml";
+        string carqueue = "~/Views/Home/Car/CarQueue.cshtml";
+
+        //Hiển thị view đăng bài cho thuê
         [HttpGet("Car/CarShareNew")]
         public IActionResult CarShareNew()
         {
             return View(newcarshare);
         }
+
+        //Hiển thị view đăng bài xe bán
         [HttpGet("Car/CarSellNew")]
         public IActionResult CarSellNew()
         {
             return View(newcarsell);
         }
 
+        //Hiển thị danh sách xe thuê
         [HttpGet("Car/CarShareAll")]
         public IActionResult CarShareAll()
         {
@@ -54,6 +61,7 @@ namespace ShareCar.Controllers.Home
             return View(carshare, carShare);
         }
 
+        //Hiển thị danh sách xe bán
         [HttpGet("Car/CarSellAll")]
         public IActionResult CarSellAll()
         {
@@ -64,9 +72,9 @@ namespace ShareCar.Controllers.Home
             return View(carsell, carShare);
         }
 
-        //Thêm mới xe
+        //Thêm mới xe đăng cho thuê
         [HttpPost("Car/CarShareNew")]
-        public async Task<IActionResult> CarShareNew(CarShareModel car, IFormFile imageFile)
+        public async Task<IActionResult> CarShareNew(CarShareQueue car, IFormFile imageFile)
         {
             if (!ModelState.IsValid)
             {
@@ -111,7 +119,7 @@ namespace ShareCar.Controllers.Home
                 }
                 Console.WriteLine("Url Image : " + car.Image);
                 // Thêm car vào cơ sở dữ liệu
-                _car.tbl_CarShare.Add(car);
+                _car.tbl_CarShareQueue.Add(car);
                 await _car.SaveChangesAsync();
 
                 return RedirectToAction("Index", "Home");
@@ -120,8 +128,9 @@ namespace ShareCar.Controllers.Home
             return View(newcarshare, car);
         }
 
+        //Đăng bài bán xe
         [HttpPost("Car/CarSellNew")]
-        public async Task<IActionResult> CarSellNew(CarSellModel carsell, IFormFile imageFile)
+        public async Task<IActionResult> CarSellNew(CarSellQueue carsell, IFormFile imageFile)
         {
             if (!ModelState.IsValid)
             {
@@ -166,7 +175,7 @@ namespace ShareCar.Controllers.Home
                 }
                 Console.WriteLine("Url Image : " + carsell.Image);
                 // Thêm car vào cơ sở dữ liệu
-                _car.tbl_CarSell.Add(carsell);
+                _car.tbl_CarSellQueue.Add(carsell);
                 await _car.SaveChangesAsync();
 
                 return RedirectToAction("Index", "Home");
@@ -175,6 +184,7 @@ namespace ShareCar.Controllers.Home
             return View(newcarsell, carsell);
         }
 
+        //Tìm kiếm chung
         [HttpGet("Car/CarSearch")]
         public async Task<IActionResult> CarSearch(string query)
         {
@@ -196,13 +206,10 @@ namespace ShareCar.Controllers.Home
             };
             ViewBag.check = true;
             ViewBag.key = query;
-            int countcarsell = sellCar.Count();
-            ViewBag.CountCarSell = countcarsell; // Số lượng xe bán
-            int countcarshare = shareCar.Count();
-            ViewBag.CountCarShare = countcarshare; // Số lượng xe thuê
             return View(carsearch, model);
         }
 
+        //Hiện thông tin xe thuê chi tiết
         [HttpGet("Car/CarShareDetail/{id}")]
         public IActionResult CarShareDetail(int id)
         {
@@ -214,6 +221,7 @@ namespace ShareCar.Controllers.Home
             return View(carsharedetail, cars);
         }
 
+        //Hiện thông tin Xe bán chi tiết
         [HttpGet("Car/CarSellDetail/{id}")]
         public IActionResult CarSellDetail(int id)
         {
@@ -338,8 +346,6 @@ namespace ShareCar.Controllers.Home
             // Kiểm tra xem có kết quả nào cho loại xe cho thuê
             if (Option == "Thuê xe" && shareCar.Any())
             {
-                int countcarshares = shareCar.Count();
-                ViewBag.CountCarShare = countcarshares;
                 var models = new CarHomeModel
                 {
                     CarShareAll = shareCar      // Danh sách xe cho thuê           
@@ -350,18 +356,12 @@ namespace ShareCar.Controllers.Home
             // Kiểm tra xem có kết quả nào cho loại xe bán
             if (Option == "Mua xe" && sellCar.Any())
             {
-                int countcarsells = sellCar.Count();
-                ViewBag.CountCarSell = countcarsells;
                 var modela = new CarHomeModel
                 {
                     CarSellAll = sellCar    // Danh sách xe bán
                 };
                 return View(addvancedsearch, modela);
             }
-            int countcarsell = sellCar.Count();
-            ViewBag.CountCarSell = countcarsell; // Số lượng xe bán
-            int countcarshare = shareCar.Count();
-            ViewBag.CountCarShare = countcarshare; // Số lượng xe thuê
             var model = new CarHomeModel
             {
 
@@ -369,6 +369,158 @@ namespace ShareCar.Controllers.Home
                 CarSellAll = sellCar    // Danh sách xe bán
             };
             return View(addvancedsearch, model);
+        }
+
+        //Hiển thị danh sách xe duyệt
+        [HttpGet("Car/CarQueue")]
+        public async Task<IActionResult> CarQueue()
+        {
+            if (HttpContext.Session.GetInt32("UserID") == 1)
+            {
+                var carShareQueues = await _car.tbl_CarShareQueue.ToListAsync();
+                var carSellQueues = await _car.tbl_CarSellQueue.ToListAsync();
+                if (!carShareQueues.Any() && !carSellQueues.Any())
+                {
+                    ViewBag.queue = true;
+                }
+
+                var model = new CarHomeModel
+                {
+                    carShareQueues = carShareQueues,
+                    carSellQueues = carSellQueues
+                };
+                return View(carqueue,model);
+            }
+            else
+            {
+                var userid = HttpContext.Session.GetInt32("UserID");
+                var carShareQueue = await _car.tbl_CarShareQueue.Where(x => x.UserID == userid).ToListAsync();
+                var carSellQueue = await _car.tbl_CarSellQueue.Where(x => x.UserID == userid).ToListAsync();
+                if (!carShareQueue.Any() && !carSellQueue.Any())
+                {
+                    ViewBag.queue = true;
+                }
+
+                var model = new CarHomeModel
+                {
+                    carShareQueues = carShareQueue,
+                    carSellQueues = carSellQueue
+                };
+                return View(carqueue,model);
+            }
+        }
+
+
+
+        //Duyệt phương tiện xe thuê
+        [HttpPost]
+        public IActionResult ApproveCarShare(int id)
+        {
+            // Tìm xe theo ID trong hàng đợi `CarSellQueue`
+            var carInQueue = _car.tbl_CarShareQueue.FirstOrDefault(car => car.CarID == id);
+            if (carInQueue == null)
+            {
+                return NotFound(new { success = false, message = "Phương tiện không tồn tại trong hàng đợi." });
+            }
+
+            // Chuyển dữ liệu từ `CarSellQueue` sang `CarSellModel`
+            var carToShare = new CarShareModel
+            {
+                UserID = carInQueue.UserID,
+                LicensePlate = carInQueue.LicensePlate,
+                Brand = carInQueue.Brand,
+                Model = carInQueue.Model,
+                Color = carInQueue.Color,
+                Status = carInQueue.Status,
+                Poster = carInQueue.Poster,
+                Day = carInQueue.Day,
+                Description = carInQueue.Description,
+                SDT = carInQueue.SDT,
+                Address = carInQueue.Address,
+                RentalPrice = carInQueue.RentalPrice,
+                Image = carInQueue.Image,
+                AverageRating = carInQueue.AverageRating
+            };
+
+            // Thêm xe vào bảng `tbl_CarSell`
+            _car.tbl_CarShare.Add(carToShare);
+
+            // Xóa xe khỏi hàng đợi `CarSellQueue`
+            _car.tbl_CarShareQueue.Remove(carInQueue);
+
+            // Lưu thay đổi vào cơ sở dữ liệu
+            _car.SaveChanges();
+
+            return Json(new { success = true, message = "Duyệt phương tiện thành công!" });
+        }
+
+        //Duyệt phương tiện xe bán
+        [HttpPost]
+        public IActionResult ApproveCarSell(int id)
+        {
+            // Tìm xe theo ID trong hàng đợi `CarSellQueue`
+            var carInQueue = _car.tbl_CarSellQueue.FirstOrDefault(car => car.CarID == id);
+            if (carInQueue == null)
+            {
+                return NotFound(new { success = false, message = "Phương tiện không tồn tại trong hàng đợi." });
+            }
+
+            // Chuyển dữ liệu từ `CarSellQueue` sang `CarSellModel`
+            var carToSell = new CarSellModel
+            {
+                UserID = carInQueue.UserID,
+                LicensePlate = carInQueue.LicensePlate,
+                Brand = carInQueue.Brand,
+                Model = carInQueue.Model,
+                Color = carInQueue.Color,
+                VehicleRegistration = carInQueue.VehicleRegistration,
+                Poster = carInQueue.Poster,
+                Day = carInQueue.Day,
+                Description = carInQueue.Description,
+                SDT = carInQueue.SDT,
+                Address = carInQueue.Address,
+                SellPrice = carInQueue.SellPrice,
+                Image = carInQueue.Image
+            };
+
+            // Thêm xe vào bảng `tbl_CarSell`
+            _car.tbl_CarSell.Add(carToSell);
+
+            // Xóa xe khỏi hàng đợi `CarSellQueue`
+            _car.tbl_CarSellQueue.Remove(carInQueue);
+
+            // Lưu thay đổi vào cơ sở dữ liệu
+            _car.SaveChanges();
+
+            return Json(new { success = true, message = "Duyệt phương tiện thành công!" });
+        }
+
+
+        //Xóa xe bán
+        [HttpDelete]
+        public IActionResult DeleteCarSellQueue(int id)
+        {
+            var car = _car.tbl_CarSellQueue.Find(id);
+            if (car != null)
+            {
+                _car.tbl_CarSellQueue.Remove(car);
+                _car.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+
+        //Xóa xe cho thuê
+        public IActionResult DeleteCarShareQueue(int id)
+        {
+            var car = _car.tbl_CarShareQueue.Find(id);
+            if (car != null)
+            {
+                _car.tbl_CarShareQueue.Remove(car);
+                _car.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
         }
     }
 }

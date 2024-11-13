@@ -1,6 +1,6 @@
-@model IEnumerable<ShareCar.Models.Home.CarModel.CarShareModel>
+@model IEnumerable<ShareCar.Models.Home.CarModel.CarSellQueue>
 
-<h4>Danh sách xe đăng cho thuê</h4>
+<h4>Danh sách xe đăng bán</h4>
 <table class="table table-bordered">
     <thead class="table-light">
         <tr>
@@ -16,7 +16,6 @@
             <th>Địa chỉ</th>
             <th>Giá Thuê</th>
             <th>Hình Ảnh</th>
-            <th>Đánh Giá Trung Bình</th>
             <th>Thao Tác</th>
         </tr>
     </thead>
@@ -27,7 +26,7 @@
             <tr>
                 <td colspan="15" class="text-center alert alert-info">
                     <div class="alert alert-info text-center">
-                        Không có phương tiện nào được đăng. <a asp-action="CarShareNew">Thêm phương tiện mới ngay</a>
+                        Không có phương tiện nào được đăng. <a asp-action="CarSellNew">Thêm phương tiện mới ngay</a>
                     </div>
                 </td>
             </tr>
@@ -45,12 +44,12 @@
                         <td>@car.Brand</td>
                         <td>@car.Model</td>
                         <td>@car.Color</td>
-                        <td>@car.Status</td>
+                        <td>@car.VehicleRegistration</td>
                         <td>@car.Poster</td>
                         <td>@car.Day.ToString("dd/MM/yyyy")</td>
                         <td>@car.SDT</td>
                         <td>@car.Address</td>
-                        <td>@String.Format("{0:0,0}", car.RentalPrice) đ/ngày</td>
+                        <td>@String.Format("{0:0,0}", car.SellPrice) đ/ngày</td>
                         <td>
                             @if (!string.IsNullOrEmpty(car.Image))
                             {
@@ -61,12 +60,19 @@
                                 <span>Không có hình</span>
                             }
                         </td>
-                        <td><i class="fas fa-star"></i> @car.AverageRating</td>
-                        <td>
-                            <a href="@Url.Action("CarUserShareEdit", "Car", new { id = car.CarID })"
-                                class="btn btn-primary btn-sm me-2">Sửa</a>
-                            <button class="btn btn-danger btn-sm" onclick="Delete('@car.CarID')">Xóa</button>
-                        </td>
+                        @if (Context.Session.GetInt32("UserID") == 1)
+                        {
+                            <td>
+                                <button class="btn btn-primary btn-sm me-2" onclick="ApproveCarSell('@car.CarID')">Duyệt</button>
+                                <button class="btn btn-danger btn-sm" onclick="DeleteCarSellQueue('@car.CarID')">Xóa</button>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="DeleteCarSellQueue('@car.CarID')">Xóa</button>
+                            </td>
+                        }
                     </tr>
                 }
             }
@@ -74,13 +80,12 @@
     </tbody>
 </table>
 
-
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        function Delete(id) {
+        function DeleteCarSellQueue(id) {
             if (confirm("Bạn có chắc chắn muốn xóa người dùng này không?")) {
-                fetch(`/Car/Delete/${id}`, {
+                fetch(`/Car/DeleteCarSellQueue/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
@@ -107,4 +112,34 @@
                     });
             }
         }
+
+        function ApproveCarSell(id) {
+            if (confirm("Bạn có chắc chắn muốn duyệt phương tiện này không?")) {
+                fetch(`/Car/ApproveCarSell/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            alert("Duyệt phương tiện thành công!");
+                            location.reload();
+                        } else {
+                            alert("Duyệt phương tiện thất bại!");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Lỗi:", error);
+                        alert("Đã xảy ra lỗi khi duyệt phương tiện!");
+                    });
+            }
+        }
+
     </script>

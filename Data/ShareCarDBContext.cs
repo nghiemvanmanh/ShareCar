@@ -23,10 +23,26 @@ namespace ShareCar.Data
             .HasKey(p => p.CarID);
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<CarSellModel>()
+            .HasKey(p => p.CarID);
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<CarShareQueue>()
+            .HasKey(p => p.CarID);
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<CarSellQueue>()
+            .HasKey(p => p.CarID);
+            base.OnModelCreating(modelBuilder);
+
         }
 
         public DbSet<AccountModel> tblUser { get; set; }
         public DbSet<CarShareModel> tbl_CarShare { get; set; }
         public DbSet<CarSellModel> tbl_CarSell {get;set;}
+
+        public DbSet<CarShareQueue> tbl_CarShareQueue { get; set; }
+
+        public DbSet<CarSellQueue> tbl_CarSellQueue {get; set; }
     }
 }

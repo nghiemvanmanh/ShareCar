@@ -36,7 +36,6 @@ insert into tbl_CarShare(UserID,Poster,LicensePlate,Brand,Model,Color,Status,Des
 insert into tbl_CarShare(UserID,Poster,LicensePlate,Brand,Model,Color,Status,Description,Day,RentalPrice,Address,SDT,Image,AverageRating) values (1,N'Quản trị viên','33R5-7774','Honda',N' Wave Alpha','Black',N'Đã cho thuê',N'Xe mình mua từ năm 2023, hoạt động êm ru. Do nhu cầu sử dụng ít nên mình cho thuê lại.','2024-11-04',150000,N'Quận 2, TP HCM','0999999999','https://files01.danhgiaxe.com/2Pvn-ctu4_52I0jFqqqJoYqOi-k=/fit-in/1280x0/20230107/honda-wave-alpha-110-3-201701.jpg','5')
 
 use ProjectCar
-Drop table tbl_CarShare
 
 Create table tbl_CarSell(
 	CarID Int primary key identity(1,1),
@@ -111,3 +110,39 @@ insert into tbl_CarSell(UserID,Poster,LicensePlate,Brand,Model,Color,VehicleRegi
 - Giao nhận xe 24/7','2024-11-05',400000000,N'Bình Thạnh, TP.Hồ Chí Minh','0999999999','https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_hochiminh/honda_brio_2021/p/g/2023/02/14/14/yoBuNjfY_Y4q4Dl3Tau0Hg.jpg')
 
 insert into tbl_CarSell(UserID,Poster,LicensePlate,Brand,Model,Color,VehicleRegistration,Description,Day,SellPrice,Address,SDT,Image) values (1,N'Quản trị viên','29Y7-09361','Honda',N'Air Blade 160 ABS',N'Đen',N'Không đầy đủ',N'Xe mình mua năm 2022 bị mất giấy tờ xe. Mình không còn nhu cầu sử dụng nên bán rẻ lại','2024-10-17',15000000,N'Tây Hồ, Hà Nội','0999999999','https://giadinh.mediacdn.vn/296230595582509056/2024/4/1/gia-xe-honda-air-blade-5-1702742479-1711933692317-171193369245196920274.jpg')
+
+
+Create table tbl_CarShareQueue(
+	CarID Int primary key identity(1,1),
+	UserID Int not null,
+	Poster nvarchar(max) ,
+	LicensePlate Nvarchar(20) not null ,
+	Brand Nvarchar(255) not null,
+	Model nvarchar(255) not null,
+	Color nvarchar(20) not null,
+	Status nvarchar(50) not null,
+	Description Nvarchar(max) ,
+	Day Datetime ,
+	Address Nvarchar(max),
+	SDT nvarchar(12) not null,
+	RentalPrice Float not null,
+	Image nvarchar(max),
+	AverageRating Float
+)
+
+Create table tbl_CarSellQueue(
+	CarID Int primary key identity(1,1),
+	UserID Int not null,
+	Poster nvarchar(max) ,
+	LicensePlate Nvarchar(20) not null ,
+	Brand Nvarchar(255) not null,
+	Model nvarchar(255) not null,
+	Color nvarchar(20) not null,
+	VehicleRegistration Nvarchar(max) not null,
+	Description Nvarchar(max) ,
+	Day Datetime ,
+	Address Nvarchar(max),
+	SDT nvarchar(12) not null,
+	SellPrice Float not null,
+	Image nvarchar(max),
+)

@@ -145,7 +145,7 @@
                     </div>
                     <div>
                         <label for="daysSelect" class="form-label">Khoảng thời gian:</label>
-                        <select name="Daysell" id="daysSelect" class="form-select">
+                        <select name="Daysell" id="daysellSelect" class="form-select">
                             <option value="Tất cả thời gian">Tất cả thời gian</option>
                             <option value="Hôm nay">Hôm nay</option>
                             <option value="1 ngày trước">1 ngày trước</option>
@@ -162,7 +162,7 @@
                     <!-- Nút Tìm kiếm và Tất cả -->
                     <div>
                         <button type="submit" class="btn btn-timkiem btn-custom">Tìm kiếm</button>
-                        <button type="button" class="btn btn-tatca btn-custom" id="resetButton">Reset</button>
+                        <button type="button" id="resetButton" name ="resetButton" class="btn btn-tatca btn-custom" >Reset</button>
 
                     </div>
         </form>
@@ -189,13 +189,11 @@
             const rentOptions = document.getElementById("rentOption");
             const sellOptions = document.getElementById("sellOption");
 
-            // Khôi phục các giá trị bộ lọc từ QueryString nếu có
-            function restoreFiltersFromQueryString() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const savedOption = urlParams.get("OptionSelect");
+            // Khôi phục các giá trị của bộ lọc từ localStorage
+            function restoreFilters() {
+                const savedOption = localStorage.getItem("OptionSelect");
                 if (savedOption) {
                     optionSelect.value = savedOption;
-                    // Hiển thị phần tử đúng khi trang được tải lại
                     if (savedOption === "Thuê xe") {
                         rentOptions.style.display = "grid";
                         sellOptions.style.display = "none";
@@ -210,22 +208,21 @@
                 const daysSelectRent = document.getElementById("daysSelect");
                 const registrationSelect = document.getElementById("registrationSelect");
                 const sellPriceSelect = document.getElementById("sellPriceSelect");
-                const daysSelectSell = document.getElementById("daysSelect");
+                const daysSelectSell = document.getElementById("daysellSelect");
 
-                if (urlParams.get("Status")) statusSelect.value = urlParams.get("Status");
-                if (urlParams.get("RentalPrice")) rentPriceSelect.value = urlParams.get("RentalPrice");
-                if (urlParams.get("DaysRent")) daysSelectRent.value = urlParams.get("DaysRent");
-                if (urlParams.get("VehicleRegistration")) registrationSelect.value = urlParams.get("VehicleRegistration");
-                if (urlParams.get("SellPrice")) sellPriceSelect.value = urlParams.get("SellPrice");
-                if (urlParams.get("DaysSell")) daysSelectSell.value = urlParams.get("DaysSell");
+                if (localStorage.getItem("Status")) statusSelect.value = localStorage.getItem("Status");
+                if (localStorage.getItem("RentalPrice")) rentPriceSelect.value = localStorage.getItem("RentalPrice");
+                if (localStorage.getItem("DaysRent")) daysSelectRent.value = localStorage.getItem("DaysRent");
+                if (localStorage.getItem("VehicleRegistration")) registrationSelect.value = localStorage.getItem("VehicleRegistration");
+                if (localStorage.getItem("SellPrice")) sellPriceSelect.value = localStorage.getItem("SellPrice");
+                if (localStorage.getItem("DaysSell")) daysSelectSell.value = localStorage.getItem("DaysSell");
             }
 
-            // Lưu giá trị vào localStorage khi có thay đổi
+            // Lưu các giá trị vào localStorage khi có thay đổi
             optionSelect.addEventListener("change", function () {
                 const option = this.value;
                 localStorage.setItem("OptionSelect", option);
 
-                // Hiển thị đúng phần tử sau khi người dùng thay đổi giá trị
                 rentOptions.style.display = "none";
                 sellOptions.style.display = "none";
                 if (option === "Thuê xe") rentOptions.style.display = "grid";
@@ -247,13 +244,12 @@
             document.getElementById("sellPriceSelect").addEventListener("change", function () {
                 localStorage.setItem("SellPrice", this.value);
             });
-            document.getElementById("daysSelect").addEventListener("change", function () {
+            document.getElementById("daysellSelect").addEventListener("change", function () {
                 localStorage.setItem("DaysSell", this.value);
             });
 
-            restoreFiltersFromQueryString();
+            restoreFilters();
 
-            // Xóa dữ liệu trong localStorage khi nhấn nút Reset
             const resetButton = document.getElementById("resetButton");
             if (resetButton) {
                 resetButton.addEventListener("click", function () {
@@ -264,10 +260,15 @@
                     localStorage.removeItem("VehicleRegistration");
                     localStorage.removeItem("SellPrice");
                     localStorage.removeItem("DaysSell");
+                    window.location.reload();
                 });
+                
             }
         });
+
     </script>
+
+
 
 
 </body>

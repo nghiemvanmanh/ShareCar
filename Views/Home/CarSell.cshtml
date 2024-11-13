@@ -59,13 +59,13 @@
         }
 
         .list-all {
-            color: #378eeb; /* Màu mặc định */
+            color: #000000ad; /* Màu mặc định */
             text-decoration: none; /* Loại bỏ gạch dưới */
             transition: color 0.3s ease, transform 0.3s ease; /* Thêm hiệu ứng cho màu sắc và chuyển động */
         }
 
         .list-all:hover {
-            color: #001eff; /* Màu khi hover */
+            color: black; /* Màu khi hover */
             transform: scale(1.1); /* Thêm hiệu ứng phóng to nhẹ khi hover */
         }
         a.btn.btn-primary.btn-sm.me-2 {
@@ -124,7 +124,9 @@
             padding: 16px;
         }
 
-       
+       .d-flex.align-items-center.justify-content-lg-start {
+        margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -150,7 +152,7 @@
                             <img src="@car.Image" class="card-img-top" alt="@car.Model">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-2">
-                                    <h5 class="card-title mb-1">@car.Model</h5>
+                                    <h5 class="card-title mb-1">@car.Brand @car.Model</h5>
                                 </div>
                                 <p class="card-text text-muted">Biển số: @car.LicensePlate</p>
 

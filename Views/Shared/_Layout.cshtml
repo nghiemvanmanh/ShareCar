@@ -332,12 +332,13 @@
                     {
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center" asp-controller="User" asp-action="Login">
-                                <i class="fas fa-sign-in-alt text-success me-1"></i>Đăng nhập
+                                <i class="fas fa-sign-in-alt text-dark me-1"></i>Đăng nhập
                             </a>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center" asp-controller="User" asp-action="Register">
-                                <i class="fas fa-user-plus text-primary me-1"></i>Đăng ký
+                                <i class="fas fa-user-plus text-dark me-1"></i>Đăng ký
                             </a>
                         </li>
                     }
@@ -360,12 +361,25 @@
                                 Trang Chủ
                             </a>
                         </li>
-                        <li class="list-group-item">
-                            <a href="#" class="text-decoration-none">
-                                <i class="fas fa-clipboard-list"></i>
-                                Bài Duyệt
-                            </a>
-                        </li>
+                        @if (Context.Session.GetString("UserName") != null)
+                        {
+                            <li class="list-group-item">
+                                <a asp-controller="Car" asp-action="CarQueue" class="text-decoration-none">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    Bài Duyệt
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="list-group-item">
+                                <a asp-controller="User" asp-action="Login" class="text-decoration-none">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    Bài Duyệt 
+                                </a>
+                            </li>
+                        }
+
                         <li class="list-group-item">
                             <a asp-controller="Car" asp-action="AdvancedSearch" class="text-decoration-none">
                                 <i class="fas fa-search"></i>

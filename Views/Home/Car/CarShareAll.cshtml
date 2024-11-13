@@ -34,9 +34,12 @@
     a.btn.btn-primary.btn-sm.me-2:hover {
         transform: scale(1.1); 
     }
+    .d-flex.align-items-center.justify-content-lg-start {
+    margin-top: 20px;
+    }
     </style>
     <body>
-        <h3 class="container mt-5">Xe cho thuê hiện có (@ViewBag.CountCarShare bài đăng)</h3>
+        <h3 class="container mt-5">Xe cho thuê hiện có (@Model.Count() bài đăng)</h3>
         <div class="container mt-5">
         <div class="row">
             @if(Model!=null && Model.Any()){
@@ -47,10 +50,7 @@
                             <img src="@car.Image" class="card-img-top" alt="@car.Model">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-2">
-                                    <h5 class="card-title mb-1">@car.Model</h5>
-                                    <span class="text-warning">
-                                        <i class="fas fa-star"></i> @car.AverageRating
-                                    </span>
+                                    <h5 class="card-title mb-1">@car.Brand @car.Model</h5>
                                 </div>
                                 <p class="card-text text-muted">Biển số: @car.LicensePlate</p>
 

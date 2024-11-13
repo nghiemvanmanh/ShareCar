@@ -2,12 +2,36 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thông Tin Cá Nhân</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"> <!-- Đường dẫn đến Bootstrap -->
+    <style>
+        .btn-primary {
+            background: black;
+            border: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.1);
+            background : black;
+        }
+
+        .btn-secondary{
+            
+            border: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-secondary:hover{
+            transform: scale(1.1);
+        }
+    </style>
 </head>
+
 <body>
     <div class="container mt-5">
         <h2 class="text-center my-4">Thông Tin Cá Nhân</h2>
@@ -26,7 +50,7 @@
                     </div>
                     <div class="mb-3">
                         <label asp-for="PassWord" class="form-label">Mật khẩu</label>
-                        <input type="text" asp-for="PassWord" class="form-control" readonly/>
+                        <input type="text" asp-for="PassWord" class="form-control" readonly />
                         <span asp-validation-for="PassWord" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
@@ -56,4 +80,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

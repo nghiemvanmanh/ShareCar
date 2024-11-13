@@ -1,4 +1,4 @@
-@model IEnumerable<ShareCar.Models.Home.CarModel.CarShareModel>
+@model IEnumerable<ShareCar.Models.Home.CarModel.CarShareQueue>
 
 <h4>Danh sách xe đăng cho thuê</h4>
 <table class="table table-bordered">
@@ -62,11 +62,17 @@
                             }
                         </td>
                         <td><i class="fas fa-star"></i> @car.AverageRating</td>
-                        <td>
-                            <a href="@Url.Action("CarUserShareEdit", "Car", new { id = car.CarID })"
-                                class="btn btn-primary btn-sm me-2">Sửa</a>
-                            <button class="btn btn-danger btn-sm" onclick="Delete('@car.CarID')">Xóa</button>
-                        </td>
+                        @if(Context.Session.GetInt32("UserID") == 1){
+                            <td>
+                                <button class="btn btn-primary btn-sm me-2" onclick="Approve('@car.CarID')">Duyệt</button>
+                                <button class="btn btn-danger btn-sm" onclick="Delete('@car.CarID')">Xóa</button>
+                            </td>
+                        }else{
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="Delete('@car.CarID')">Xóa</button>
+                            </td>
+                        }
+                        
                     </tr>
                 }
             }
@@ -80,7 +86,7 @@
     <script>
         function Delete(id) {
             if (confirm("Bạn có chắc chắn muốn xóa người dùng này không?")) {
-                fetch(`/Car/Delete/${id}`, {
+                fetch(`/Car/DeleteCarShareQueue/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
@@ -104,6 +110,35 @@
                     .catch(error => {
                         console.error("Lỗi:", error);
                         alert("Đã xảy ra lỗi khi xóa phương tiện!");
+                    });
+            }
+        }
+
+        function Approve(id) {
+            if (confirm("Bạn có chắc chắn muốn duyệt phương tiện này không?")) {
+                fetch(`/Car/ApproveCarShare/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            alert("Duyệt phương tiện thành công!");
+                            location.reload();
+                        } else {
+                            alert("Duyệt phương tiện thất bại!");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Lỗi:", error);
+                        alert("Đã xảy ra lỗi khi duyệt phương tiện! Chi tiết: " + error.message);
                     });
             }
         }
