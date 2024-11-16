@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using ShareCar.Models.Customer.CarModel;
 namespace ShareCar.Models.Home.CarModel
 {
     public class CarSellModel
@@ -22,5 +23,8 @@ namespace ShareCar.Models.Home.CarModel
 		public string SDT {get; set; }
 	    public double? SellPrice {get; set; } 
 	    public string? Image {get; set; } 
+
+		public string? Logo {get; set; }
+
     }
 }

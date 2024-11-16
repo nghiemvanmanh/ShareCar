@@ -29,6 +29,7 @@ namespace ShareCar.Controllers.Admin
         string carshare = "~/Views/Admin/Car/CarShareManager.cshtml";
         string carsell = "~/Views/Admin/Car/CarSellManager.cshtml";
 
+        //Hiển thị danh sách xe thuê quản lý
         [HttpGet("Car/CarShareManager")]
         public IActionResult CarShareManager()
         {
@@ -36,6 +37,8 @@ namespace ShareCar.Controllers.Admin
             return PartialView(carshare, carShare);
         }
 
+
+        //Hiển thị danh sách xe bán quản lý
         [HttpGet("Car/CarSellManager")]
         public IActionResult CarSellManager()
         {
@@ -43,6 +46,7 @@ namespace ShareCar.Controllers.Admin
             return PartialView(carsell, carSell);  // Trả về PartialView "_CarRental" với dữ liệu
         }
 
+        //Hiển thị tất cả xe quản lý
         [HttpGet("Car/CarManager")]
         public async Task<IActionResult> CarManager(string Option, string searchString, string days)
         {
@@ -57,7 +61,7 @@ namespace ShareCar.Controllers.Admin
             return View(carmanager, model);
         }
 
-        // Action để hiển thị form chỉnh sửa
+        // Action để hiển thị form chỉnh sửa xe thuê
         [HttpGet("Car/CarShareEdit/{id}")]
         public IActionResult CarShareEdit(int id)
         {
@@ -70,23 +74,22 @@ namespace ShareCar.Controllers.Admin
             return View(caresharedit, car); // Truyền model vào view
         }
 
-        // Action để xử lý cập nhật
+        // Action để xử lý cập nhật xe thuê
         [HttpPost]
         public async Task<IActionResult> CarShareEdit(CarShareModel models)
         {
-             Console.WriteLine($"CarID: {models.CarID}");  // Kiểm tra giá trị của CarID
+            Console.WriteLine($"CarID: {models.CarID}");  // Kiểm tra giá trị của CarID
             if (!ModelState.IsValid)
             {
                 // Ghi log lỗi hoặc kiểm tra thông báo lỗi
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
                 foreach (var error in errors)
                 {
-                    Console.WriteLine("Error :" +error.ErrorMessage);
+                    Console.WriteLine("Error :" + error.ErrorMessage);
                 }
             }
             if (ModelState.IsValid)
             {
-                Console.WriteLine($"Car ID: {models.CarID}");
                 // Kiểm tra nếu tồn tại sản phẩm trong cơ sở dữ liệu
                 _car.Update(models);
                 await _car.SaveChangesAsync();
@@ -109,7 +112,7 @@ namespace ShareCar.Controllers.Admin
             return View(careselldit, car); // Truyền model vào view
         }
 
-        // Action để xử lý cập nhật
+        // Action để xử lý cập nhật carSell
         [HttpPost]
         public async Task<IActionResult> CarSellEdit(CarSellModel models)
         {

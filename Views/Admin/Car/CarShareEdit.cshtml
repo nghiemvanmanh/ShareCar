@@ -92,6 +92,10 @@
                             <input asp-for="Image" class="form-control" type="text" />
                         </div>
                         <div class="mb-3">
+                            <label asp-for="Logo" class="form-label">Logo</label>
+                            <input asp-for="Logo" class="form-control" type="text" value=@Model.Logo />
+                        </div>
+                        <div class="mb-3">
                             <label asp-for="AverageRating" class="form-label">Đánh giá trung bình</label>
                             <input asp-for="AverageRating" class="form-control"/>
                             <span asp-validation-for="AverageRating" class="text-danger"></span>

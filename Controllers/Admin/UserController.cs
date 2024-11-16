@@ -21,13 +21,15 @@ namespace ShareCar.Controllers.Admin
             this._user = user;
         }
 
+
+        //Hiển thị danh sách User
         [HttpGet("User/UserManager")]
         public IActionResult UserManager(){
             var user = _user.tblUser.ToList();
             return View(usermanager, user);
         }
         
-        //Hiển thị form sửa
+        //Hiển thị form sửa User
         [HttpGet("User/EditManager/{id}")]
         public IActionResult Edit(int id)
         {

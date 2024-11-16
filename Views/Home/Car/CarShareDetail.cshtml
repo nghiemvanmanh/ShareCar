@@ -11,24 +11,59 @@
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="stylesheet" href="~/css/Carshare/carsharedetail.css">
     <style>
+        .btn-primary:hover {
+            transform: scale(1.1);
+            background: black;
+        }
+        .btn-success:hover {
+            transform: scale(1.1);
+            background : black;
+        }
         .star {
             cursor: pointer;
-            /* Đổi con trỏ khi di chuột qua ngôi sao */
-            font-size: 1.5rem;
-            /* Tăng kích thước sao */
-            color: white;
-            /* Màu trắng cho sao */
-            text-shadow: 0 0 5px black;
-            /* Tăng độ đậm của bóng đổ */
+            text-shadow: none;
             margin-right: 2px;
-            /* Khoảng cách giữa các ngôi sao */
+            font-size: 12px;
         }
 
-        .img-fluid {
+        .btn-success {
+            background: black;
             width: 100%;
-            height: 450px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            place-content: center;
+            
+        }
+
+
+        .btn-secondary {
+            place-content: center;
+            background: #0000001c;
+            width: 100%;
+            color:black;
+            border: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-secondary:hover {
+            transform: scale(1.1);
+            background-color:#0000001c ;
+            color: black;
+        }
+
+        .col-md-3 p{
+            margin-top:10px;
+            margin-left: 5px;
+        }
+
+        .row-cols{
+            width :93%;
+        }
+        .logo-container {
+            height: 13%;
+            display: flex;
+            justify-content: center; /* Căn giữa logo theo chiều ngang */
+            margin-left: 10%;
         }
     </style>
 </head>
@@ -36,88 +71,151 @@
 <body>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-6">
-                <!-- Ảnh của xe -->
-                <img src="@Model.Image" alt="@Model.Model" class="img-fluid rounded">
-                <h2 class="mb-3">@Model.Model</h2>
-            </div>
-
-            <div class="col-md-6">
-                <!-- Thông tin chi tiết -->
-
-                <p><strong><i class="fas fa-car"></i> Hãng Xe:</strong> @Model.Brand</p>
-                <p><strong><i class="fas fa-id-card"></i> Biển số:</strong> @Model.LicensePlate</p>
-                <p><strong><i class="fas fa-palette"></i> Màu sắc:</strong> @Model.Color</p>
-                <p><strong><i class="fas fa-cogs"></i> Tình trạng:</strong> <span
-                        class="badge @(Model.Status == "Đã cho thuê" ? "bg-danger text-light" : "bg-info text-dark")">@Model.Status</span>
-                </p>
-                <p><strong><i class="fas fa-user"></i> Người đăng:</strong> @Model.Poster</p>
-                <p><strong><i class="fas fa-calendar-alt"></i> Ngày đăng:</strong> @Model.Day.ToString("dd/MM/yyyy")</p>
-                <p><strong><i class="fas fa-map-marker-alt"></i> Địa chỉ:</strong> @Model.Address</p>
-                <p><strong><i class="fas fa-phone-alt"></i> Liên hệ:</strong> @Model.SDT</p>
-                <p><strong><i class="fas fa-money-bill-wave"></i> Giá thuê:</strong> <span
-                        class="text-success">@String.Format("{0:0,0}", Model.RentalPrice) đ/ngày</span></p>
-
-
-                <div class="d-flex align-items-center mb-4">
-                    <strong>Đánh giá:</strong>
-                    <span class="text-warning ms-2">
+            <div class="col-md-9">
+                <a href="javascript:history.back()"><i class="bi bi-arrow-left-short" style="color: black; font-size: 40px; margin-left: -10px;"></i></a>
+                <h2 class="mb-3" style="margin-left: -3px;">@Model.Brand @Model.Model</h2>
+                <div class="d-flex align-items-center mb-4" style="margin-left: -10px;">
+                    <span class="text-warning ms-2" style="display: flex;"> 
                         @for (int i = 1; i <= 5; i++)
                         {
-                            var averageRating = Model.AverageRating ?? 0; // Gán giá trị cho averageRating
+                            var averageRating = Model.AverageRating ?? 0;
 
-                            if (i <= (int)Math.Floor(averageRating))
+                            if (i <= (int)averageRating)
                             {
-                                <i class="fas fa-star star" style="color: gold;"></i> <!-- Ngôi sao vàng -->
+                                // Hiển thị sao đầy
+                                <i class="fas fa-star star" style="color: rgb(0, 0, 0);"></i>
                             }
-                            else if (i == (int)Math.Ceiling(averageRating))
+                            else if (i == (int)averageRating + 1 && averageRating % 1 > 0)
                             {
-                                <i class="fas fa-star-half-alt star" style="color: gold;"></i>
-                                <!-- Ngôi sao vàng nhạt cho phần thập phân -->
-                            }
-                            else
-                            {
-                                <i class="fas fa-star star"></i> <!-- Ngôi sao trắng -->
+                                // Hiển thị sao nửa
+                                <i class="fas fa-star-half-alt star" style="color: rgb(0, 0, 0);"></i>
                             }
                         }
+                        <p style="margin-top: -6.5px; margin-left: 5px; color: black;">@Model.AverageRating</p>
+                        @if(Model.RentalPrice < 1000000){
+                            <div>
+                                <p style="margin-top: -6.5px; margin-left: 5px; color: black;"><i class="bi bi-tag-fill"></i> Xe bình dân</p>
+                            </div>
+                        }else if(Model.RentalPrice >= 1000000 && Model.RentalPrice < 10000000){
+                            <div>
+                                <p style="margin-top: -6.5px; margin-left: 5px; color: black;"><i class="bi bi-tag-fill"></i> Xe sang</p>
+                            </div>
+                        }else{
+                            <div>
+                                <p style="margin-top: -6.5px; margin-left: 5px; color: black;"><i class="bi bi-tag-fill"></i> Xe siêu sang</p>
+                            </div>
+                        }
                     </span>
-
                 </div>
+                <!-- Ảnh của xe -->
+                <img src="@Model.Image" alt="@Model.Model" class="img-fluid rounded">
+                <div class="row-cols">
+                <h5 class="font-weight-bold mt-4">Mô tả</h5>
+                <p>@Model.Description</p>
+                </div>
+                @if(Context.Session.GetString("UserName") != null){
+                <!-- Bình luận -->
+                    <div class="row-cols">
+                        <h4>Bình Luận</h4>
+
+                        <!-- Form nhập bình luận -->
+                        <form method="post" action="/Car/AddComment" class="mb-4">
+                            <input type="hidden" name="CarID" value="@Model.CarID" />
+
+                            <div class="mb-3">
+                                <label for="PosterName" class="form-label">Tên:</label>
+                                <input type="text" class="form-control" id="PosterName" name="PosterName" value="@Context.Session.GetString("FullName")" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="CommentText" class="form-label">Bình luận:</label>
+                                <textarea class="form-control" id="CommentText" name="CommentText" rows="3" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Gửi Bình Luận</button>
+                        </form>
+
+                        <!-- Hiển thị danh sách bình luận -->
+                        <div>
+                            <h5>Các Bình Luận:</h5>
+
+                            @foreach (var comment in Model.CommentShare)
+                            {
+                                <div class="card mt-2">
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-2 text-muted">@comment.PosterName</h6>
+                                        <p class="card-text">@comment.CommentText</p>
+                                        <div class="d-flex text-muted">
+                                            <small>
+                                                <i class="fas fa-clock"></i>
+                                                @{
+                                                    var timeDifference = DateTime.Now - comment.DateUp;
+                                                    var timeText = timeDifference.TotalSeconds < 60 ? $"{(int)timeDifference.TotalSeconds} giây trước" :
+                                                                timeDifference.TotalMinutes < 60 ? $"{(int)timeDifference.TotalMinutes} phút trước" :
+                                                                timeDifference.TotalHours < 24 ? $"{(int)timeDifference.TotalHours} giờ trước" :
+                                                                $"{(int)timeDifference.TotalDays} ngày trước";
+                                                }
+                                                @timeText
+                                            </small>
+                                            <small>
+                                                <i class="bi bi-arrow-return-right" style="margin-left: 10px;"></i> Phản hồi
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    }
+            </div>
+
+            <div class="col-md-3 " style="margin-top: 6%;">
+                 <div class="logo-container">
+                    <img src="@Model.Logo" alt="@Model.Model">
+                </div>
+                @if(Model.RentalPrice < 1000000){
+                    <p style="background: #0000001c; width: 30%;text-align: center; border-radius: 5px;height: 35px; place-content: center;">Base Car</p>
+                }else if(Model.RentalPrice >= 1000000 && Model.RentalPrice < 10000000){
+                    <p style="background: #0000001c; width: 35%;text-align: center; border-radius: 5px;height: 35px; place-content: center;">Luxury Car</p>
+                }else{
+                    <p style="background: #0000001c; width: 50%;text-align: center; border-radius: 5px; height: 35px; place-content: center;">Super Luxury Car</p>
+                }
+                
+                <p><strong><i class="fas fa-money-bill-wave"></i></strong> <span>@String.Format("{0:0,0}", Model.RentalPrice) đ/ngày</span></p>
+                <div class="d-flex flex-column flex-md-row" style="padding: 5px; height: 60px; width: 117%;">
+                    <a href="@Url.Action("NewCar", "Car", new { id = Model.CarID })" class="btn btn-success me-md-2 mb-2 mb-md-0">Đặt Xe</a>
+                </div>
+                
+                <div class="d-flex flex-column flex-md-row" style="padding: 5px; height: 60px; width: 117%;">
+                    <a href="javascript:history.back()" class="btn btn-secondary me-md-2 mb-2 mb-md-0">Thêm vào mục yêu thích</a>
+                </div>
+                
+                
+                <!-- Thông tin chi tiết -->
+                <p><strong><i class="fas fa-car"></i> Hãng Xe:</strong> @Model.Brand</p><hr>
+                <p><strong><i class="fas fa-id-card"></i> Biển số:</strong> @Model.LicensePlate</p><hr
+                <p><strong><i class="fas fa-palette"></i> Màu sắc:</strong> @Model.Color</p><hr>
+                <p><strong><i class="fas fa-cogs"></i> Tình trạng:</strong> @Model.Status</p><hr>
+                <p><strong><i class="fas fa-user"></i> Người đăng:</strong> @Model.Poster</p><hr>
+                <p><strong><i class="fas fa-calendar-alt"></i> Ngày đăng:</strong> @Model.Day.ToString("dd/MM/yyyy")</p><hr>
+                <p><strong><i class="fas fa-map-marker-alt"></i> Địa chỉ:</strong> @Model.Address</p><hr>
+                <p><strong><i class="fas fa-phone-alt"></i> Liên hệ:</strong> @Model.SDT</p>
 
 
                 <!-- Nút quay lại và đặt xe -->
-
-                <a href="javascript:history.back()" class="btn btn-secondary me-2">Quay lại</a>
-                <a href="@Url.Action("NewCar", "Car", new { id = Model.CarID })" class="btn btn-success">Đặt Xe</a>
-
-
-
-
+                
             </div>
         </div>
-        <div class="row-cols-2">
-            <h5>
-                <p style="font-weight: bold;">Mô tả</p>
-            </h5>
-            <p> @Model.Description</p>
-        </div>
+
+            
+
     </div>
 
-    <script>
-        function rateCar(stars) {
-            // Lấy giá trị hiện tại của AverageRating từ Model
-            var currentRating = @Model.AverageRating;
+    
+    
 
-            // Tính trung bình mới
-            var newRating = (currentRating + stars) / 2;
-
-            // Cập nhật giao diện hoặc thực hiện một yêu cầu AJAX để lưu rating
-            console.log("New Average Rating: " + newRating);
-
-            // Có thể thêm logic để lưu rating vào cơ sở dữ liệu ở đây.
-            // Bạn có thể sử dụng AJAX để gửi giá trị newRating về server.
-        }
-    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

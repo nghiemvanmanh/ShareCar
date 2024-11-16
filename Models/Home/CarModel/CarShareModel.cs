@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using ShareCar.Models.Customer.CarModel;
 namespace ShareCar.Models.Home.CarModel
 {
     public class CarShareModel
@@ -23,5 +25,10 @@ namespace ShareCar.Models.Home.CarModel
 	    public double? RentalPrice {get; set; } 
 	    public string? Image {get; set; } 
 	    public double? AverageRating {get; set; } 
+
+		public string? Logo {get; set; }
+
+		[NotMapped]
+		public List<CommentModel>? CommentShare {get; set; }
     }
 }

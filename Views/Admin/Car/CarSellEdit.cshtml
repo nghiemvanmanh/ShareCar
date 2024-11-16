@@ -91,6 +91,10 @@
                             <label asp-for="Image" class="form-label">Ảnh</label>
                             <input asp-for="Image" class="form-control" type="text" />
                         </div>
+                        <div class="mb-3">
+                            <label asp-for="Logo" class="form-label">Logo</label>
+                            <input asp-for="Logo" class="form-control" type="text" value=@Model.Logo/>
+                        </div>
                         <button type="submit" class="btn btn-primary">Cập nhật</button>
                         <a asp-action="CarManager" class="btn btn-secondary">Hủy</a>
                     </form>

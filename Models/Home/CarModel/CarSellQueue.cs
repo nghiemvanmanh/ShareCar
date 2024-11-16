@@ -23,5 +23,6 @@ namespace ShareCar.Models.Home.CarModel
 		public string SDT {get; set; }
 	    public double? SellPrice {get; set; } 
 	    public string? Image {get; set; } 
+
     }
 }

@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\ShareCar.bundle.scp.css"
     },
     {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\css\\Carshare\\carsharedetail.css",
+      "PackagePath": "staticwebassets\\css\\Carshare\\carsharedetail.css"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\css\\home.css",
+      "PackagePath": "staticwebassets\\css\\home.css"
+    },
+    {
       "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\css\\index.css",
       "PackagePath": "staticwebassets\\css\\index.css"
     },
@@ -15,6 +23,10 @@
     {
       "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\audi.jpg",
+      "PackagePath": "staticwebassets\\images\\audi.jpg"
     },
     {
       "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\banner1.jpg",
@@ -29,20 +41,40 @@
       "PackagePath": "staticwebassets\\images\\banner3.jpg"
     },
     {
-      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carsell\\efdcc3ec-f076-44ac-a11d-4eb253b1231a_huyndai 1.5mt.jpg",
-      "PackagePath": "staticwebassets\\images\\carsell\\efdcc3ec-f076-44ac-a11d-4eb253b1231a_huyndai 1.5mt.jpg"
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carsell\\cef37781-a64a-465b-b818-550839eb7eec_audi.jpg",
+      "PackagePath": "staticwebassets\\images\\carsell\\cef37781-a64a-465b-b818-550839eb7eec_audi.jpg"
     },
     {
-      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carsell\\f27ccafb-94ef-4e43-b3e0-9c98320908a4_huyndai 1.5mt.jpg",
-      "PackagePath": "staticwebassets\\images\\carsell\\f27ccafb-94ef-4e43-b3e0-9c98320908a4_huyndai 1.5mt.jpg"
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carsell\\ffdcb49c-133c-43a1-b2fc-7dec6b7da2b9_vios.jpeg",
+      "PackagePath": "staticwebassets\\images\\carsell\\ffdcb49c-133c-43a1-b2fc-7dec6b7da2b9_vios.jpeg"
     },
     {
-      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carshare\\632bcc3f-0723-401e-992a-0ced505b4f83_dream.jpg",
-      "PackagePath": "staticwebassets\\images\\carshare\\632bcc3f-0723-401e-992a-0ced505b4f83_dream.jpg"
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\honda.jpg",
+      "PackagePath": "staticwebassets\\images\\honda.jpg"
     },
     {
-      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carshare\\b0351615-b313-49d4-a8b4-dce57d83f531_dream.jpg",
-      "PackagePath": "staticwebassets\\images\\carshare\\b0351615-b313-49d4-a8b4-dce57d83f531_dream.jpg"
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\kia.jpg",
+      "PackagePath": "staticwebassets\\images\\kia.jpg"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\logo.jpg",
+      "PackagePath": "staticwebassets\\images\\logo.jpg"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\mercedes.jpg",
+      "PackagePath": "staticwebassets\\images\\mercedes.jpg"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\mitsubishi.jpg",
+      "PackagePath": "staticwebassets\\images\\mitsubishi.jpg"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\toyota.jpg",
+      "PackagePath": "staticwebassets\\images\\toyota.jpg"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\vinfast.jpg",
+      "PackagePath": "staticwebassets\\images\\vinfast.jpg"
     },
     {
       "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\js\\site.js",

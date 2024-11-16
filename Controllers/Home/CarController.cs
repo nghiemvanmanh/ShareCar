@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ShareCar.Data;
 using ShareCar.Models;
+using ShareCar.Models.Customer.CarModel;
 using ShareCar.Models.Home;
 using ShareCar.Models.Home.CarModel;
 
@@ -213,7 +214,9 @@ namespace ShareCar.Controllers.Home
         [HttpGet("Car/CarShareDetail/{id}")]
         public IActionResult CarShareDetail(int id)
         {
-            var cars = _car.tbl_CarShare.FirstOrDefault(c => c.CarID == id);
+            var cars = _car.tbl_CarShare.Where(c=>c.CarID == id)
+                                        .Include(c=>c.CommentShare)
+                                        .FirstOrDefault();
             if (cars == null)
             {
                 return NotFound();
@@ -225,12 +228,31 @@ namespace ShareCar.Controllers.Home
         [HttpGet("Car/CarSellDetail/{id}")]
         public IActionResult CarSellDetail(int id)
         {
-            var cars = _car.tbl_CarSell.FirstOrDefault(c => c.CarID == id);
+            var cars = _car.tbl_CarSell.Find(id);
             if (cars == null)
             {
                 return NotFound();
             }
             return View(carselldetail, cars);
+        }
+
+        // Thêm Bình luận
+        [HttpPost]
+        public async Task<IActionResult> AddComment(int CarID, string PosterName, string CommentText)
+        {
+            var comment = new CommentModel
+            {
+                CarID = CarID,
+                PosterName = PosterName,
+                CommentText = CommentText,
+                DateUp = DateTime.Now, // Lưu thời gian hiện tại
+                NameComment = "CarShare"
+            };
+
+            _car.tbl_Comment.Add(comment);
+            await _car.SaveChangesAsync();
+            return Redirect(Request.Headers["Referer"].ToString());
+
         }
 
         //Bộ lọc nâng cao
@@ -463,7 +485,7 @@ namespace ShareCar.Controllers.Home
             if (carInQueue == null)
             {
                 return NotFound(new { success = false, message = "Phương tiện không tồn tại trong hàng đợi." });
-            }
+            }   
 
             // Chuyển dữ liệu từ `CarSellQueue` sang `CarSellModel`
             var carToSell = new CarSellModel
@@ -480,7 +502,8 @@ namespace ShareCar.Controllers.Home
                 SDT = carInQueue.SDT,
                 Address = carInQueue.Address,
                 SellPrice = carInQueue.SellPrice,
-                Image = carInQueue.Image
+                Image = carInQueue.Image,
+
             };
 
             // Thêm xe vào bảng `tbl_CarSell`

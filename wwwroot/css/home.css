@@ -1,0 +1,237 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    border-bottom: 1px solid #e0e0e0;
+    /* Đường viền dưới */
+}
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.shadow-sm {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    height: 10%;
+}
+
+.nav-link {
+    padding: 10px 15px;
+    /* Điều chỉnh khoảng cách padding */
+    transition: background-color 0.3s;
+    /* Hiệu ứng chuyển đổi */
+}
+
+.nav-link:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+    /* Nền khi hover */
+    border-radius: 5px;
+    /* Bo góc */
+}
+
+.dropdown-menu {
+    border-radius: 0.5rem;
+    /* Bo góc cho menu dropdown */
+}
+
+.btn-outline-success {
+    margin-left: 5px;
+    /* Khoảng cách giữa nút tìm kiếm */
+}
+
+.btn {
+    transition: background-color 0.3s, color 0.3s;
+    /* Hiệu ứng chuyển đổi cho nút */
+}
+
+.btn:hover {
+    background-color: #007bff;
+    /* Màu nền khi hover */
+    color: white;
+    /* Màu chữ khi hover */
+}
+
+.navbar-nav {
+    gap: 15px;
+    /* Thêm khoảng cách giữa các nút */
+}
+
+.nav-link {
+    padding: 8px 12px;
+    /* Padding cho các nút */
+}
+
+a.nav-link {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #e5e7eb;
+    /* Màu nền khi hover */
+    border-radius: 5px;
+    /* Bo góc khi hover */
+    transform: scale(1.1);
+    /* Bo tròn các góc của nút khi hover */
+}
+
+.footer {
+    background-color: #ffffff;
+    border-top: 1px solid #dee2e6;
+}
+
+.footer h5 {
+    font-weight: bold;
+}
+
+
+/* Menu cố định bên trái màn hình */
+
+.sidebar {
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #ffffff;
+    padding-top: 20px;
+    margin-top: 5%;
+    position: fixed;
+    overflow-y: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Tùy chỉnh phần header của menu */
+
+.sidebar-header {
+    padding: 15px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #f8f9fa;
+    /* Màu nền cho phần header */
+    border-bottom: 1px solid #e0e0e0;
+    /* Đường viền dưới header */
+}
+
+
+/* Tùy chỉnh các item trong menu */
+
+.sidebar .list-group-item {
+    padding: 15px 20px;
+    border: none;
+    font-size: 16px;
+}
+
+.sidebar .list-group-item a {
+    display: block;
+    color: #333;
+    /* Màu chữ */
+    text-decoration: none;
+    padding: 8px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    /* Loại bỏ gạch dưới */
+}
+
+.sidebar .list-group-item a:hover {
+    background-color: #e5e7eb;
+    /* Màu nền khi hover */
+    border-radius: 5px;
+    /* Bo góc khi hover */
+    transform: scale(1.1);
+}
+
+
+/* Style cho footer nếu có */
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.btn {
+    margin-right: 10px;
+    /* Tạo khoảng cách giữa nút mở sidebar và các nút khác */
+}
+
+
+/* Container chứa input và button */
+
+.input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-form {
+    display: block;
+    /* Đảm bảo input là một phần tử khối */
+    width: 100%;
+    /* Chiều rộng 100% theo chiều ngang của container */
+    padding: 0.375rem 0.75rem;
+    /* Khoảng cách giữa văn bản và viền */
+    font-size: 1rem;
+    /* Kích thước văn bản */
+    color: #495057;
+    /* Màu chữ */
+    background-color: #fff;
+    /* Màu nền */
+    border-radius: 20px;
+    /* Bo góc */
+    outline: none;
+}
+
+.btn-search {
+    border: none;
+    padding: 10px;
+    margin-left: 5px;
+    /* Khoảng cách giữa button và ô input */
+    border-radius: 20px;
+    /* Bo tròn góc của button */
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-search i {
+    font-size: 16px;
+    /* Kích thước của icon */
+}
+
+
+/* Thêm hiệu ứng hover cho button */
+
+.btn-search:hover {
+    background-color: #e5e7eb;
+    transform: scale(1.1);
+}
+
+.container.text-md-left {
+    background-color: #f3f3f3;
+    border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 150px;
+        /* Sidebar chiếm hết chiều rộng màn hình */
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        overflow-y: auto;
+    }
+    footer {
+        display: none;
+    }
+}

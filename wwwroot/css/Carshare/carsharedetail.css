@@ -1,0 +1,22 @@
+.img-fluid {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: cover;
+}
+
+.btn-primary {
+    background: black;
+    color: white;
+    border: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .col-md-6 {
+        margin-top: 20px;
+    }
+    .feedback-icons {
+        justify-content: center;
+    }
+}

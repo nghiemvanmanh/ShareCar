@@ -32,7 +32,7 @@ namespace ShareCar.Controllers.Customer
             _car = car;
         }
 
-
+        //Hiển thi dách sách xe User cho Thuê
         [HttpGet("Car/CarShareUser")]
         public IActionResult CarShareUser()
         {
@@ -40,12 +40,16 @@ namespace ShareCar.Controllers.Customer
             return PartialView(carshareuser, carShare);
         }
 
+
+        //Hiển thị danh sách xe User đăng bán
         [HttpGet("Car/CarSellUser")]
         public IActionResult CarSellUser()
         {
-            var carSell = _car.tbl_CarSell.ToList(); // Lấy danh sách xe cho thuê
-            return PartialView(carselluser, carSell);  // Trả về PartialView "_CarRental" với dữ liệu
+            var carSell = _car.tbl_CarSell.ToList(); // Lấy danh sách xe đăng bán
+            return PartialView(carselluser, carSell);  
         }
+        
+        //Hiển thị tất cả danh sách xe User
         [HttpGet("Car/CarUser")]
         public async Task<IActionResult> CarUser()
         {
@@ -64,6 +68,7 @@ namespace ShareCar.Controllers.Customer
             return View(listcar, model);
         }
 
+        //Xóa xe Thuê User
         [HttpDelete]
         public IActionResult Delete(int id) {
             var car = _car.tbl_CarShare.Find(id);
@@ -75,8 +80,10 @@ namespace ShareCar.Controllers.Customer
             return Json(new { success = false });
         }
 
+
+        //Xóa xe bán User
         [HttpDelete]
-        public IActionResult DeleteU(int id) {
+        public IActionResult DeleteCarSell(int id) {
             var car = _car.tbl_CarSell.Find(id);
             if (car != null) {
                 _car.tbl_CarSell.Remove(car);
@@ -87,7 +94,7 @@ namespace ShareCar.Controllers.Customer
         }
 
 
-        // Action để hiển thị form chỉnh sửa
+        // Action để hiển thị form chỉnh sửa xe thuê
         [HttpGet("Car/CarUserShareEdit/{id}")]
         public IActionResult CarUserShareEdit(int id)
         {
@@ -100,7 +107,7 @@ namespace ShareCar.Controllers.Customer
             return View(carshareuseredit, car); // Truyền model vào view
         }
 
-        // Action để xử lý cập nhật
+        // Action để xử lý cập nhật xe thuê
         [HttpPost]
         public async Task<IActionResult> CarUserShareEdit(CarShareModel models)
         {
@@ -139,7 +146,7 @@ namespace ShareCar.Controllers.Customer
             return View(carselluseredit, car); // Truyền model vào view
         }
 
-        // Action để xử lý cập nhật
+        // Action để xử lý cập nhật carSell
         [HttpPost]
         public async Task<IActionResult> CarUserSellEdit(CarSellModel models)
         {

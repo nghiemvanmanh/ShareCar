@@ -57,7 +57,7 @@
                             </td>
                             <td>
                                 <a href="@Url.Action("CarUserSellEdit", "Car", new { id = car.CarID })" class="btn btn-primary btn-sm me-2">Sửa</a>
-                                <button class="btn btn-danger btn-sm" onclick="Delete('@car.CarID')">Xóa</button>
+                                <button class="btn btn-danger btn-sm" onclick="DeleteCarSell('@car.CarID')">Xóa</button>
                             </td>
                         </tr>
                     }
@@ -69,9 +69,9 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        function Delete(id) {
+        function DeleteCarSell(id) {
             if (confirm("Bạn có chắc chắn muốn xóa người dùng này không?")) {
-                fetch(`/Car/DeleteU/${id}`, {
+                fetch(`/Car/DeleteCarSell/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'

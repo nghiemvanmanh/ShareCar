@@ -15,13 +15,13 @@
         <h2>Thêm xe cho thuê mới </h2>
         <form asp-action="CarShareNew" method="post" enctype="multipart/form-data">
             <input asp-for="UserID" class="form-control" value="@Context.Session.GetInt32("UserID")" hidden="true" />
-            <div class="mb-3" hidden = "true">
+            <div class="mb-3" >
                 <label asp-for="Poster" class="form-label">Người đăng:</label>
                 <input asp-for="Poster" class="form-control" value="@Context.Session.GetString("FullName")" />
                 <span asp-validation-for="Poster" class="text-danger"></span>
             </div>
             
-            <div class="mb-3" hidden = "true">
+            <div class="mb-3">
                 <label asp-for="SDT" class="form-label">Liên hệ: </label>
                 <input asp-for="SDT" class="form-control" value="@Context.Session.GetString("SDT")" />
                 <span asp-validation-for="SDT" class="text-danger"></span>

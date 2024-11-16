@@ -18,6 +18,7 @@ public class HomeController : Controller
         string carsell = "~/Views/Home/CarSell.cshtml";
         string carshare = "~/Views/Home/CarShare.cshtml";
         
+        //Hiển thị view trang chủ
         public IActionResult Index(){
             
             var model = new CarHomeModel
@@ -28,6 +29,7 @@ public class HomeController : Controller
             return View(model);
         }
 
+        //Lấy danh sách xe thuê
         [HttpGet("Home/CarShare")]
         public IActionResult CarShare()
         {
@@ -35,6 +37,7 @@ public class HomeController : Controller
             return PartialView(carshare, carShare);  
         }
 
+        //Lấy danh sách xe bán
         [HttpGet("Home/CarSell")]
         public IActionResult CarSell()
         {
@@ -42,13 +45,15 @@ public class HomeController : Controller
             return PartialView(carsell, carSell);  // Trả về PartialView "_CarRental" với dữ liệu
         }
 
+
+        //Hiển thị banner
         [HttpGet("Home/CarBanner")]
         public IActionResult CarBanner(){
             return View("~/Views/Home/CarBanner.cshtml");
         }
         
 
-        
+
 
 
 }
