@@ -108,7 +108,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3 " style="margin-top: 6%;">
+            <div class="col-md-3 " style="margin-top: 12%;">
                 <div class="logo-container">
                     <img src="@Model.Logo" alt="@Model.Model">
                 </div>
@@ -125,7 +125,7 @@
                 <!-- Nút yêu thích và đặt xe -->
 
                 <div class="d-flex flex-column flex-md-row" style="padding: 5px; height: 60px; width: 117%;">
-                    <a href="@Url.Action("NewCar", "Car", new { id = Model.CarID })"
+                    <a href="@Url.Action("CarSellOrder", "Car", new { id = Model.CarID })"
                         class="btn btn-success me-md-2 mb-2 mb-md-0">Mua Xe</a>
                 </div>
 

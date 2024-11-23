@@ -25,10 +25,6 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\audi.jpg",
-      "PackagePath": "staticwebassets\\images\\audi.jpg"
-    },
-    {
       "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\banner1.jpg",
       "PackagePath": "staticwebassets\\images\\banner1.jpg"
     },
@@ -41,6 +37,38 @@
       "PackagePath": "staticwebassets\\images\\banner3.jpg"
     },
     {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carlogo\\audi.jpg",
+      "PackagePath": "staticwebassets\\images\\carlogo\\audi.jpg"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carlogo\\honda.jpg",
+      "PackagePath": "staticwebassets\\images\\carlogo\\honda.jpg"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carlogo\\hyundai.jpg",
+      "PackagePath": "staticwebassets\\images\\carlogo\\hyundai.jpg"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carlogo\\kia.jpg",
+      "PackagePath": "staticwebassets\\images\\carlogo\\kia.jpg"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carlogo\\mercedes.jpg",
+      "PackagePath": "staticwebassets\\images\\carlogo\\mercedes.jpg"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carlogo\\mitsubishi.jpg",
+      "PackagePath": "staticwebassets\\images\\carlogo\\mitsubishi.jpg"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carlogo\\toyota.jpg",
+      "PackagePath": "staticwebassets\\images\\carlogo\\toyota.jpg"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carlogo\\vinfast.jpg",
+      "PackagePath": "staticwebassets\\images\\carlogo\\vinfast.jpg"
+    },
+    {
       "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carsell\\cef37781-a64a-465b-b818-550839eb7eec_audi.jpg",
       "PackagePath": "staticwebassets\\images\\carsell\\cef37781-a64a-465b-b818-550839eb7eec_audi.jpg"
     },
@@ -49,32 +77,8 @@
       "PackagePath": "staticwebassets\\images\\carsell\\ffdcb49c-133c-43a1-b2fc-7dec6b7da2b9_vios.jpeg"
     },
     {
-      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\honda.jpg",
-      "PackagePath": "staticwebassets\\images\\honda.jpg"
-    },
-    {
-      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\kia.jpg",
-      "PackagePath": "staticwebassets\\images\\kia.jpg"
-    },
-    {
       "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\logo.jpg",
       "PackagePath": "staticwebassets\\images\\logo.jpg"
-    },
-    {
-      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\mercedes.jpg",
-      "PackagePath": "staticwebassets\\images\\mercedes.jpg"
-    },
-    {
-      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\mitsubishi.jpg",
-      "PackagePath": "staticwebassets\\images\\mitsubishi.jpg"
-    },
-    {
-      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\toyota.jpg",
-      "PackagePath": "staticwebassets\\images\\toyota.jpg"
-    },
-    {
-      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\vinfast.jpg",
-      "PackagePath": "staticwebassets\\images\\vinfast.jpg"
     },
     {
       "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\js\\site.js",

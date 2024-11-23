@@ -16,9 +16,69 @@
 
 
     <title>@ViewData["Title"] - ShareCar</title>
+
+    <style>
+        .containers.mt-3 {
+            color: wheat;
+            border-top: 1px solid #f5deb387;
+            width: 88%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .col-md-12.text-center {
+            border-top: 1px solid #f5deb39c;
+            padding: 20px;
+            width: 98%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        a.text-decoration-none {
+            color: #f5deb3;
+        }
+
+        a.me-4 {
+            color: #f5deb3;
+        }
+
+        li.list-group-item {
+            background: #101014;
+        }
+
+        .sidebar .list-group-item a {
+            display: block;
+            color: #ffffff;
+            /* Màu chữ */
+            text-decoration: none;
+            padding: 8px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            /* Loại bỏ gạch dưới */
+        }
+
+        .sidebar .list-group-item a:hover {
+            background-color: #101014;
+            /* Màu nền khi hover */
+            border-radius: 5px;
+            /* Bo góc khi hover */
+            transform: scale(1.1);
+        }
+
+        .sidebar {
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #101014;
+            padding-top: 20px;
+            margin-top: 5%;
+            position: fixed;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
-<body>
+<body style=" background: #101014; color: white;">
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm ">
         <div class="container">
             <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
@@ -131,8 +191,8 @@
         <div class="row">
             <div class="col-2">
                 <div class="sidebar">
-                    <div class="sidebar-header d-flex justify-content-between align-items-center" style="background: #f9f9f9;">
-                        <img src="/images/logo.jpg" style="width:107%">
+                    <div>
+                       
                         <!-- Button Menu cho responsive -->
                         <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="collapse"
                             data-bs-target="#sidebarMenu" aria-expanded="false" aria-controls="sidebarMenu">
@@ -237,14 +297,14 @@
 
 
 
-    <footer class="bg-light text-dark pt-5 pb-4">
+    <footer class="pt-5 pb-4">
         <div class="col-12">
             <div class="row">
                 <div class="col-2">
 
                 </div>
                 <div class="col-10">
-                    <div class="container text-md-left">
+                    <div class="containers mt-3">
                         <div class="row">
                             <!-- Thông tin về ShareCar -->
                             <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
@@ -263,18 +323,18 @@
                             <!-- Chính sách -->
                             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                                 <h5 class="text-uppercase mb-4 font-weight-bold">Chính sách</h5>
-                                <p><a href="#" class="text-dark text-decoration-none">Chính sách bảo mật</a></p>
-                                <p><a href="#" class="text-dark text-decoration-none">Điều khoản sử dụng</a></p>
-                                <p><a href="#" class="text-dark text-decoration-none">Chính sách hoàn trả</a></p>
+                                <p><a href="#" class="text-decoration-none">Chính sách bảo mật</a></p>
+                                <p><a href="#" class="text-decoration-none">Điều khoản sử dụng</a></p>
+                                <p><a href="#" class="text-decoration-none">Chính sách hoàn trả</a></p>
                             </div>
 
                             <!-- Mạng xã hội -->
                             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                                 <h5 class="text-uppercase mb-4 font-weight-bold">Theo dõi chúng tôi</h5>
-                                <a href="#" class="text-dark me-4"><i class="bi bi-facebook"></i></a>
-                                <a href="#" class="text-dark me-4"><i class="bi bi-twitter"></i></a>
-                                <a href="#" class="text-dark me-4"><i class="bi bi-instagram"></i></a>
-                                <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
+                                <a href="#" class="me-4"><i class="bi bi-facebook"></i></a>
+                                <a href="#" class="me-4"><i class="bi bi-twitter"></i></a>
+                                <a href="#" class="me-4"><i class="bi bi-instagram"></i></a>
+                                <a href="#" class="" style=" color: #f5deb3;"><i class="bi bi-linkedin"></i></a>
                             </div>
                         </div>
 

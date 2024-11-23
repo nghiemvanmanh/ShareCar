@@ -62,53 +62,49 @@
             /* Giảm kích thước ảnh */
         }
 
-        /* Đặt kích thước và vị trí các nút next, prev */
-        .swiper-button-next,
-        .swiper-button-prev {
-            background-color: rgba(0, 0, 0, 0.5);
-            /* Màu nền của các nút */
-            border-radius: 50%;
-            padding: 10px;
-            width: 30px;
-            height: 30px;
-            transition: color 0.3s ease, transform 0.3s ease;
-            /* Màu của mũi tên */
-        }
 
-        .swiper-button-next:after,
-        .swiper-rtl .swiper-button-prev:after {
-            content: 'next';
-            font-size: 12px;
-        }
-
-        .swiper-button-prev:after,
-        .swiper-rtl .swiper-button-next:after {
-            content: 'prev';
-            font-size: 12px;
-        }
-
-
-        /* Để chúng ở vị trí giữa trên màn hình */
-        #CarShare .swiper-button-next {
-            right: 60px;
-            top: 54.94%;
-            transform: translateY(-50%);
-            background: #e0dede;
-            color: black;
-            padding: 16px;
-        }
-
-        #CarShare .swiper-button-prev {
-            left: 60px;
-            top: 54.94%;
-            transform: translateY(-50%);
-            background: #e0dede;
-            color: black;
-            padding: 16px;
-        }
 
         .d-flex.align-items-center.justify-content-lg-start {
             margin-top: 20px;
+        }
+
+        .card.shadow-sm {
+            background: #101014;
+        }
+
+        a.container.mt-6 {
+            padding: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .arrow-icon {
+            transition: transform 0.3s ease-in-out;
+            /* Hiệu ứng mượt */
+        }
+
+        .container.mt-6:hover .arrow-icon {
+            transform: translateX(5px);
+            /* Dịch chuyển icon sang phải 5px */
+        }
+
+        .text-content {
+            color: #a8b0b7;
+        }
+
+        span.badge.bg-checkout.text-light {
+            background: linear-gradient(45deg, #e0636f, #130706);
+        }
+
+        span.badge.bg-check.text-dark {
+            background: linear-gradient(45deg, #f8f9fa, #8fd5e4);
+        }
+
+        i.bi.bi-chevron-left {
+            padding: 5px;
+            background: #3d3d3d;
+            border-radius: 50%;
+            font-size: 15px;
         }
     </style>
 </head>
@@ -117,19 +113,23 @@
 
 
     <div class="container mt-5">
+        @if (ViewBag.check != true)
+        {
+            <h4><a href="@Url.Action("CarShareAll","Car")" class="container mt-6">Xe thuê dành
+                    cho bạn <i class="bi bi-chevron-right arrow-icon"></i></a></h4>
+            <!-- Thay thế "Tin nhặt được" bằng "Hiển thị tất cả" -->
+        }
         <!-- Swiper Container -->
-        <h3 class="container mt-5">Xe thuê dành cho bạn</h3>
-        <hr class="my-3" style="color:dodgerblue;">
         @if (Model != null && Model.Any())
         {
-            <div class="text-end">
-                @if (ViewBag.check != true)
-                {
-                    <h6><a class="list-all" href="@Url.Action("CarShareAll","Car")">Hiển thị tất cả <i
-                                class="fas fa-arrow-right"></i></a></h6>
-                    <!-- Thay thế "Tin nhặt được" bằng "Hiển thị tất cả" -->
-                }
+            <div class="text-end" style="display: flex; justify-content: end; margin-bottom: 2%; margin-right: 1%;">
+                <div class="button-prev"><i class="bi bi-chevron-left"></i></div>
+                <div class="button-next"><i class="bi bi-chevron-right"
+                        style="padding: 5px;background: #3d3d3d;border-radius: 50%;font-size: 15px; margin-left: 50%;"></i>
+                </div>
+
             </div>
+
             <div class="swiper-container">
                 <div class="swiper-wrapper">
 
@@ -143,10 +143,10 @@
                                         <h5 class="card-title mb-1">@car.Brand @car.Model</h5>
 
                                     </div>
-                                    <p class="card-text text-muted">Biển số: @car.LicensePlate</p>
-                                    <div class ="card-iteam">
+                                    <p class="card-text text-content">Biển số: @car.LicensePlate</p>
+                                    <div class="card-iteam">
                                         <div class="d-flex justify-content-between mb-2">
-                                            <p class="card-text text-muted">
+                                            <p class="card-text text-content">
                                                 <i class="fas fa-clock"></i>
                                                 @{
                                                     var timeDifference = DateTime.Now - car.Day;
@@ -171,19 +171,19 @@
                                                 }
                                                 @timeText
                                             </p>
-                                            <p class="card-text text-muted mb-0">
+                                            <p class="card-text text-content mb-0">
                                                 <i class="fas fa-user"></i> @car.Poster
                                             </p>
                                         </div>
 
                                         <div class="d-flex justify-content-between mb-2">
-                                            <p class="card-text text-muted mb-0"><strong><i class="fas fa-cogs"></i></strong>
+                                            <p class="card-text text-content mb-0"><strong><i class="fas fa-cogs"></i></strong>
                                                 <span
-                                                    class="badge @(car.Status == "Đã cho thuê" ? "bg-danger text-light" : "bg-info text-dark")"
+                                                    class="badge @(car.Status == "Đã cho thuê" ? "bg-checkout text-light" : "bg-check text-dark")"
                                                     style=" font-weight:normal;">
                                                     @car.Status
                                                 </span>
-                                            <p class="card-text text-muted">
+                                            <p class="card-text text-content">
                                                 <i class="fas fa-money-bill-wave"></i> @String.Format("{0:0,0}",
                                         car.RentalPrice)đ
                                             </p>
@@ -209,13 +209,12 @@
 
                 </div>
                 <!-- Nút mũi tên -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+
             </div>
         }
         else
         {
-            <h5 >
+            <h5>
                 <p class="text-center">Không tìm thấy phương tiện nào...</p>
             </h5>
         }
@@ -239,8 +238,8 @@
                     disableOnInteraction: false // Tiếp tục autoplay ngay cả khi có tương tác
                 },
                 navigation: {
-                    nextEl: '#CarShare .swiper-button-next',
-                    prevEl: '#CarShare .swiper-button-prev',
+                    nextEl: '#CarShare .button-next',
+                    prevEl: '#CarShare .button-prev',
                 },
                 breakpoints: {
                     1024: {

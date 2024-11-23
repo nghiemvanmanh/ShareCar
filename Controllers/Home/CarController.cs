@@ -37,6 +37,7 @@ namespace ShareCar.Controllers.Home
         string carsell = "~/Views/Home/Car/CarSellAll.cshtml";
         string carshare = "~/Views/Home/Car/CarShareAll.cshtml";
         string carqueue = "~/Views/Home/Car/CarQueue.cshtml";
+         string carsellorder = "~/Views/Home/Car/CarSellOrder.cshtml";
 
         //Hiển thị view đăng bài cho thuê
         [HttpGet("Car/CarShareNew")]
@@ -535,6 +536,7 @@ namespace ShareCar.Controllers.Home
 
         //Xóa xe cho thuê
         public IActionResult DeleteCarShareQueue(int id)
+
         {
             var car = _car.tbl_CarShareQueue.Find(id);
             if (car != null)
@@ -544,6 +546,13 @@ namespace ShareCar.Controllers.Home
                 return Json(new { success = true });
             }
             return Json(new { success = false });
+        }
+
+        //Hiển thị view đặt xe
+        [HttpGet("Car/CarSellOrder/{id}")]
+        public IActionResult CarSellOrder(int id){
+            var car = _car.tbl_CarSell.Find(id);
+            return View(carsellorder, car);
         }
     }
 }

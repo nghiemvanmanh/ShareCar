@@ -2,41 +2,47 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sửa Thông Tin Cá Nhân</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
     <style>
-        button.btn.btn-primary {
-            background: black;
+        .btn-primary {
+            background: linear-gradient(43deg, #94ccff, #b0adad);
             border: none;
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
-        button.btn.btn-primary:hover {
+        .btn-primary:hover {
             transform: scale(1.1);
         }
 
-        .btn-secondary{
-            
+        .btn-secondary {
+            background: linear-gradient(45deg, #ffffff, #454444);
             border: none;
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
-        .btn-secondary:hover{
+        .btn-secondary:hover {
             transform: scale(1.1);
+        }
+
+        .border {
+            border: 1px solid #313335 !important;
         }
     </style>
 </head>
+
 <body>
     <div class="container mt-5">
         <h2 class="text-center my-4">Sửa Thông Tin Cá Nhân</h2>
-        
+
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <!-- Chỉnh sửa action ở đây -->
-                <form asp-action="Edit" method="post" class="border p-4 shadow rounded bg-light">
+                <form asp-action="Edit" method="post" class="border p-4">
                     <input type="hidden" asp-for="Id" /> <!-- Nếu có thuộc tính Id trong model -->
                     <div class="mb-3">
                         <label asp-for="UserName" class="form-label">Tên người dùng</label>
@@ -44,7 +50,7 @@
                     </div>
                     <div class="mb-3">
                         <label asp-for="PassWord" class="form-label">Mật khẩu</label>
-                        <input type="text" asp-for="PassWord" class="form-control" required/>
+                        <input type="text" asp-for="PassWord" class="form-control" required />
                         <span asp-validation-for="PassWord" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
@@ -77,4 +83,5 @@
     </div>
 
 </body>
+
 </html>
