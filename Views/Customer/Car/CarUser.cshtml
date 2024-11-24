@@ -17,21 +17,14 @@
                 @TempData["SuccessCarUser"]
             </div>
         }
-    <form method="get" class="mb-3">
-       <div class="input-group">
-            <input type="text" name="searchString" class="form-control" placeholder="Tìm kiếm theo Brand hoặc Model" />
-            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
-            
-        </div>
-    </form>
     </div>
 
     <div>
         <div>
-            @Html.Partial("/Views/Customer/Car/CarShareUser.cshtml", Model.CarShareUser);
+            @Html.Partial("/Views/Customer/Car/CarShareUser.cshtml", Model.CarShareUser)
         </div>
         <div>
-            @Html.Partial("/Views/Customer/Car/CarSellUser.cshtml", Model.CarSellUser);
+            @Html.Partial("/Views/Customer/Car/CarSellUser.cshtml", Model.CarSellUser)
         </div>
     </div>
 </body>

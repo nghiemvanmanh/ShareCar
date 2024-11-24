@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,18 +10,28 @@
 
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .form-add {
+            margin-left: 20%;
+            border: 1px solid blanchedalmond;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container mt-5">
-        <h2>Thêm xe bán mới</h2>
-        <form asp-action="CarSellNew" method="post" enctype="multipart/form-data">
+        <h2 style="margin-left: 20%;">Thêm xe bán mới</h2>
+        <form asp-action="CarSellNew" method="post" enctype="multipart/form-data" class="form-add">
             <input asp-for="UserID" class="form-control" value="@Context.Session.GetInt32("UserID")" hidden="true" />
             <div class="mb-3">
                 <label asp-for="Poster" class="form-label">Người đăng:</label>
                 <input asp-for="Poster" class="form-control" value="@Context.Session.GetString("FullName")" />
                 <span asp-validation-for="Poster" class="text-danger"></span>
             </div>
-            
+
             <div class="mb-3">
                 <label asp-for="SDT" class="form-label">Liên hệ: </label>
                 <input asp-for="SDT" class="form-control" value="@Context.Session.GetString("SDT")" />
@@ -50,7 +61,7 @@
                 <span asp-validation-for="Color" class="text-danger"></span>
             </div>
 
-            <div class="mb-3" >
+            <div class="mb-3">
                 <label asp-for="VehicleRegistration" class="form-label">Giấy tờ</label>
                 <select asp-for="VehicleRegistration" class="form-select">
                     <option value="Đầy đủ">Đầy đủ</option>
@@ -76,7 +87,7 @@
                 <span asp-validation-for="SellPrice" class="text-danger"></span>
             </div>
 
-             <div class="mb-3">
+            <div class="mb-3">
                 <label class="form-label">Chọn ảnh:</label>
                 <input name="imageFile" class="form-control" type="file" multiple />
             </div>
@@ -88,4 +99,5 @@
 
 
 </body>
+
 </html>

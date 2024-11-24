@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "g7a2o4uXOnlkuOvwBOVIoHnlWa/k9JsJ+bWME41P//0=",
+  "Hash": "fk+1NALfqMcX8F+MlRNOvCLRDNRNaPscIQTrG0Juynw=",
   "Source": "ShareCar",
   "BasePath": "_content/ShareCar",
   "Mode": "Default",
@@ -395,6 +395,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\carsell\\ffdcb49c-133c-43a1-b2fc-7dec6b7da2b9_vios.jpeg"
+    },
+    {
+      "Identity": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\carshare\\b7d6de87-60eb-4c4a-b3ac-73bfcab792ff_dream.jpg",
+      "SourceId": "ShareCar",
+      "SourceType": "Discovered",
+      "ContentRoot": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\",
+      "BasePath": "_content/ShareCar",
+      "RelativePath": "images/carshare/b7d6de87-60eb-4c4a-b3ac-73bfcab792ff_dream.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\carshare\\b7d6de87-60eb-4c4a-b3ac-73bfcab792ff_dream.jpg"
     },
     {
       "Identity": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\images\\logo.jpg",

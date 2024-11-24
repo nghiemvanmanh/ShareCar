@@ -9,11 +9,20 @@
 
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .form-add{
+            margin-left: 20%;
+            border: 1px solid blanchedalmond;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
-        <h2>Thêm xe cho thuê mới </h2>
-        <form asp-action="CarShareNew" method="post" enctype="multipart/form-data">
+        <h2 style="margin-left: 20%;">Thêm xe cho thuê mới </h2>
+        <form asp-action="CarShareNew" method="post" enctype="multipart/form-data" class="form-add" style="margin-left: 20%;">
             <input asp-for="UserID" class="form-control" value="@Context.Session.GetInt32("UserID")" hidden="true" />
             <div class="mb-3" >
                 <label asp-for="Poster" class="form-label">Người đăng:</label>
