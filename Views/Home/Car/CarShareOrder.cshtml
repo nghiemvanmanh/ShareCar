@@ -1,4 +1,4 @@
-@model ShareCar.Models.Home.CarModel.CarSellModel;
+@model ShareCar.Models.Home.CarModel.CarShareModel;
 <!DOCTYPE html>
 <html lang="en">
 
@@ -129,16 +129,17 @@
                             </div>
                             <div class="col-6">
                                 <p>@Model.Brand @Model.Model</p>
-                                <p class="text-content">@Model.LicensePlate</p>
-                                <p class="text-content">@(Model.SellPrice)đ</p>
+                                    <p class="text-content">@Model.LicensePlate</p>
+                                    <p class="text-content">@(Model.RentalPrice)đ</p>
+                                
                             </div>
                         </div>
                     </div>
                     <div class="info">
-                        <p class="text-content"><strong>Giá: </strong> @(Model.SellPrice)đ</p>
-                        <p class="text-content"><strong>Thuế: </strong> @(Model.SellPrice * 0.05)đ</p>
+                        <p class="text-content"><strong>Giá: </strong> @(Model.RentalPrice)đ</p>
+                        <p class="text-content"><strong>Thuế: </strong> @(Model.RentalPrice * 0.05)đ</p>
                         <hr>
-                        <p><strong>Total:</strong> <span class="text">@(Model.SellPrice * 1.05)đ</span></p>
+                        <p><strong>Total:</strong> <span class="text">@(Model.RentalPrice * 1.05)đ</span></p>
                     </div>
                     <div>
                         <input type="checkbox" name="apply" class="apply" id="termsCheckbox">

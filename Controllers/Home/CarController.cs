@@ -38,6 +38,7 @@ namespace ShareCar.Controllers.Home
         string carshare = "~/Views/Home/Car/CarShareAll.cshtml";
         string carqueue = "~/Views/Home/Car/CarQueue.cshtml";
          string carsellorder = "~/Views/Home/Car/CarSellOrder.cshtml";
+         string carshareorder = "~/Views/Home/Car/CarShareOrder.cshtml";
 
         //Hiển thị view đăng bài cho thuê
         [HttpGet("Car/CarShareNew")]
@@ -553,6 +554,12 @@ namespace ShareCar.Controllers.Home
         public IActionResult CarSellOrder(int id){
             var car = _car.tbl_CarSell.Find(id);
             return View(carsellorder, car);
+        }
+
+        [HttpGet("Car/CarShareOrder/{id}")]
+        public IActionResult CarShareOrder(int id){
+            var car = _car.tbl_CarShare.Find(id);
+            return View(carshareorder, car);
         }
     }
 }

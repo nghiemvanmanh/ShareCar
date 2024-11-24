@@ -13,7 +13,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
 
+        .btn-secondary {
+            place-content: center;
+            background: linear-gradient(45deg, #ffffff, #454444);
+            border: none;
+            width: 100%;
+            color:black;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-secondary:hover {
+            transform: scale(1.1);
+            color: black;
+        }
 
+        .btn-success {
+            background: linear-gradient(43deg, #94ccff, #b0adad);
+            border: none;
+            width: 100%;
+            color:black;
+            transition: color 0.3s ease, transform 0.3s ease;
+            place-content: center;
+            
+        }
+
+        .btn-success:hover {
+            transform: scale(1.1);
+            color: black;
+        }
         .img-fluid {
             width: 100%;
             height: auto;
@@ -21,46 +47,7 @@
             object-fit: cover;
         }
 
-        .btn-primary {
-            background: black;
-            color: white;
-            border: none;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
 
-        
-        .btn-primary:hover {
-            transform: scale(1.1);
-            background: black;
-        }
-
-        .btn-success:hover {
-            transform: scale(1.1);
-            background: black;
-        }
-
-        .btn-success {
-            background: black;
-            width: 100%;
-            transition: color 0.3s ease, transform 0.3s ease;
-            place-content: center;
-        }
-
-
-        .btn-secondary {
-            place-content: center;
-            width: 100%;
-            background: #0000001c;
-            color:black;
-            transition: color 0.3s ease, transform 0.3s ease;
-            border: none;
-        }
-
-        .btn-secondary:hover {
-            transform: scale(1.1);
-            background-color:#0000001c ;
-            color: black;
-        }
         .col-md-3 p {
             margin-top: 10px;
             margin-left: 5px;
@@ -77,6 +64,13 @@
             /* Căn giữa logo theo chiều ngang */
             margin-left: 10%;
         }
+
+        .card-body{
+            background:#202024
+        }
+        strong {
+            color: #ffffffab;
+        }
     </style>
 </head>
 
@@ -84,7 +78,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-9">
-                <a href="javascript:history.back()"><i class="bi bi-arrow-left-short" style="color: black; font-size: 40px; margin-left: -10px;"></i></a>
+                <a href="javascript:history.back()"><i class="bi bi-arrow-left-short" style="color: rgb(255, 255, 255); font-size: 40px; margin-left: -10px;"></i></a>
                 <h2 class="mb-3" style="margin-left: -3px;">@Model.Brand @Model.Model</h2>
                 @if(Model.SellPrice < 500000000){
                     <div>
@@ -113,11 +107,11 @@
                     <img src="@Model.Logo" alt="@Model.Model">
                 </div>
                 @if(Model.SellPrice < 500000000){
-                    <p style="background: #0000001c; width: 30%;text-align: center; border-radius: 5px;height: 35px; place-content: center;">Base Car</p>
+                    <p style="background: #343437; width: 30%;text-align: center; border-radius: 5px;height: 35px; place-content: center;">Base Car</p>
                 }else if(Model.SellPrice >= 500000000 && Model.SellPrice < 1000000000){
-                    <p style="background: #0000001c; width: 35%;text-align: center; border-radius: 5px;height: 35px; place-content: center;">Luxury Car</p>
+                    <p style="background: #343437; width: 35%;text-align: center; border-radius: 5px;height: 35px; place-content: center;">Luxury Car</p>
                 }else{
-                    <p style="background: #0000001c; width: 50%;text-align: center; border-radius: 5px; height: 35px; place-content: center;">Super Luxury Car</p>
+                    <p style="background: #343437; width: 50%;text-align: center; border-radius: 5px; height: 35px; place-content: center;">Super Luxury Car</p>
                 }
                 <p><strong><i class="fas fa-money-bill-wave"></i></strong> <span>@String.Format("{0:0,0}",
                         Model.SellPrice)đ</span></p>
