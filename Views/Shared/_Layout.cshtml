@@ -19,6 +19,7 @@
 
     <style>
         .containers.mt-3 {
+            using Microsoft.EntityFrameworkCore.Metadata.Internal;
             color: wheat;
             border-top: 1px solid #f5deb387;
             width: 88%;
@@ -192,7 +193,7 @@
             <div class="col-2">
                 <div class="sidebar">
                     <div>
-                       
+
                         <!-- Button Menu cho responsive -->
                         <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="collapse"
                             data-bs-target="#sidebarMenu" aria-expanded="false" aria-controls="sidebarMenu">
@@ -210,10 +211,17 @@
                             @if (Context.Session.GetString("UserName") != null)
                             {
                                 <li class="list-group-item">
-                                    <a asp-controller="Car" asp-action="CarQueue" class="text-decoration-none">
-                                        <i class="fas fa-clipboard-list"></i>
-                                        Bài Duyệt
-                                    </a>
+                                    <div style="display: flex;">
+                                        <a asp-controller="Car" asp-action="CarQueue" class="text-decoration-none">
+                                            <i class="fas fa-clipboard-list"></i>
+                                            Bài Duyệt
+                                        </a>
+                                        @if(@ViewBag.count > 0){
+                                            <a style="color: red;">@ViewBag.count</a>
+                                        }
+                                        
+                                    </div>
+
                                 </li>
                             }
                             else

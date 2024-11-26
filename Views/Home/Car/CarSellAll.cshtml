@@ -49,11 +49,32 @@
     .d-flex.align-items-center.justify-content-lg-start {
         margin-top: 20px;
     }
+
+    .text-content {
+        color: #a8b0b7;
+    }
+
+    span.badge.bg-checkout.text-light {
+        background: linear-gradient(45deg, #e0636f, #130706);
+    }
+
+    span.badge.bg-check.text-dark {
+        background: linear-gradient(45deg, #f8f9fa, #8fd5e4);
+    }
+
+    .card.shadow-sm {
+        background: #101014;
+    }
 </style>
 
 <body>
-    <a href="javascript:history.back()"><i class="bi bi-arrow-left-short"
-            style="color: black; font-size: 40px; margin-left: 10px;"></i></a>
+    <div>
+        @if (ViewBag.checksearch != true)
+        {
+            <a href="javascript:history.back()"><i class="bi bi-arrow-left-short"
+                    style="color: rgb(255, 255, 255); font-size: 40px; margin-left: 10px;"></i></a>
+        }
+    </div>
     <h3 class="container mt-5">Xe đăng bán hiện có (@Model.Count() bài đăng)</h3>
 
     <div class="container mt-5">
@@ -119,10 +140,20 @@
                                         class="btn btn-primary btn-sm me-2">
                                         Xem Chi Tiết
                                     </a>
-                                    <a href="@Url.Action("CarSellOder", "Car", new { id = car.CarID })"
-                                        class="btn btn-success btn-sm">
-                                        Mua Xe
-                                    </a>
+                                    @if (Context.Session.GetString("UserName") == null)
+                                    {
+                                        <a href="@Url.Action("Login", "User", new { id = car.CarID })"
+                                            class="btn btn-success btn-sm">
+                                            Mua Xe
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("CarSellOrder", "Car", new { id = car.CarID })"
+                                            class="btn btn-success btn-sm">
+                                            Mua Xe
+                                        </a>
+                                    }
                                 </div>
                             </div>
                         </div>

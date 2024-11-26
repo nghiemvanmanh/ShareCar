@@ -110,6 +110,7 @@ namespace ShareCar.Controllers.Customer
             HttpContext.Session.Remove("UserName"); // Xóa username khỏi Session
             HttpContext.Session.Remove("FullName");
             HttpContext.Session.Remove("SDT");
+            HttpContext.Session.Remove("UserID");
             return RedirectToAction("Index", "Home"); // Chuyển hướng về trang đăng nhập
         }
 

@@ -209,6 +209,7 @@ namespace ShareCar.Controllers.Home
             };
             ViewBag.check = true;
             ViewBag.key = query;
+            ViewBag.checksearch = true;
             return View(carsearch, model);
         }
 
@@ -374,6 +375,7 @@ namespace ShareCar.Controllers.Home
                 {
                     CarShareAll = shareCar      // Danh sách xe cho thuê           
                 };
+                ViewBag.checksearch = true;
                 return View(addvancedsearch, models);
             }
 
@@ -384,6 +386,7 @@ namespace ShareCar.Controllers.Home
                 {
                     CarSellAll = sellCar    // Danh sách xe bán
                 };
+                ViewBag.checksearch = true;
                 return View(addvancedsearch, modela);
             }
             var model = new CarHomeModel
@@ -392,6 +395,7 @@ namespace ShareCar.Controllers.Home
                 CarShareAll = shareCar,       // Danh sách xe cho thuê
                 CarSellAll = sellCar    // Danh sách xe bán
             };
+            ViewBag.checksearch = true;
             return View(addvancedsearch, model);
         }
 

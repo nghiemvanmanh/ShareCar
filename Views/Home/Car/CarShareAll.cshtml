@@ -62,7 +62,10 @@
     </style>
     <body>
         <div>
-            <a href="javascript:history.back()"><i class="bi bi-arrow-left-short" style="color: black; font-size: 40px; margin-left: 10px;"></i></a>
+            @if(ViewBag.checksearch != true){
+                <a href="javascript:history.back()"><i class="bi bi-arrow-left-short"
+                    style="color: rgb(255, 255, 255); font-size: 40px; margin-left: 10px;"></i></a>
+            }
         </div>
         <h3 class="container mt-5">Xe cho thuê hiện có (@Model.Count() bài đăng)</h3>
         <div class="container mt-5">
@@ -126,9 +129,15 @@
                                     <a href="@Url.Action("CarShareDetail", "Car", new { id = car.CarID })" class="btn btn-primary btn-sm me-2"> 
                                         Xem Chi Tiết
                                     </a>
-                                    <a href="@Url.Action("CarShareOrder", "Car", new { id = car.CarID })" class="btn btn-success btn-sm">
-                                        Đặt Xe
-                                    </a>
+                                    @if(Context.Session.GetString("UserName") == null ){
+                                        <a href="@Url.Action("Login", "User", new { id = car.CarID })" class="btn btn-success btn-sm">
+                                            Đặt Xe
+                                        </a>
+                                    }else{
+                                        <a href="@Url.Action("CarShareOrder", "Car", new { id = car.CarID })" class="btn btn-success btn-sm">
+                                            Đặt Xe
+                                        </a>
+                                    }
                                 </div>
                             </div>
                         </div>

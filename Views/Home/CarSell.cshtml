@@ -124,9 +124,16 @@
                                     <a href="@Url.Action("CarSellDetail", "Car", new { id = car.CarID })" class="btn btn-primary btn-sm me-2"> 
                                         Xem Chi Tiết
                                     </a>
-                                    <a href="@Url.Action("CarSellOrder", "Car", new { id = car.CarID })" class="btn btn-success btn-sm">
-                                        Mua Xe
-                                    </a>
+                                    @if(Context.Session.GetString("UserName") == null ){
+                                        <a href="@Url.Action("Login", "User", new { id = car.CarID })" class="btn btn-success btn-sm">
+                                            Mua Xe
+                                        </a>
+                                    }else{
+                                        <a href="@Url.Action("CarSellOrder", "Car", new { id = car.CarID })" class="btn btn-success btn-sm">
+                                            Mua Xe
+                                        </a>
+                                    }
+                                    
                                 </div>
                             </div>
                         </div>

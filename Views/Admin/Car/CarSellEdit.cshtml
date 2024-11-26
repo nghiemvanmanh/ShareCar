@@ -7,6 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sửa Thông Tin Phương Tiện</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .form-label{
+            color:black !important;
+        }
+        .btn-primary {
+            background: linear-gradient(43deg, #94ccff, #b0adad);
+            border: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #ffffff, #454444);
+            border: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -92,9 +116,20 @@
                             <input asp-for="Image" class="form-control" type="text" />
                         </div>
                         <div class="mb-3">
-                            <label asp-for="Logo" class="form-label">Logo</label>
-                            <input asp-for="Logo" class="form-control" type="text" value=@Model.Logo/>
-                        </div>
+                        <label asp-for="Logo" class="form-label">Logo</label>
+                        <select asp-for="Logo" class="form-select">
+                            <option value="@Model.Logo">Hiện tại</option>
+                            <option value="/images/carlogo/mercedes.jpg">Mercedes</option>
+                            <option value="/images/carlogo/audi.jpg">Audi</option>
+                            <option value="/images/carlogo/honda.jpg">Honda</option>
+                            <option value="/images/carlogo/kia.jpg">Kia Morning</option>
+                            <option value="/images/carlogo/mitsubishi.jpg">Mitsubishi</option>
+                            <option value="/images/carlogo/toyota.jpg">Toyota</option>
+                            <option value="/images/carlogo/vinfast.jpg">Vinfast</option>
+                            <option value="/images/carlogo/hyundai.jpg">Hyundai</option>
+                        </select>
+                        <span asp-validation-for="Logo" class="text-danger"></span>
+                    </div>
                         <button type="submit" class="btn btn-primary">Cập nhật</button>
                         <a asp-action="CarManager" class="btn btn-secondary">Hủy</a>
                     </form>

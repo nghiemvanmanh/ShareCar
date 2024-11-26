@@ -81,6 +81,11 @@
             margin-bottom: 10px;
         }
 
+        .apply:checked {
+            background-color: blue; /* Màu xanh lá */
+            border-color: blue;
+        }
+
         .btn {
             --bs-btn-border-color: none !important;
         }
@@ -89,7 +94,7 @@
 
 <body>
     <div class="container">
-        <h2 class="mb-4">Checkout</h2>
+        <h2 class="mb-4">Kiểm tra Thanh toán</h2>
         <div class="row">
             <!-- Payment Methods -->
             <div class="col-md-8">
@@ -129,9 +134,9 @@
                             </div>
                             <div class="col-6">
                                 <p>@Model.Brand @Model.Model</p>
-                                    <p class="text-content">@Model.LicensePlate</p>
-                                    <p class="text-content">@(Model.RentalPrice)đ</p>
-                                
+                                <p class="text-content">@Model.LicensePlate</p>
+                                <p class="text-content">@(Model.RentalPrice)đ</p>
+
                             </div>
                         </div>
                     </div>

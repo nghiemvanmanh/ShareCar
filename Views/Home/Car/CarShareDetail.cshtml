@@ -212,10 +212,16 @@
                 }
                 
                 <p><strong><i class="fas fa-money-bill-wave"></i></strong> <span>@String.Format("{0:0,0}", Model.RentalPrice) đ/ngày</span></p>
-                <div class="d-flex flex-column flex-md-row" style="padding: 5px; height: 60px; width: 117%;">
-                    <a href="@Url.Action("CarShareOrder", "Car", new { id = Model.CarID })" class="btn btn-success me-md-2 mb-2 mb-md-0">Đặt Xe</a>
-                </div>
-                
+                @if(Context.Session.GetString("UserName") == null ){
+                    <div class="d-flex flex-column flex-md-row" style="padding: 5px; height: 60px; width: 117%;">
+                        <a href="@Url.Action("Login", "User", new { id = Model.CarID })" class="btn btn-success me-md-2 mb-2 mb-md-0">Đặt Xe</a>
+                    </div>
+                }else{
+                    <div class="d-flex flex-column flex-md-row" style="padding: 5px; height: 60px; width: 117%;">
+                        <a href="@Url.Action("CarShareOrder", "Car", new { id = Model.CarID })" class="btn btn-success me-md-2 mb-2 mb-md-0">Đặt Xe</a>
+                    </div>
+                }
+        
                 <div class="d-flex flex-column flex-md-row" style="padding: 5px; height: 60px; width: 117%;">
                     <a href="javascript:history.back()" class="btn btn-secondary me-md-2 mb-2 mb-md-0">Thêm vào mục yêu thích</a>
                 </div>
