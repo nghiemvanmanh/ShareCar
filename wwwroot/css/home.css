@@ -189,17 +189,81 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .sidebar {
-        width: 150px;
-        /* Sidebar chiếm hết chiều rộng màn hình */
-        position: fixed;
-        z-index: 1000;
-        top: 0;
-        left: 0;
-        height: 100%;
-        overflow-y: auto;
+    .Sidebar-res {
+        display: grid !important;
+    }
+    .nav-item-advancedsearch {
+        display: grid !important;
+    }
+    .nav-item-home {
+        display: grid !important;
+    }
+    .sidebarmenu {
+        display: none !important;
+        background: none;
     }
     footer {
         display: none;
+    }
+    .navbar .navbar-expand-lg .navbar-light .bg-light .shadow-sm {
+        display: block;
+    }
+    a#navbarDropdown {
+        color: white;
+        text-align: center;
+    }
+    a#carShareDropdown {
+        color: white;
+        text-align: center;
+    }
+    a.nav-link {
+        color: white;
+        text-align: center;
+    }
+    a.nav-link:hover {
+        transform: scale(1.05);
+    }
+    .navbar-light .navbar-nav .nav-link {
+        color: rgb(255 255 255) !important;
+    }
+    path {
+        color: white;
+    }
+    button.btn-search {
+        background: #7c7c7c;
+    }
+    li.nav-item-home {
+        text-align: center;
+    }
+    li.nav-item-advancedsearch {
+        text-align: center;
+    }
+    li.list-group-item {
+        text-align: center;
+    }
+    li.nav-item {
+        text-align: center;
+    }
+    form.form-search {
+        display: none;
+    }
+    .navbar-collapse {
+        background: #101014;
+        margin-top: 21.5px;
+    }
+    .col-10 {
+        width: 100% !important;
+    }
+    a.nav-link:hover {
+        background: #101014;
+    }
+    .user-logout {
+        display: none !important;
+    }
+    .nav-item-user {
+        display: grid !important;
+    }
+    .log {
+        display: none !important;
     }
 }

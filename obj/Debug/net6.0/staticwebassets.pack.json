@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\ShareCar.bundle.scp.css"
     },
     {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\css\\CarSell\\carsellall.css",
+      "PackagePath": "staticwebassets\\css\\CarSell\\carsellall.css"
+    },
+    {
+      "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\css\\Carshare\\carshareall.css",
+      "PackagePath": "staticwebassets\\css\\Carshare\\carshareall.css"
+    },
+    {
       "Id": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\css\\Carshare\\carsharedetail.css",
       "PackagePath": "staticwebassets\\css\\Carshare\\carsharedetail.css"
     },

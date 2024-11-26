@@ -1,0 +1,10 @@
+@media (max-width: 768px) {
+    .row {
+        display: block;
+        width: 255%;
+    }
+}
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.shadow-sm {
+    margin-top: -49px;
+}
