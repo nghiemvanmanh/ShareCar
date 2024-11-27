@@ -223,7 +223,7 @@
                 }
         
                 <div class="d-flex flex-column flex-md-row" style="padding: 5px; height: 60px; width: 117%;">
-                    <a href="javascript:history.back()" class="btn btn-secondary me-md-2 mb-2 mb-md-0">Thêm vào mục yêu thích</a>
+                    <a href="#" id="addToFavorite" data-carid="@Model.CarID" class="btn btn-secondary me-md-2 mb-2 mb-md-0">Thêm vào mục yêu thích</a>
                 </div>
                 
                 
@@ -255,3 +255,32 @@
 </body>
 
 </html>
+
+    <script>
+        $(document).ready(function() {
+            $('#addToFavorite').click(function(e) {
+                e.preventDefault();  // Ngừng hành động mặc định của <a>
+
+                var carId = $(this).data('carid');  // Lấy CarID từ thuộc tính data-carid
+
+                $.ajax({
+                    url: '@Url.Action("AddToFavorite", "Car")',  // Đường dẫn đến action
+                    type: 'POST',
+                    data: { carId: carId },  // Truyền dữ liệu vào controller
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.message);  // Hiển thị thông báo khi thêm vào yêu thích thành công
+                        } else {
+                            alert(response.message);  // Hiển thị thông báo lỗi
+                        }
+                    },
+                    error: function() {
+                        alert("Có lỗi xảy ra khi xử lý yêu cầu.");
+                    }
+                });
+            });
+        });
+
+
+
+    </script>

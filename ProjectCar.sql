@@ -160,5 +160,44 @@ Create table tbl_Comment(
 	FOREIGN KEY (CarID) REFERENCES tbl_CarShare(CarID)
 )
 
-drop table tbl_CarShare
+
 use ProjectCar
+
+Create table tbl_CarShareFavorite(
+	ID_Share int primary key identity(1,1),
+	CarID Int not null,
+	UserID Int not null,
+	Poster nvarchar(max) ,
+	LicensePlate Nvarchar(20) not null ,
+	Brand Nvarchar(255) not null,
+	Model nvarchar(255) not null,
+	Color nvarchar(20) not null,
+	Status nvarchar(50) not null,
+	Description Nvarchar(max) ,
+	Day Datetime ,
+	Address Nvarchar(max),
+	SDT nvarchar(12) not null,
+	RentalPrice Float not null,
+	Image nvarchar(max),
+	AverageRating Float,
+	Logo nvarchar(max)
+)
+
+Create table tbl_CarSellFavorite(
+	ID_Sell  Int primary key identity(1,1),
+	CarID Int not null,
+	UserID Int not null,
+	Poster nvarchar(max) ,
+	LicensePlate Nvarchar(20) not null ,
+	Brand Nvarchar(255) not null,
+	Model nvarchar(255) not null,
+	Color nvarchar(20) not null,
+	VehicleRegistration Nvarchar(max) not null,
+	Description Nvarchar(max) ,
+	Day Datetime ,
+	Address Nvarchar(max),
+	SDT nvarchar(12) not null,
+	SellPrice Float not null,
+	Image nvarchar(max),
+	Logo nvarchar(max),
+)

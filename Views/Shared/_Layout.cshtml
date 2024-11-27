@@ -197,7 +197,6 @@
                                 </a> <!-- Nút đăng xuất -->
                             </li>
                         </div>
-
                     }
                     else
                     {   
@@ -279,6 +278,15 @@
                                 </a>
                                 }
                         </li>
+                        @if (Context.Session.GetString("UserName") != null)
+                            {
+                                <li class="nav-item">
+                                    <a asp-controller="Car" asp-action="CarFavorite" class="nav-link">
+                                        <i class="fas fa-car"></i>
+                                        Phương tiện yêu thích
+                                    </a>
+                                </li>
+                            }
                         @if(Context.Session.GetString("UserName") != null){
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="User" asp-action="Logout">
@@ -337,7 +345,7 @@
                                         </a>
                                         @if (@ViewBag.count > 0)
                                         {
-                                            <a style="color: red;">@ViewBag.count</a>
+                                            <a style="color: red !important;">@ViewBag.count</a>
                                         }
 
                                     </div>
@@ -397,6 +405,16 @@
                                     <a asp-controller="User" asp-action="UserManager" class="text-decoration-none">
                                         <i class="fas fa-users-cog"></i>
                                         Quản lý Người dùng
+                                    </a>
+                                </li>
+                            }
+
+                            @if (Context.Session.GetString("UserName") != null)
+                            {
+                                <li class="list-group-item">
+                                    <a asp-controller="Car" asp-action="CarFavorite" class="text-decoration-none">
+                                        <i class="fas fa-car"></i>
+                                        Phương tiện yêu thích
                                     </a>
                                 </li>
                             }

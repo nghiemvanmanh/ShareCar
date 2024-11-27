@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ShareCar.Models.Customer.CarModel;
 using ShareCar.Models.Home.CarModel;
 
 namespace ShareCar.Models
@@ -21,5 +22,8 @@ namespace ShareCar.Models
 
         public IEnumerable<CarShareQueue> carShareQueues { get; set; } // Danh sách xe cho thuê duyệt
         public IEnumerable<CarSellQueue> carSellQueues { get; set; } // Danh sách xe đăng bán duyệt
+
+        public IEnumerable<CarShareFavorite> carShareFavorites { get; set; } //Danh sách xe cho thuê yêu thích
+        public IEnumerable<CarSellFavorite> carSellFavorites { get; set; } //Danh sách xe đăng bán yêu thích
     }
 }

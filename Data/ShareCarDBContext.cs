@@ -42,6 +42,7 @@ namespace ShareCar.Data
             .WithMany(p => p.CommentShare)
             .HasForeignKey(c => c.CarID);
             base.OnModelCreating(modelBuilder);
+
         }
 
         public DbSet<AccountModel> tblUser { get; set; }
@@ -53,5 +54,8 @@ namespace ShareCar.Data
         public DbSet<CarSellQueue> tbl_CarSellQueue { get; set; }
 
         public DbSet<CommentModel> tbl_Comment { get; set; }
+
+        public DbSet<CarShareFavorite> tbl_CarShareFavorite { get; set; }
+        public DbSet<CarSellFavorite> tbl_CarSellFavorite { get; set; }
     }
 }

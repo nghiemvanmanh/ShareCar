@@ -14,6 +14,10 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.shadow-sm {
     height: 10%;
 }
 
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.shadow-sm {
+    margin-top: 0px !important;
+}
+
 .nav-link {
     padding: 10px 15px;
     /* Điều chỉnh khoảng cách padding */

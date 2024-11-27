@@ -1,0 +1,19 @@
+@model ShareCar.Models.CarHomeModel;
+
+<a href="javascript:history.back()"><i class="bi bi-arrow-left-short"
+                    style="color: rgb(255, 255, 255); font-size: 40px; margin-left: 10px;"></i></a>
+<div>
+        <div id="CarShareFavorite">
+            @if (Model.carShareFavorites != null && Model.carShareFavorites.Any())
+            {
+                @Html.Partial("~/Views/Customer/Car/CarShareFavorite.cshtml", Model.carShareFavorites)
+            }
+        </div>
+
+        <div id="CarSellFavorite">
+            @if (Model.carSellFavorites != null && Model.carSellFavorites.Any())
+            {
+                @Html.Partial("~/Views/Customer/Car/CarSellFavorite.cshtml", Model.carSellFavorites)
+            }
+        </div>
+    </div>

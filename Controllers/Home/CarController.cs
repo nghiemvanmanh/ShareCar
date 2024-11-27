@@ -224,6 +224,7 @@ namespace ShareCar.Controllers.Home
             {
                 return NotFound();
             }
+
             return View(carsharedetail, cars);
         }
 
@@ -468,6 +469,7 @@ namespace ShareCar.Controllers.Home
                 RentalPrice = carInQueue.RentalPrice,
                 Image = carInQueue.Image,
                 AverageRating = carInQueue.AverageRating
+                
             };
 
             // Thêm xe vào bảng `tbl_CarSell`
@@ -560,10 +562,13 @@ namespace ShareCar.Controllers.Home
             return View(carsellorder, car);
         }
 
+        //Hiển thị View thuê xe
         [HttpGet("Car/CarShareOrder/{id}")]
         public IActionResult CarShareOrder(int id){
             var car = _car.tbl_CarShare.Find(id);
             return View(carshareorder, car);
         }
+    
+    
     }
 }
