@@ -1,0 +1,12 @@
+@media (max-width: 768px) {
+    #rentOption,
+    #sellOption {
+        width: 102.5% !important;
+    }
+    .form-control {
+        width: 30%;
+    }
+    .form-select {
+        width: 30%;
+    }
+}

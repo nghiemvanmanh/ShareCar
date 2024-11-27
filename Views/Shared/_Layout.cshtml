@@ -37,7 +37,7 @@
         }
 
         a.text-decoration-none {
-            color: #f5deb3;
+            color: #f5deb3 !important;
         }
 
         a.me-4 {
@@ -50,7 +50,7 @@
 
         .sidebar .list-group-item a {
             display: block;
-            color: #ffffff;
+            color: #ffffff !important;
             /* Màu chữ */
             text-decoration: none;
             padding: 8px;
@@ -228,7 +228,7 @@
                                     </a>
                                     @if (@ViewBag.count > 0)
                                     {
-                                        <a style="color: red; margin-left: 10px; margin-top: 8px;">@ViewBag.count</a>
+                                        <a style="color: red !important; margin-left: 10px; margin-top: 8px;">@ViewBag.count</a>
                                     }
                                 </div>
                             }

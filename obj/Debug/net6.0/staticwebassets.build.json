@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "k3WS/wTCPeZCBy3yc7L2vY0PLHyJaio6KhwpygkMapo=",
+  "Hash": "Jz1EGtWu0wr7jtLvdDg5thkyqqQ1HNNd6GhBwNusWjo=",
   "Source": "ShareCar",
   "BasePath": "_content/ShareCar",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\ShareCar.bundle.scp.css"
+    },
+    {
+      "Identity": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\css\\advancedsearch.css",
+      "SourceId": "ShareCar",
+      "SourceType": "Discovered",
+      "ContentRoot": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\",
+      "BasePath": "_content/ShareCar",
+      "RelativePath": "css/advancedsearch.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\advancedsearch.css"
     },
     {
       "Identity": "d:\\Ki I nam 4\\LT Web Nâng Cao\\BTL\\ShareCar\\ShareCar\\wwwroot\\css\\CarSell\\carsellall.css",
