@@ -72,6 +72,11 @@
                         <label class="form-label">Địa chỉ</label>
                         <input type="text" class="form-control" value="@Model.Address" readonly />
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label">Verify Key</label>
+                        <input type="text" class="form-control" value="@Model.VerifyKey" readonly />
+                    </div>
+                    
                     <div class="text-center mt-3">
                         <a href="@Url.Action("Edit", "User")" class="btn btn-primary">Cập nhật thông tin</a>
                         <a href="@Url.Action("Index","Home")" class="btn btn-secondary">Quay lại trang chủ</a>

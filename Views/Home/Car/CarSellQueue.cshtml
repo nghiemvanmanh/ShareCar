@@ -4,10 +4,18 @@
             background: #e4e4e4;
             border: 1px solid #d3d0d0;
         }
+    .table{
+        color: white;
+    }
+
+    .table>:not(caption)>*>* {
+        background-color: #101014;
+        border-color: #636363;
+    }
 </style>
 <h4>Danh sách xe đăng bán</h4>
 <table class="table table-bordered">
-    <thead class="table-light">
+    <thead class="table">
         <tr>
             <th>Car ID</th>
             <th>Biển Số</th>
@@ -29,8 +37,8 @@
         @if (Model == null || !Model.Any())
         {
             <tr>
-                <td colspan="15" class="text-center alert alert-info">
-                    <div class="alert alert-light text-center">
+                <td colspan="15" class="text-center alert alert-info" style="color: white;">
+                    <div class="alert text-center">
                         Không có phương tiện nào được đăng. <a asp-action="CarSellNew">Thêm phương tiện mới ngay</a>
                     </div>
                 </td>

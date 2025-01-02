@@ -8,6 +8,8 @@
 	Address Nvarchar(max) not null,
 )
 
+alter table tblUser add VerifyKey nvarchar(max) null
+
 Insert into tblUser(UserName,PassWord,Email,SDT,FullName, Address) values ('admin','2003','admincar@admin.com','0999999999',N'Nghiêm Văn Mạnh',N'Hà Nội')
 
 Create table tbl_CarShare(

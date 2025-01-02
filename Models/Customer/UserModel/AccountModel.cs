@@ -17,5 +17,11 @@ namespace ShareCar.Models.Customer.UserModel
         public string FullName { get; set; }
         public string Address { get; set; }
         
+        [Required]
+        [RegularExpression(@"^.{5,}[0-9]$", ErrorMessage = "VerifyKey phải có ít nhất 6 ký tự và kết thúc bằng một chữ số.")]
+        // [MinLength(6, ErrorMessage = "VerifyKey phải có ít nhất 6 ký tự.")]
+        // [RegularExpression(@".*\d$", ErrorMessage = "VerifyKey phải kết thúc bằng một chữ số.")]
+        
+        public string? VerifyKey { get; set; }
     }
 }

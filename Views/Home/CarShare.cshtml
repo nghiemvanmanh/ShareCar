@@ -122,15 +122,14 @@
         <!-- Swiper Container -->
         @if (Model != null && Model.Any())
         {
-            <div class="text-end" style="display: flex; justify-content: end; margin-bottom: 2%; margin-right: 1%;">
-                <div class="button-prev"><i class="bi bi-chevron-left"></i></div>
-                <div class="button-next"><i class="bi bi-chevron-right"
-                        style="padding: 5px;background: #3d3d3d;border-radius: 50%;font-size: 15px; margin-left: 50%;"></i>
-                </div>
-
-            </div>
-
             <div class="swiper-container">
+                <div class="text-end" style="display: flex; justify-content: end;     margin-bottom: 2%;margin-right: 14px;margin-top: 3px;">
+                    <div class="button-prev"><i class="bi bi-chevron-left"></i></div>
+                    <div class="button-next"><i class="bi bi-chevron-right"
+                            style="padding: 5px;background: #3d3d3d;border-radius: 50%;font-size: 15px; margin-left: 50%;"></i>
+                    </div>
+
+                </div>
                 <div class="swiper-wrapper">
 
                     @foreach (var car in Model)

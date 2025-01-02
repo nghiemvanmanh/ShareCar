@@ -76,6 +76,12 @@
                         <input asp-for="Address" class="form-control" required />
                         <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
+
+                    <div class="mb-3">
+                        <label asp-for="VerifyKey" class="form-label">Verify Key</label>
+                        <input asp-for="VerifyKey" class="form-control" required />
+                        <span asp-validation-for="VerifyKey" class="text-danger"></span>
+                    </div>
                     <button type="submit" class="btn btn-primary w-100">Đăng Ký</button>
                 </form>
                 <div class="text-center mt-3">
